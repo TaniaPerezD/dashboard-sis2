@@ -1,11 +1,17 @@
+import { Routes, Route} from 'react-router-dom';
+// Implementar transicion entre pantallas aqui posteriormente
+import { HomePage, DepPage, ErrorPage, RubrosPage } from '../pages';
+
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>  
-      </header>
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/departamental" element={<DepPage/>} />
+        <Route path="*" element={<ErrorPage/>} />
+        <Route path="/rubros" element={<RubrosPage />}/>
+      </Routes>
     </div>
   );
 }
