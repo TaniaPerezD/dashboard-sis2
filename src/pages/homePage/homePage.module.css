@@ -1,0 +1,7 @@
+.h1 {
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    font-size: 10rem;
+    font-weight: 900;
+    color: var(--BluePurple-Dark);
+    text-align: center;
+}

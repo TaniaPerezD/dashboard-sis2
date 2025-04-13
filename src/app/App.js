@@ -1,5 +1,5 @@
 import { Routes, Route} from 'react-router-dom';
-// Implementar transicion entre pantallas aqui posteriormente
+// TO-DO Implementar transicion entre pantallas aqui posteriormente
 import { HomePage, DepPage, ErrorPage, RubrosPage } from '../pages';
 
 

@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-/* Definir Montserrat Variable Font */
+/* Montserrat Variable Font */
 @font-face {
     font-family: 'Montserrat';
     src: url('../assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
@@ -14,7 +14,7 @@
     font-display: swap;
 }
 
-/* Definir Roboto Variable Font */
+/* Roboto Variable Font */
 @font-face {
     font-family: 'Roboto';
     src: url('../assets/fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype');

@@ -4,7 +4,7 @@ import styles from './homePage.module.css';
 const HomePage = () => {
     return (
         <div>
-            <h1>Pagina de Bienvenida</h1>
+            <h1 className={styles.h1}>Pagina de Bienvenida</h1>
         </div>
     );
 }; export default HomePage;
