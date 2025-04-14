@@ -1,3 +1,4 @@
+
 import { Routes, Route } from 'react-router-dom';
 import { HomePage, DepPage, ErrorPage, RubrosPage } from '../pages';
 import Lateralbar from '../components/barraLateral/lateralbar';
