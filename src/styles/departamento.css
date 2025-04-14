@@ -1,6 +1,17 @@
+:root {
+    --dash-blue-dark: #182335; /* Color principal (sidebar, títulos) */
+    --secondary-color: #f8b1c5; /* Color secundario (borde de la sidebar) */
+    --background-color: #EADBCC; /* Fondo del contenedor */
+    --card-color: #D2594D; /* Fondo de las tarjetas */
+    --card-dash-blue-light: #b6362a; /* Fondo de las tarjetas al pasar el mouse */
+    --text-color: white; /* Color del texto */
+    --dash-blue-light: #465978; /* Color al pasar el mouse por los íconos */
+    --shadow-color: rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
 .titulos {
     font-family: 'Arial', sans-serif;
-    color: #182335;
+    color: var(--dash-blue-dark);
     font-size: 35px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -8,14 +19,14 @@
 }
 .sidebar-icon {
     font-size: 50px;
-    color: white;
+    color: var(--text-color);
     margin-bottom: 2rem;
     margin-top: 2rem;
     cursor: pointer;
 }
   
 .sidebar-icon:hover {
-    color: #465978;
+    color: var(--dash-blue-light);
 }
 
 .visual-panel {
@@ -28,10 +39,10 @@
 }
 
 .sidebar {
+    background-color: var(--dash-blue-dark);
+    border-right: 2px solid var(--secondary-color);
     width: 85px;
-    background-color: #182335;
     padding: 15px;
-    border-right: 2px solid #f8b1c5;
     display: flex;
     flex-direction: column;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
@@ -44,7 +55,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     font-family: 'Arial', sans-serif;
-    background: #EADBCC;
+    background: var(--background-color);
     min-height: 100vh;
     height: 100vh;
     overflow: hidden;
@@ -52,10 +63,40 @@
     box-sizing: border-box;
     border-radius: 10px;
 }
+
+.card-dashboard{
+    margin: 10px;
+    border-radius: 20px;
+    align-items: center;
+    width: 100%;
+    height: 40vh;
+}
+.card-dashboard-header{
+    background-color: var(--dash-blue-dark);
+    color: var(--text-color);
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 35px;
+    padding: 20px;
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+}
+.card-dashboard-content{
+    background-color: var(--text-color);
+    color: var(--dash-blue-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
 .card-container {
-    background-color: #D2594D;
+    background-color: var(--card-color);
+    color: var(--text-color);
     border-radius: 10px;
-    color: white;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -68,6 +109,6 @@
     margin-bottom: 15px;
 }
 .card-container:hover {
-    background-color: #b6362a;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--card-dash-blue-light);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }

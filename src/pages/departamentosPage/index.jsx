@@ -1,49 +1,57 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Dropdown from 'react-bootstrap/Dropdown';
 import '../../styles/departamento.css';
 import React from 'react';
+import { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-import data  from '../../data/departamento/depaResumen.json'
+import empresas  from '../../data/departamento/dataEmpresas.json'
 import depa  from '../../data/departamento/depaResumen.json'
 
 
 const DepPage = () => {
-
-    const resumirEmpresasPorDepartamento = (empresas) => {
+    const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState(null);
+    const procesoGraficoBarras = (departamentoSeleccionado) => {
         const resumen = {};
-      
-        empresas.forEach((empresa) => {
-            const depto = empresa.departamento;
-            const rubro = empresa.rubro;
+        var flag = false;
         
-            if (!resumen[depto]) {
-                resumen[depto] = {
-                cantidad_empresas: 0,
-                rubros: {}
-                };
+        if(departamentoSeleccionado==null){
+            flag = true;
+        }
+
+        empresas.forEach((empresa) => {
+        if (empresa.departamento !== departamentoSeleccionado & flag===false) return;
+            const anio = empresa.anio_fundacion;
+            const tamano = empresa.tamano;
+        
+            if (!resumen[anio]) {
+                resumen[anio] = { anio, pequeña: 0, mediana: 0, grande: 0 };
             }
         
-            resumen[depto].cantidad_empresas++;
-            resumen[depto].rubros[rubro] = (resumen[depto].rubros[rubro] || 0) + 1;
+            if (resumen[anio][tamano] !== undefined) {
+                resumen[anio][tamano]++;
+            }
+            });
+      
+            return Object.values(resumen).sort((a, b) => a.anio - b.anio);
+      };
+      
+    const departamentoListados = () => {
+        const departamentosSet = new Set();
+      
+        empresas.forEach((empresa) => {
+            if (empresa.departamento) {
+                departamentosSet.add(empresa.departamento);
+            }
         });
       
-        // Rubro mas comua ksjd
-        const resultado = Object.entries(resumen).map(([departamento, datos]) => {
-            const rubro_mas_comun = Object.entries(datos.rubros).reduce((a, b) =>
-                b[1] > a[1] ? b : a
-            )[0];
-        
-            return {
-                departamento,
-                cantidad_empresas: datos.cantidad_empresas,
-                rubro_mas_comun
-            };
-        });
-      
-        return { resumen_por_departamento: resultado };
+        return Array.from(departamentosSet);
     };
       
 
+      
+    const dataDepaBarras = procesoGraficoBarras();
+    console.log(dataDepaBarras);
     return (
         <div className="container">
             <div className="row">
@@ -62,28 +70,52 @@ const DepPage = () => {
                     <div className="card-container">
                         100
                     </div>
+                    
                 </div>
                 <div className="col-6">
-                    <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                            width={500}
-                            height={300}
-                            data={depa}
-                            margin={{
-                            top: 5,
-                            right: 30,
-                            left: 20,
-                            bottom: 5,
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="departamento" />
-                            <YAxis />
-                            <Tooltip/>
-                            <Legend />
-                            <Bar dataKey="cantidad_empresas" barSize={20} fill="#8884d8" />
-                        </BarChart>
-                    </ResponsiveContainer>
+                    <div className="card-dashboard">
+                        <div className="card-dashboard-header">
+                            Hola
+                            <Dropdown>
+                                <Dropdown.Toggle variant="dark" id="dropdown-basic">
+                                    Departamento
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    {departamentoListados().map((departamento) => (
+                                        <Dropdown.Item key={departamento} onClick={() => setDepartamentoSeleccionado(departamento)}>
+                                        {departamento}
+                                        </Dropdown.Item>
+                                    ))}
+                                    </Dropdown.Menu>
+
+                            </Dropdown>
+                        </div> 
+                        <div className="card-dashboard-content">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart
+                                    width={500}
+                                    height={300}
+                                    data={procesoGraficoBarras(departamentoSeleccionado)}
+                                    margin={{
+                                    top: 5,
+                                    right: 30,
+                                    left: 20,
+                                    bottom: 5,
+                                    }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="anio" />
+                                    <YAxis />
+                                    <Tooltip/>
+                                    <Legend />
+                                    <Bar dataKey="pequeña" stackId="a" fill="#8884d8" />
+                                    <Bar dataKey="mediana" stackId="a" fill="#82ca9d" />
+                                    <Bar dataKey="grande" stackId="a" fill="#8564d8" />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
