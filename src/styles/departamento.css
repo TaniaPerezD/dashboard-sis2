@@ -64,4 +64,10 @@
     gap: 20px;
     width: 100%;
     padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.card-container:hover {
+    background-color: #b6362a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
