@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
-import DepartamentoDash from '../pages/departamentoPage';
-
+import { Routes, Route } from 'react-router-dom';
+import { HomePage, DepPage, ErrorPage, RubrosPage } from '../pages';
+import Lateralbar from '../components/barraLateral/lateralbar';
+import styles from './App.module.css';
 
 function App() {
-  const location = useLocation();
-
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<DepartamentoDash/>} />
-        <Route path="/departamento" element={<DepartamentoDash />} />
-
-      </Routes>
+    <div className={styles.app}>
+      <Lateralbar />
+      <main className={styles.content}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Departamental" element={<DepPage />} />
+          <Route path="/Rubros" element={<RubrosPage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </main>
     </div>
   );
 }
