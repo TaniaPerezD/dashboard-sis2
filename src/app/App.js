@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
-import DepartamentoDash from '../components/departamentoDash';
+import DepartamentoDash from '../pages/departamentoPage';
 
 
 function App() {
