@@ -61,7 +61,7 @@ const DepPage = () => {
                 <div className="col-6">
                     <div className="card-dashboard">
                         <div className="card-dashboard-header">
-                            Hola
+                            Gráfico por 
                             <Dropdown>
                                 <Dropdown.Toggle variant="dark" id="dropdown-basic">
                                     Departamento
