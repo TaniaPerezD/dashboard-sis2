@@ -1,0 +1,27 @@
+[
+    {
+      "departamento": "Cochabamba",
+      "cantidad_empresas": 100,
+      "mayor_rubro": "Agroindustria"
+    },
+    {
+      "departamento": "La Paz",
+      "cantidad_empresas": 200,
+      "mayor_rubro": "Tecnología"
+    },
+    {
+      "departamento": "Oruro",
+      "cantidad_empresas": 80,
+      "mayor_rubro": "Construcción"
+    },
+    {
+      "departamento": "Santa Cruz",
+      "cantidad_empresas": 250,
+      "mayor_rubro": "Comercio Exterior"
+    },
+    {
+      "departamento": "Tarija",
+      "cantidad_empresas": 50,
+      "mayor_rubro": "Textiles"
+    }
+  ]  
