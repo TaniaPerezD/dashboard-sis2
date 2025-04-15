@@ -16,7 +16,7 @@ const Rubro = () => {
         backgroundColor: "#E9F5FE",
         
         gap: "0.4rem", //
-      }}>
+      }}> 
       
       <Titulo width="16%" height="8%" />
       <BotonEleccion  width="100%" height="7%" />
