@@ -89,15 +89,31 @@ const DepPage = () => {
 
             <div className="row">
                 <div className="col-4">
-                    <div className="card-container">100</div>
-                    <div className="card-container">100</div>
-                    <div className="card-container">100</div>
+                    <div className="row">
+                        <div className="col-4">
+                            <div className="card-container">
+                                100
+                            </div>
+                        </div>
+                        <div className="col-4">
+                            <div className="card-container">
+                                100
+                            </div>
+                        </div>
+                        <div className="col-4">
+                            <div className="card-container">
+                                100
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="col-6">
                     <div className="card-dashboard">
                         <div className="card-dashboard-header">
+
                             Gráfico por 
+
                             <Dropdown>
                                 <Dropdown.Toggle variant="dark" id="dropdown-basic">
                                     Departamento
@@ -152,9 +168,9 @@ const DepPage = () => {
                                     <YAxis />
                                     <Tooltip />
                                     <Legend />
-                                    <Bar dataKey="pequeña" stackId="a" fill="#8884d8" />
-                                    <Bar dataKey="mediana" stackId="a" fill="#82ca9d" />
-                                    <Bar dataKey="grande" stackId="a" fill="#8564d8" />
+                                    <Bar dataKey="pequeña" stackId="a" fill="#EEAF9D" />
+                                    <Bar dataKey="mediana" stackId="a" fill="#94A3BA" />
+                                    <Bar dataKey="grande" stackId="a" fill="#465978" />
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
