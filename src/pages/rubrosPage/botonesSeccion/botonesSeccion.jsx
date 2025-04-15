@@ -1,29 +1,25 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import React, { useId } from 'react';
+import React from 'react';
 import "@fontsource/montserrat/700.css";
-import './buutonEnterpriseType.css';
 
-const BotonType = ({ 
+
+const BotonSeccion = ({ 
   width = "fit-content",
   height = "auto",
   options = [
-    { id: "btnradio1", label: "Grandes Empresas", defaultChecked: true },
-    { id: "btnradio2", label: "Medianas Empresas" },
-    { id: "btnradio3", label: "Empresas Familiares" }
+    { id: "btnradio1", label: "Seccion1", defaultChecked: true },
+    { id: "btnradio2", label: "Seccion2" }
   ],
   selectedValue,
   onChange,
   spacing = "2rem",
-  buttonWidth = "350px"
+  buttonWidth = "100px",
+  name = "btnradio" // ← Prop para personalizar el nombre del grupo
 }) => {
   const isControlled = selectedValue !== undefined;
-  const groupId = useId();
+  
   return (
-    <div
-      className="enterprise-type-container"
-      style={{ width, height }}
-    >
+    <div className="enterprise-type-container" style={{ width, height }}>
       <div 
         className="enterprise-btn-group"
         style={{ gap: spacing }}
@@ -35,8 +31,8 @@ const BotonType = ({
             <input
               type="radio"
               className="btn-check"
-              name={`btnradio-${groupId}`} // Usa el ID único en el name
-              id={`${option.id}-${groupId}`}
+              name={name} // ← Usa el nombre personalizado
+              id={option.id}
               autoComplete="off"
               checked={isControlled ? selectedValue === option.id : undefined}
               defaultChecked={!isControlled && option.defaultChecked}
@@ -44,7 +40,7 @@ const BotonType = ({
             />
             <label 
               className="enterprise-btn"
-              htmlFor={`${option.id}-${groupId}`}
+              htmlFor={option.id}
               style={{ width: buttonWidth }}
             >
               {option.label}
@@ -55,5 +51,4 @@ const BotonType = ({
     </div>
   );
 };
-
-export default BotonType;
+export default BotonSeccion;

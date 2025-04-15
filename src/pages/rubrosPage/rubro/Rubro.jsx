@@ -18,7 +18,7 @@ const Rubro = () => {
         gap: "0.4rem", //
       }}> 
       
-      <Titulo width="16%" height="8%" />
+      <Titulo width="100%" height="8%" />
       <BotonEleccion  width="100%" height="7%" />
       <Periodos  width="100%" height="9%" />
       <Indices  width="100%" height="10%" />

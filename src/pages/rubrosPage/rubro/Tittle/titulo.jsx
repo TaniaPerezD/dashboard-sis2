@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import "@fontsource/montserrat/700.css";
-
+import BotonSeccion from '../../botonesSeccion/botonesSeccion';
 const Titulo = ({ width = "15%", height = "10%" }) => {
   return (
     <div
@@ -12,34 +12,44 @@ const Titulo = ({ width = "15%", height = "10%" }) => {
         borderColor: '#E9F5FE',
         backgroundColor: "#E9F5FE",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
-        padding: 0,
+        padding: "0rem",
         boxShadow: "none",
         position: "relative",
       }}
     >
       <h5
         style={{
-          position: "absolute",  // Coloca el texto en el centro
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          position: "absolute",
+          top: "50%",
+          left: "0.75rem", // Usa el mismo valor que el padding del contenedor
+          transform: "translateY(-50%)",
           margin: 0,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           color: "#182335",
           fontWeight: 700,
           fontFamily: "Montserrat, sans-serif",
-          fontSize: "3vw",  // Escala dinámicamente el tamaño de la fuente
-          lineHeight: "100%",  // Ajusta el alto del texto al alto de la card
-          textAlign: "center",
+          fontSize: "3vw",
+          lineHeight: "100%",
+          textAlign: "left", // Alinea el texto a la izquierda
         }}
       >
         RUBROS
       </h5>
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          right: "0.75rem", 
+          transform: "translateY(-50%)",
+          color: "#182335",
+        }}
+      >
+        <BotonSeccion />
+      </div>
+      
+    
+      
     </div>
   );
 };

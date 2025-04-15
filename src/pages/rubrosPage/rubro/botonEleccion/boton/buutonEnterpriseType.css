@@ -1,0 +1,67 @@
+/* Contenedor principal */
+.enterprise-type-container {
+    width: fit-content;
+    height: auto;
+    border-color: #E9F5FE;
+    background-color: #E9F5FE;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.1rem;
+    box-shadow: none;
+    justify-content: center;
+    border-radius: 1.5rem;
+  }
+  
+  /* Grupo de botones */
+  .enterprise-btn-group {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem; /* Valor por defecto */
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  /* Estilos base del botón */
+  .enterprise-btn {
+    white-space: nowrap;
+    font-size: 0.875rem;
+    padding: 0.375rem 0.1rem;
+    margin: 0;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
+  /* Estado normal (no seleccionado) */
+  .enterprise-btn {
+    background-color: #EEAF9D;
+    color: #182335;
+    border: 1px solid #EEAF9D;
+  }
+  
+  /* Estado activo (seleccionado) */
+  .enterprise-btn.active,
+  .btn-check:checked + .enterprise-btn {
+    background-color: #E15546;
+    color: white;
+  }
+  
+  /* Efecto hover */
+  .enterprise-btn:hover {
+    background-color: #E15546;
+    color: white;
+  }
+  
+  /* Input radio oculto */
+  .btn-check {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
