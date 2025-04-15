@@ -11,20 +11,20 @@ function App() {
     <div className="container">
       <div className="row-1">
         <div className="titulos">
-        DEPARTAMENTOS
+        DEPARTAMENTOS PRUEBA LUIS
         </div>
       </div>
       <div className="row-8">
         <div className="col-4">
           <div className="card-container">
-            100
+            1000
           </div>
 
         </div>
         
         <div className="col-6">
             <div className="card-container">
-              100
+              1000
             </div>
             <div className="container">
               <BarChart
