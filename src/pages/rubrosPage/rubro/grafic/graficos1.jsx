@@ -1,6 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import "@fontsource/montserrat/700.css";
+
+
+
 import Puntos from './graficq/puntos';
 import Pastel from './graficq/pastel';
 const Grafico1 = ({ width = "15%", height = "10%" }) => {
