@@ -1,6 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import "@fontsource/montserrat/700.css";
+
+
+
 import { 
   LineChart, 
   Line, 

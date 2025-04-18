@@ -1,6 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import "@fontsource/montserrat/700.css";
+
 import Indice from './indice/indice';
 const Indices = ({ width = "15%", height = "10%" }) => {
   return (
