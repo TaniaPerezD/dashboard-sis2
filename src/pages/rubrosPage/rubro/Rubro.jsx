@@ -1,29 +1,34 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import Titulo from './Tittle/titulo';
 
-import Periodos from './periodos/periodos';
 import Indices from './indicesCrecimiento/indicesCre';
 import Grafico1 from './grafic/graficos1';
 import Estadistic from './estadistEmpresas/estadistic';
-import BotonEleccion from './botonEleccion/botonEleccion';
-const Rubro = () => {
+
+const Rubro = ({ width = "15%", height = "10%" }) => {
   return (
-    <div className="card" style={{
-        width: "100%",             
-        height: "100%", 
-        borderColor: '#E9F5FE',          
+    <div
+      className="card"
+      style={{
+        width: width,
+        height: height,
+        borderColor: '#E9F5FE',
         backgroundColor: "#E9F5FE",
-        
-        gap: "0.4rem", //
-      }}> 
+        display: "flex",
+        flexDirection: "column",  // Apila los elementos verticalmente
+        justifyContent: "space-between",
+        alignItems: "stretch",   // Ocupa todo el ancho disponible
+        padding: "0rem",       // Añadido padding mínimo
+        boxShadow: "none",
+        position: "relative",
+        gap: "0.5rem",           // Espacio entre elementos
+      }}
+    >
       
-      <Titulo width="100%" height="8%" />
-      <BotonEleccion  width="100%" height="7%" />
-      <Periodos  width="100%" height="9%" />
+     
       <Indices  width="100%" height="10%" />
-      <Grafico1  width="100%" height="38%" />
-      <Estadistic  width="100%" height="28%" />
+      <Grafico1  width="100%" height="50%" />
+      <Estadistic  width="100%" height="40%" />
       
     </div>
   );

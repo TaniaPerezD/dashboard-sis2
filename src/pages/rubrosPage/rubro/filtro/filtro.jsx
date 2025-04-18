@@ -1,7 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+
 import React, { useState } from 'react';
-import "@fontsource/montserrat/700.css";
+
 
 const Filtro = ({ width = "40%", height = "10%" }) => {
   const [filtroSeleccionado, setFiltroSeleccionado] = useState("Filtro");

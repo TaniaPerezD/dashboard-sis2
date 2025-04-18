@@ -1,6 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import "@fontsource/montserrat/700.css";
+
 import Periodo from './periodoComp/periodo';
 import Filtro from '../filtro/filtro'
 const Periodos = ({ width = "15%", height = "10%" }) => {

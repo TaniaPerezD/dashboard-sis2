@@ -13,11 +13,11 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/Departamental" element={<DepPage />} />
-          <Route path="/Rubros" element={<RubrosPage />} />
           <Route path="/Departamental/SeccionUno" element={<DepPage />} />
           <Route path="/Departamental/SeccionDos" element={<SeccionDosPage />} />
           <Route path="/Departamental/SeccionTres" element={<SeccionTresPage />} />
           <Route path="/Departamental/SeccionCuatro" element={<SeccionCuatroPage />} />
+          <Route path="/Rubros/*" element={<RubrosPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>

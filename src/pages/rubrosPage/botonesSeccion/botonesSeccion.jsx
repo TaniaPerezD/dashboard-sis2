@@ -1,23 +1,51 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import "@fontsource/montserrat/700.css";
 
+import React, { useState, useEffect } from 'react';
+
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const BotonSeccion = ({ 
   width = "fit-content",
   height = "auto",
   options = [
-    { id: "btnradio1", label: "Seccion1", defaultChecked: true },
-    { id: "btnradio2", label: "Seccion2" }
+    { id: "btnradio1", label: "Seccion1", route: "/Rubros/seccion1", defaultChecked: true },
+    { id: "btnradio2", label: "Seccion2", route: "/Rubros/seccion2" }
   ],
-  selectedValue,
+  selectedValue: externalSelectedValue,
   onChange,
   spacing = "2rem",
   buttonWidth = "100px",
-  name = "btnradio" // ← Prop para personalizar el nombre del grupo
+  name = "btnradio"
 }) => {
-  const isControlled = selectedValue !== undefined;
+  const navigate = useNavigate();
+  const location = useLocation();
+
+ 
+  const isControlled = externalSelectedValue !== undefined;
+
   
+  const [internalSelectedValue, setInternalSelectedValue] = useState(() => {
+    const match = options.find(opt => location.pathname === opt.route);
+    return match ? match.id : options[0].id;
+  });
+
+  
+  useEffect(() => {
+    if (!isControlled) {
+      const match = options.find(opt => location.pathname === opt.route);
+      if (match) setInternalSelectedValue(match.id);
+    }
+  }, [location.pathname, isControlled, options]);
+
+  const selectedValue = isControlled ? externalSelectedValue : internalSelectedValue;
+
+  const handleClick = (option) => {
+    if (!isControlled) {
+      setInternalSelectedValue(option.id);
+    }
+    if (onChange) onChange(option.id);
+    if (option.route) navigate(option.route);
+  };
+
   return (
     <div className="enterprise-type-container" style={{ width, height }}>
       <div 
@@ -31,12 +59,11 @@ const BotonSeccion = ({
             <input
               type="radio"
               className="btn-check"
-              name={name} // ← Usa el nombre personalizado
+              name={name}
               id={option.id}
               autoComplete="off"
-              checked={isControlled ? selectedValue === option.id : undefined}
-              defaultChecked={!isControlled && option.defaultChecked}
-              onChange={() => onChange && onChange(option.id)}
+              checked={selectedValue === option.id}
+              onChange={() => handleClick(option)}
             />
             <label 
               className="enterprise-btn"
@@ -51,4 +78,5 @@ const BotonSeccion = ({
     </div>
   );
 };
+
 export default BotonSeccion;

@@ -1,7 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import React, { useId } from 'react';
-import "@fontsource/montserrat/700.css";
+
 import './buutonEnterpriseType.css';
 
 const BotonType = ({ 
