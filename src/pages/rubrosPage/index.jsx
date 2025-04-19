@@ -9,10 +9,9 @@ const data = [
     { name: 'Group A', value: 400 },
     { name: 'Group B', value: 300 },
     { name: 'Group C', value: 300 },
-    { name: 'Group D', value: 200 },
 ];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
 const RubrosPage = () => {
     return (
@@ -57,21 +56,24 @@ const RubrosPage = () => {
             {/* Ring charts section */}
             <div className={styles.itemsContainer} style={{ display: 'flex', gap: '25px', justifyContent: 'space-evenly' }}>
                 <div className={styles.fichaAnillo} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <p style={{ fontWeight: 'bold' }}>Anillo 2</p>
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Santa Cruz</p>
                     <RingChart data={data} />
                     <DataTable data={data} colors={COLORS} />
                 </div>
                 <div className={styles.fichaAnillo} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <p style={{ fontWeight: 'bold' }}>Anillo 2</p>
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Santa Cruz</p>
                     <RingChart data={data} />
+                    <DataTable data={data} colors={COLORS} />
                 </div>
                 <div className={styles.fichaAnillo} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <p style={{ fontWeight: 'bold' }}>Anillo 3</p>
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Santa Cruz</p>
                     <RingChart data={data} />
+                    <DataTable data={data} colors={COLORS} />
                 </div>
                 <div className={styles.fichaAnillo} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <p style={{ fontWeight: 'bold' }}>Anillo 4</p>
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Santa Cruz</p>
                     <RingChart data={data} />
+                    <DataTable data={data} colors={COLORS} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', height: '100%' }}>
                     <div className={styles.detalles} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -88,6 +90,33 @@ const RubrosPage = () => {
                     </div><br />
                 </div>
             </div><br /><br />
+            <div className={styles.itemsContainer} style={{ display: 'flex', gap: '25px', justifyContent: 'space-evenly' }}>
+                <div className={styles.fichaAnillo} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Santa Cruz</p>
+                    <RingChart data={data} />
+                    <DataTable data={data} colors={COLORS} />
+                </div>
+                <div className={styles.fichaAnillo} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Santa Cruz</p>
+                    <RingChart data={data} />
+                    <DataTable data={data} colors={COLORS} />
+                </div>
+                <div className={styles.fichaAnillo} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Santa Cruz</p>
+                    <RingChart data={data} />
+                    <DataTable data={data} colors={COLORS} />
+                </div>
+                <div className={styles.fichaAnillo} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Santa Cruz</p>
+                    <RingChart data={data} />
+                    <DataTable data={data} colors={COLORS} />
+                </div>
+                <div className={styles.fichaAnillo} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Santa Cruz</p>
+                    <RingChart data={data} />
+                    <DataTable data={data} colors={COLORS} />
+                </div>
+            </div>
         </div>
     );
 };
