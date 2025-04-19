@@ -1,0 +1,12 @@
+.detalles {
+    border-radius: 10px;
+    background-color: #465978;
+    width: 250px;
+    height: 80px;
+    color: #FFF7E8;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
