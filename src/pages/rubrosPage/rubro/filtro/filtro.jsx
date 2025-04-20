@@ -59,6 +59,17 @@ const Filtro = ({ width = "40%", height = "10%" }) => {
         }}
       >
         {filtroSeleccionado}
+      </h5><h5
+        style={{
+          margin: 0,
+          color: "#182335",
+          fontWeight: 700,
+          fontFamily: "Montserrat, sans-serif",
+          fontSize: "1vw",
+          whiteSpace: "nowrap"
+        }}
+      >
+        43% (555 total)
       </h5>
     </div>
   );
