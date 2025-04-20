@@ -32,31 +32,34 @@ const Indices = ({ width = "15%", height = "10%" }) => {
       <Indice
         width="50%"
         height="100%"
-        titulo="Empresas Creadas"
-        subtitulo="+1,724"
-        imageUrl={imageMap['Empresas Diversificadas']}
-      />
-      <Indice
-        width="50%"
-        height="100%"
         titulo="Empresas Diversificadas"
-        subtitulo="+1,724"
+        subtitulo="17"
         imageUrl={imageMap['Empresas Cerradas']}
       />
       <Indice
         width="50%"
         height="100%"
         titulo="Empresas Cerradas"
-        subtitulo="+1,724"
+        subtitulo="22"
         imageUrl={imageMap['Empresas Fusionada']}
       />
       <Indice
         width="50%"
         height="100%"
         titulo="Empresas Fusionadas"
-        subtitulo="+1,724"
+        subtitulo="13"
         imageUrl={imageMap['Empresas Empresas']}
       />
+      <Indice
+        width="50%"
+        height="100%"
+        titulo="Empresas Creadas"
+        subtitulo="5"
+        imageUrl={imageMap['Empresas Diversificadas']}
+      />
+      
+      
+      
     </div>
   );
 };
