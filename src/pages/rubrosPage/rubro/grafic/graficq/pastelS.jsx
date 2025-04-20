@@ -1,4 +1,3 @@
-
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -10,7 +9,7 @@ const data = [
 
 const COLORS = ['#182335', '#E15546', '#EEAF9D', '#EAE4CC'];
 
-const PastelS = ({ width = "100%", height = "100%" }) => {
+const PastelS = ({ width = "100%", height = "100%", title = "Nuevas empresas por Rubro" }) => {
   return (
     <div
       className="card"
@@ -34,7 +33,7 @@ const PastelS = ({ width = "100%", height = "100%" }) => {
           color: '#2c3e50'
         }}
       >
-        Nuevas empresas por Rubro
+        {title}
       </h5>
 
       <div style={{ flex: 1 }}>
