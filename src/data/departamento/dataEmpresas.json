@@ -38,4 +38,6 @@
   { "nombre": "Stegue", "anio_fundacion": 2005, "tamano": "pequeña", "departamento": "Santa Cruz", "rubro": "Alimenticio", "empleados": 80, "es_exportadora": true, "tipo": "Familiar", "mes_apertura": "Febrero", "mes_cierre": "", "activa": true },
   { "nombre": "Sofia", "anio_fundacion": 1980, "tamano": "grande", "departamento": "Santa Cruz", "rubro": "Alimenticio", "empleados": 80, "es_exportadora": true, "tipo": "Pymes", "mes_apertura": "Junio", "mes_cierre": "", "activa": true },
   { "nombre": "EcoTextiles Bolivia", "anio_fundacion": 2012, "tamano": "pequeña", "departamento": "Tarija", "rubro": "Textiles", "empleados": 30, "es_exportadora": true, "tipo": "Pymes", "mes_apertura": "Septiembre", "mes_cierre": "Junio", "activa": true }
+
 ]
+
