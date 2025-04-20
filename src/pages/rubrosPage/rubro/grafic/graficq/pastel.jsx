@@ -2,10 +2,13 @@
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
-  { name: 'React (70%)', value: 70 }, 
-  { name: 'Vue (20%)', value: 20 },
-  { name: 'Angular (10%)', value: 10 },
-  { name: 'la (10%)', value: 10 },
+  { name: 'S.R.L. (52.1%)', value: 52 }, 
+  { name: 'S.E.M. (19.4%)', value: 19 },
+  { name: 'S.A. (10.9%)', value: 11},
+  { name: 'S.C.S (5.4%)', value: 5 },
+  { name: 'S. (4.3%)', value: 4 },
+  { name: 'S.C.A  (4.1%)', value: 4 },
+  { name: 'A.A.C.P. (3.8%)', value: 4 },
 ];
 
 const COLORS = ['#182335', '#E15546', '#EEAF9D', '#EAE4CC'];
@@ -34,7 +37,7 @@ const Pastel = ({ width = "100%", height = "100%" }) => {
           color: '#2c3e50'
         }}
       >
-        Nuevas empresas por Rubro
+        EMPRESAS POR TIPO
       </h5>
 
       <div style={{ flex: 1 }}>
@@ -82,7 +85,11 @@ const Pastel = ({ width = "100%", height = "100%" }) => {
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: '12px'
               }}
-              formatter={(value) => value} // Muestra el nombre con el %
+              formatter={(value) => (
+                <span style={{ color: '#182335', fontWeight: 500 }}>
+                  {value}
+                </span>
+              )}
             />
           </PieChart>
         </ResponsiveContainer>
