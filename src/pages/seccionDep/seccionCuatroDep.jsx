@@ -94,10 +94,14 @@ const SeccionCuatroDep = () => {
           <Dropdown>
             <Dropdown.Toggle className="dropdown-custom">Sección 4</Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>Sección 1</Dropdown.Item>
-              <Dropdown.Item onClick={() => navigate('/Departamental/SeccionDos')}>Sección 2</Dropdown.Item>
-              <Dropdown.Item onClick={() => navigate('/Departamental/SeccionTres')}>Sección 3</Dropdown.Item>
-              <Dropdown.Item onClick={() => navigate('/Departamental/SeccionCuatro')}>Sección 4</Dropdown.Item>
+              <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
+                Linea de tiempo</Dropdown.Item>
+              <Dropdown.Item onClick={() => navigate('/Departamental/SeccionDos')}>
+                Tipo empresa</Dropdown.Item>
+              <Dropdown.Item onClick={() => navigate('/Departamental/SeccionTres')}>
+                Empresas Activas</Dropdown.Item>
+              <Dropdown.Item onClick={() => navigate('/Departamental/SeccionCuatro')}>
+                Empresas Rubros</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>

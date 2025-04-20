@@ -100,13 +100,13 @@ const SeccionUnoPage = () => {
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
-                                Seccion 1</Dropdown.Item>
+                                Linea de tiempo</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionDos')}>
-                                Seccion 2</Dropdown.Item>
+                                Tipo empresa</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionTres')}>
-                                Seccion 3</Dropdown.Item>
+                                Empresas Activas</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionCuatro')}>
-                                Seccion 4</Dropdown.Item>
+                                Empresas Rubros</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>                    
                 </div>
