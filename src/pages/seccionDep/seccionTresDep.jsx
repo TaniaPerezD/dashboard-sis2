@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import '../../styles/departamento.css';
 import { useNavigate } from 'react-router-dom';
@@ -135,34 +134,23 @@ const SeccionTresPage = () => {
                             <div className="card-dashboard-header">
                                 Departamento 
                             </div>
-                            <div className="d-flex justify-content-between align-items-center gap-2 mt-1 px-3 mb-3">
-                                 <Dropdown>
-                                     <Dropdown.Toggle
-                                         id="dropdown-basic"
-                                         style={{
-                                             backgroundColor: 'white',
-                                             color: '#182335',
-                                             border: '1px solid #182335'
-                                         }}
-                                     >
-                                         {departamentoSeleccionado || "Departamento"}
-                                     </Dropdown.Toggle>
-                                     <Dropdown.Menu>
-                                         {departamentoListados().map(dep => (
-                                             <Dropdown.Item key={dep} onClick={() => setDepartamentoSeleccionado(dep)}>
-                                                 {dep}
-                                             </Dropdown.Item>
-                                         ))}
-                                     </Dropdown.Menu>
-                                 </Dropdown>
- 
-                                 <button
-                                     className="btn btn-outline-secondary btn-sm"
-                                     onClick={() => setDepartamentoSeleccionado(null)}
-                                 >
-                                     Limpiar filtros
-                                 </button>
-                             </div>
+                            <div className="card-dashboard-content" style={{ height: '30px' }}>
+                                <Dropdown>
+                                    <Dropdown.Toggle id="dropdown-basic" style={{ color: '#182335', backgroundColor: 'white' , border: '1px solid #182335'}}>
+                                        Departamento
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        {departamentoListados().map((departamento) => (
+                                            <Dropdown.Item
+                                                key={departamento}
+                                                 onClick={() => setDepartamentoSeleccionado(departamento)}
+                                            >
+                                                {departamento}
+                                            </Dropdown.Item>
+                                        ))}
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </div>
                         </div>
                     </div>
                     <div className="row">
