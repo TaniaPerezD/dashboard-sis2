@@ -1,15 +1,9 @@
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { name: 'React (70%)', value: 70 }, 
-  { name: 'Vue (20%)', value: 20 },
-  { name: 'Angular (10%)', value: 10 },
-  { name: 'la (10%)', value: 10 },
-];
 
 const COLORS = ['#182335', '#E15546', '#EEAF9D', '#EAE4CC'];
 
-const PastelS = ({ width = "100%", height = "100%", title = "Nuevas empresas por Rubro" }) => {
+const PastelS = ({ width = "100%", height = "100%", title = "Nuevas empresas por Rubro", data = [] }) => {
   return (
     <div
       className="card"
