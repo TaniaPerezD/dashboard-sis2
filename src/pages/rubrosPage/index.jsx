@@ -15,12 +15,12 @@ const RubrosPage = () => {
             borderColor: 'black',
             backgroundColor: "black",
         }}>
-            <Encabezado width="100%" height="25vh"/>
+            <Encabezado width="100%" height="20vh"/>
             
            
         <Routes>
           
-            <Route path="seccion1" element={<Rubro width="100%" height="75vh"/>} />
+            <Route path="seccion1" element={<Rubro width="100%" height="80vh"/>} />
             <Route path="seccion2" element={<Seccion2 />} />
            
         </Routes>
