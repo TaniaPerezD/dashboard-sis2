@@ -23,8 +23,8 @@ const Grafico1 = ({ width = "15%", height = "10%" }) => {
       }}
     >
     
-      <Puntos  width="75%" height="100%" />
-      <Pastel  width="25%" height="100%" />
+      <Puntos  width="75.35%" height="100%" />
+      <Pastel  width="24.65%" height="100%" />
     </div>
   );
 };

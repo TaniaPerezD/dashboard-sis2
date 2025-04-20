@@ -1,17 +1,16 @@
-
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 const data = [
-  { name: 'S.R.L. (52.1%)', value: 52 }, 
-  { name: 'S.E.M. (19.4%)', value: 19 },
-  { name: 'S.A. (10.9%)', value: 11},
-  { name: 'S.C.S (5.4%)', value: 5 },
-  { name: 'S. (4.3%)', value: 4 },
-  { name: 'S.C.A  (4.1%)', value: 4 },
-  { name: 'A.A.C.P. (3.8%)', value: 4 },
+  { name: 'S.R.L.', value: 52, percentage: '52.1%' }, 
+  { name: 'S.E.M.', value: 19, percentage: '19.4%' },
+  { name: 'S.A.', value: 11, percentage: '10.9%' },
+  { name: 'S.C.S', value: 5, percentage: '5.4%' },
+  { name: 'S.', value: 4, percentage: '4.3%' },
+  { name: 'S.C.A', value: 4, percentage: '4.1%' },
+  { name: 'A.A.C.P.', value: 4, percentage: '3.8%' },
 ];
 
-const COLORS = ['#182335', '#E15546', '#EEAF9D', '#EAE4CC'];
+const COLORS = ['#182335', '#E15546', '#EEAF9D', '#EAE4CC', '#A5D8DD', '#C5A6F0', '#F0A6A6'];
 
 const Pastel = ({ width = "100%", height = "100%" }) => {
   return (
@@ -29,7 +28,7 @@ const Pastel = ({ width = "100%", height = "100%" }) => {
     >
       <h5 
         style={{ 
-          textAlign: "left", 
+          textAlign: "center", 
           fontFamily: "'Montserrat', sans-serif", 
           fontWeight: 700,
           margin: "0 0 10px 10px",
@@ -40,18 +39,19 @@ const Pastel = ({ width = "100%", height = "100%" }) => {
         EMPRESAS POR TIPO
       </h5>
 
-      <div style={{ flex: 1 }}>
+      {/* Contenedor del gráfico */}
+      <div style={{ height: '135px', marginBottom: '10px' }}>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
               data={data}
               cx="50%"
-              cy="35%"
+              cy="50%"
               outerRadius={60}
               innerRadius={30}
               fill="#8884d8"
               dataKey="value"
-              label={false} // Desactivar etiquetas en la torta
+              label={false}
             >
               {data.map((entry, index) => (
                 <Cell 
@@ -64,9 +64,8 @@ const Pastel = ({ width = "100%", height = "100%" }) => {
             </Pie>
             <Tooltip 
               formatter={(value, name) => {
-                // Extraer el nombre sin el porcentaje para el tooltip
-                const cleanName = name.replace(/\(\d+%\)$/, '').trim();
-                return [`${value} empresas`, cleanName];
+                const entry = data.find(item => item.name === name);
+                return [`${value} empresas (${entry?.percentage || ''})`, name];
               }}
               contentStyle={{
                 borderRadius: '8px',
@@ -76,23 +75,38 @@ const Pastel = ({ width = "100%", height = "100%" }) => {
                 fontSize: '11px'
               }}
             />
-            <Legend 
-              layout="vertical"
-              verticalAlign="middle"
-              align="right"
-              wrapperStyle={{
-                paddingLeft: '10px',
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: '12px'
-              }}
-              formatter={(value) => (
-                <span style={{ color: '#182335', fontWeight: 500 }}>
-                  {value}
-                </span>
-              )}
-            />
           </PieChart>
         </ResponsiveContainer>
+      </div>
+
+      {/* Contenedor de leyendas en 2 columnas */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: '8px',
+        
+        padding: '0 10px',
+        
+      }}>
+        {data.map((entry, index) => (
+          <div key={`legend-${index}`} style={{
+            display: 'flex',
+            alignItems: 'center',
+            fontFamily: "'Montserrat', sans-serif",
+            fontSize: '12px'
+          }}>
+            <div style={{
+              width: '12px',
+              height: '12px',
+              backgroundColor: COLORS[index % COLORS.length],
+              marginRight: '8px',
+              borderRadius: '8px'
+            }} />
+            <span style={{ color: '#182335', fontWeight: 500 }}>
+              {entry.name} <span style={{ color: '#7f8c8d' }}>({entry.percentage})</span>
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );
