@@ -167,7 +167,7 @@ const SeccionDosPage = () => {
                     {/* Gráfico Activas vs Inactivas */}
                     <div className="grafico-box">
                         <div className="bg-dark text-white p-2 rounded-top d-flex justify-content-between align-items-center">
-                            <span>Porcentaje empresas activas vs inactivas por departamentos</span>
+                            <span>Linea de tiempo de Q empresas con antiguedad de familiar</span>
                             <Dropdown>
                                 <Dropdown.Toggle variant="secondary" size="sm">
                                     Departamento
@@ -206,7 +206,7 @@ const SeccionDosPage = () => {
                     {/* Antiguedad */}
                     <div className="grafico-box mt-4">
                     <div className="bg-dark text-white p-2 rounded-top d-flex justify-content-between align-items-center">
-                        <span>Q empresas con antiguedad de familiar</span>
+                        <span>Porcentaje empresas activas vs inactivas por departamentos</span>
                             <Dropdown>
                                 <Dropdown.Toggle variant="secondary" size="sm">
                                     Departamento
