@@ -1,8 +1,6 @@
-
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useId } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import './botonesSeccion.css';
 const BotonSeccion = ({ 
   width = "fit-content",
   height = "auto",
@@ -16,19 +14,17 @@ const BotonSeccion = ({
   buttonWidth = "100px",
   name = "btnradio"
 }) => {
+  const componentId = useId(); // 🟢 Esto garantiza unicidad
   const navigate = useNavigate();
   const location = useLocation();
 
- 
   const isControlled = externalSelectedValue !== undefined;
 
-  
   const [internalSelectedValue, setInternalSelectedValue] = useState(() => {
     const match = options.find(opt => location.pathname === opt.route);
     return match ? match.id : options[0].id;
   });
 
-  
   useEffect(() => {
     if (!isControlled) {
       const match = options.find(opt => location.pathname === opt.route);
@@ -47,33 +43,38 @@ const BotonSeccion = ({
   };
 
   return (
-    <div className="enterprise-type-container" style={{ width, height }}>
+    <div className="enterprise-type" style={{ width, height }}>
       <div 
-        className="enterprise-btn-group"
-        style={{ gap: spacing }}
+        className="enterprise"
+        style={{ display: 'flex', gap: spacing }}
         role="group"
         aria-label="Opciones disponibles"
       >
-        {options.map((option) => (
-          <div key={option.id} style={{ position: "relative" }}>
-            <input
-              type="radio"
-              className="btn-check"
-              name={name}
-              id={option.id}
-              autoComplete="off"
-              checked={selectedValue === option.id}
-              onChange={() => handleClick(option)}
-            />
-            <label 
-              className="enterprise-btn"
-              htmlFor={option.id}
-              style={{ width: buttonWidth }}
-            >
-              {option.label}
-            </label>
-          </div>
-        ))}
+        {options.map((option) => {
+          const uniqueId = `${componentId}-${option.id}`;
+          const uniqueName = `${componentId}-${name}`;
+          
+          return (
+            <div key={uniqueId} style={{ position: "relative" }}>
+              <input
+                type="radio"
+                className="btn-check"
+                name={uniqueName}
+                id={uniqueId}
+                autoComplete="off"
+                checked={selectedValue === option.id}
+                onChange={() => handleClick(option)}
+              />
+              <label
+                className="enterprise"
+                htmlFor={uniqueId}
+                style={{ width: buttonWidth }}
+              >
+                {option.label}
+              </label>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

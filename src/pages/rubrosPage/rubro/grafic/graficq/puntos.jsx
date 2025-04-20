@@ -13,21 +13,21 @@ import 'rc-slider/assets/index.css';
 
 const data = [
   { año: '1948', empresas: 100 },
-  { año: '1949', empresas: 100 },
-  { año: '1950', empresas: 100 },
+  { año: '1949', empresas: 89 },
+  { año: '1950', empresas: 75 },
   { año: '1951', empresas: 200 },
   { año: '1952', empresas: 150 },
   { año: '1953', empresas: 90 },
   { año: '1954', empresas: 80 },
   { año: '1955', empresas: 70 },
   { año: '1956', empresas: 20 },
-  { año: '1957', empresas: 20 },
-  { año: '1958', empresas: 20 },
+  { año: '1957', empresas: 4 },
+  { año: '1958', empresas: 7 },
   { año: '1959', empresas: 20 },
   { año: '1960', empresas: 20 },
-  { año: '1961', empresas: 100 },
-  { año: '1962', empresas: 100 },
-  { año: '1963', empresas: 100 },
+  { año: '1970', empresas: 79 },
+  { año: '2000', empresas: 78 },
+  { año: '2025', empresas: 7 },
 
 ];
 
@@ -79,7 +79,7 @@ const Puntos = ({ width = "100%", height = "100%" }) => {
       <ResponsiveContainer width="100%" height="80%">
   <LineChart
     data={filteredData}
-    margin={{ top: 5, right: 10, bottom: 8, left: 20 }}// Aumenta márgenes para espacio del texto
+    margin={{ top: 5, right: 20, bottom: 9, left: 20 }}// Aumenta márgenes para espacio del texto
   >
     <CartesianGrid stroke="#f5f5f5" />
     
@@ -98,7 +98,7 @@ const Puntos = ({ width = "100%", height = "100%" }) => {
     value: 'Cantidad',
     angle: -90,
     position: 'left',
-    offset: 10,
+    offset: 1,
     style: {
       textAnchor: 'middle',
       fontSize: 12,
@@ -121,7 +121,8 @@ const Puntos = ({ width = "100%", height = "100%" }) => {
       <div style={{
         padding: '0 20px 5px 20px',
         marginBottom: '0px',
-        borderBottom: 'none'
+        borderBottom: 'none',
+        background: 'transparent',
       }}>
         <div style={{
           display: 'flex',

@@ -1,8 +1,9 @@
-
-
-
+import React, { useState } from 'react';
 import BotonType from './boton/buutonEnterpriseType';
+
 const BotonEleccion = ({ width = "15%", height = "10%" }) => {
+  const [selectedValues, setSelectedValues] = useState([]);
+
   return (
     <div
       className="card"
@@ -20,7 +21,13 @@ const BotonEleccion = ({ width = "15%", height = "10%" }) => {
         flexDirection: "row",
       }}
     >
-        <BotonType width="100%" height="100%"/>
+      <BotonType 
+        width="100%" 
+        height="100%"
+        selectedValues={selectedValues}
+        onChange={setSelectedValues}
+      />
+      
     </div>
   );
 };
