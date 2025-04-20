@@ -1,0 +1,39 @@
+.chartContainer {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background: var(--Cream-Light);
+    border-radius: 24px;
+    outline: 0.5px solid var(--BluePurple-Dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.titleContainer {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.title {
+    flex: 1;
+    color: var(--BluePurple-Dark);
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.chartWrapper {
+    align-self: stretch;
+    height: 155px;
+    position: relative;
+    overflow: hidden;
+}
