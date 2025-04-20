@@ -5,8 +5,8 @@ const BotonSeccion = ({
   width = "fit-content",
   height = "auto",
   options = [
-    { id: "btnradio1", label: "Seccion1", route: "/Rubros/seccion1", defaultChecked: true },
-    { id: "btnradio2", label: "Seccion2", route: "/Rubros/seccion2" }
+    { id: "btnradio1", label: "Empresarial", route: "/Rubros/seccion1", defaultChecked: true },
+    { id: "btnradio2", label: "Departos", route: "/Rubros/seccion2" }
   ],
   selectedValue: externalSelectedValue,
   onChange,
