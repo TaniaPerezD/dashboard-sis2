@@ -92,7 +92,7 @@ const SeccionCuatroDep = () => {
         </div>
         <div className="col-auto">
           <Dropdown>
-            <Dropdown.Toggle className="dropdown-custom">Sección 4</Dropdown.Toggle>
+            <Dropdown.Toggle className="dropdown-custom">Empresas Rubros</Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
                 Linea de tiempo</Dropdown.Item>

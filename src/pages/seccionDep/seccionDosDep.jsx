@@ -121,16 +121,14 @@ const SeccionDosPage = () => {
 
     return (
         <div className="container-fluid">
-            <div className="row">
-                <div className="col-11">
-                    <div className="titulos">
-                        DEPARTAMENTOS <span className="subtitulo">tamaño</span>
-                    </div>
+            <div className="row align-items-center mb-2">
+                <div className="col">
+                    <div className="titulos">DEPARTAMENTOS <span className="subtitulo">tipo empresa</span></div>
                 </div>
-                <div className="col-1">
+                <div className="col-auto">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic" className="dropdown-custom">
-                            Sección 2
+                            Tipo empresa
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>

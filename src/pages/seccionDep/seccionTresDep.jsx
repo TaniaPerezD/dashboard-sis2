@@ -107,14 +107,14 @@ const SeccionTresPage = () => {
 
     return (
         <div className="container-fluid">
-            <div className="row">
-                <div className="col-11">
-                    <div className="titulos">DEPARTAMENTOS</div>
+            <div className="row align-items-center mb-2">
+                <div className="col">
+                    <div className="titulos">DEPARTAMENTOS <span className="subtitulo">empresas activas</span></div>
                 </div>
-                <div className="col-1">
+                <div className="col-auto">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic" className="dropdown-custom">
-                            Secciones
+                            Empresas Activas
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
@@ -192,7 +192,7 @@ const SeccionTresPage = () => {
                                     <BarChart
                                     layout="vertical" 
                                     data={procesoGraficoMes(departamentoSeleccionado)}
-                                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                                    margin={{ top: 5, right: 30, left: 30, bottom: 5 }}
                                     >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis type="number" />
@@ -252,7 +252,7 @@ const SeccionTresPage = () => {
                                 <BarChart
                                 layout="vertical" 
                                 data={procesoGraficoActivo(departamentoSeleccionado)}
-                                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                                margin={{ top: 5, right: 30, left: 40, bottom: 5 }}
                                 >
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis type="number" />

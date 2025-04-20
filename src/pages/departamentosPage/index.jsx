@@ -91,14 +91,14 @@ const DepPage = () => {
 
     return (
         <div className="container-fluid">
-            <div className="row">
-                <div className="col-11">
-                    <div className="titulos">DEPARTAMENTOS</div>
+            <div className="row align-items-center mb-2">
+                <div className="col">
+                    <div className="titulos">DEPARTAMENTOS <span className="subtitulo">  linea de tiempo</span></div>
                 </div>
-                <div className="col-1">
+                <div className="col-auto">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic" className="dropdown-custom">
-                            Secciones
+                            Linea de tiempo
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
