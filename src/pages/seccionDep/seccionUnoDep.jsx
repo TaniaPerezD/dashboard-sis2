@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 import empresas from '../../data/departamento/dataEmpresas.json';
 
-const DepPage = () => {
-
+const SeccionUnoPage = () => {
+    
     const navigate = useNavigate(); //para la navegacion entre secciones
 
     const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState(null);
@@ -121,6 +121,7 @@ const DepPage = () => {
         });
         return Array.from(aniosSet);
     };
+
     return (
         <div className="container">
             <div className="row">
@@ -299,6 +300,6 @@ const DepPage = () => {
             </div>
         </div>
     );
-};
+}
 
-export default DepPage;
+export default SeccionUnoPage;
