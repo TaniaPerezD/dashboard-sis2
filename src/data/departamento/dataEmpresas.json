@@ -1,84 +1,119 @@
 [
-      {
-        "nombre": "AgroAndes SRL",
-        "anio_fundacion": 2005,
-        "tamano": "pequeña",
-        "departamento": "Cochabamba",
-        "rubro": "Agroindustria",
-        "empleados": 120,
-        "es_exportadora": true
-      },
-      {
-        "nombre": "TechSoluciones Bolivia",
-        "anio_fundacion": 2018,
-        "tamano": "pequeña",
-        "departamento": "La Paz",
-        "rubro": "Tecnología",
-        "empleados": 25,
-        "es_exportadora": false
-      },
-      {
-        "nombre": "Cervecería La Paz",
-        "anio_fundacion": 1960,
-        "tamano": "grande",
-        "departamento": "La Paz",
-        "rubro": "Alimenticio",
-        "empleados": 25,
-        "es_exportadora": false
-      },
-      {
-        "nombre": "Constructora Altiplano",
-        "anio_fundacion": 1998,
-        "tamano": "grande",
-        "departamento": "Oruro",
-        "rubro": "Construcción",
-        "empleados": 450,
-        "es_exportadora": false
-      },
-      {
-        "nombre": "ExportBol SRL",
-        "anio_fundacion": 2010,
-        "tamano": "mediana",
-        "departamento": "Santa Cruz",
-        "rubro": "Comercio Exterior",
-        "empleados": 80,
-        "es_exportadora": true
-      },
-      {
-        "nombre": "Caisy SRL",
-        "anio_fundacion": 2005,
-        "tamano": "mediana",
-        "departamento": "Santa Cruz",
-        "rubro": "Alimenticio",
-        "empleados": 80,
-        "es_exportadora": true
-      },
-      {
-        "nombre": "Stegue",
-        "anio_fundacion": 2005,
-        "tamano": "pequeña",
-        "departamento": "Santa Cruz",
-        "rubro": "Alimenticio",
-        "empleados": 80,
-        "es_exportadora": true
-      },
-      {
-        "nombre": "Sofia",
-        "anio_fundacion": 1980,
-        "tamano": "grande",
-        "departamento": "Santa Cruz",
-        "rubro": "Alimenticio",
-        "empleados": 80,
-        "es_exportadora": true
-      },
-      {
-        "nombre": "EcoTextiles Bolivia",
-        "anio_fundacion": 2012,
-        "tamano": "pequeña",
-        "departamento": "Tarija",
-        "rubro": "Textiles",
-        "empleados": 30,
-        "es_exportadora": true
-      }
-    ]
-  
+  {
+    "nombre": "AgroAndes SRL",
+    "anio_fundacion": 2005,
+    "tamano": "pequeña",
+    "departamento": "Cochabamba",
+    "rubro": "Agroindustria",
+    "empleados": 120,
+    "es_exportadora": true,
+    "es_familiar": true,
+    "mes_apertura": "Marzo",
+    "mes_cierre": "Julio",
+    "activo": true
+  },
+  {
+    "nombre": "TechSoluciones Bolivia",
+    "anio_fundacion": 2018,
+    "tamano": "pequeña",
+    "departamento": "La Paz",
+    "rubro": "Tecnología",
+    "empleados": 25,
+    "es_exportadora": false,
+    "es_familiar": false,
+    "mes_apertura": "Julio",
+    "mes_cierre": "",
+    "activo": true
+  },
+  {
+    "nombre": "Cervecería La Paz",
+    "anio_fundacion": 1960,
+    "tamano": "grande",
+    "departamento": "La Paz",
+    "rubro": "Alimenticio",
+    "empleados": 25,
+    "es_exportadora": false,
+    "es_familiar": false,
+    "mes_apertura": "Enero",
+    "mes_cierre": "",
+    "activo": false
+  },
+  {
+    "nombre": "Constructora Altiplano",
+    "anio_fundacion": 1998,
+    "tamano": "grande",
+    "departamento": "Oruro",
+    "rubro": "Construcción",
+    "empleados": 450,
+    "es_exportadora": false,
+    "es_familiar": true,
+    "mes_apertura": "Mayo",
+    "mes_cierre": "Diciembre",
+    "activo": true
+  },
+  {
+    "nombre": "ExportBol SRL",
+    "anio_fundacion": 2010,
+    "tamano": "mediana",
+    "departamento": "Santa Cruz",
+    "rubro": "Comercio Exterior",
+    "empleados": 80,
+    "es_exportadora": true,
+    "es_familiar": true,
+    "mes_apertura": "Agosto",
+    "mes_cierre": "",
+    "activo": false
+  },
+  {
+    "nombre": "Caisy SRL",
+    "anio_fundacion": 2005,
+    "tamano": "mediana",
+    "departamento": "Santa Cruz",
+    "rubro": "Alimenticio",
+    "empleados": 80,
+    "es_exportadora": true,
+    "es_familiar": false,
+    "mes_apertura": "Octubre",
+    "mes_cierre": "",
+    "activo": true
+  },
+  {
+    "nombre": "Stegue",
+    "anio_fundacion": 2005,
+    "tamano": "pequeña",
+    "departamento": "Santa Cruz",
+    "rubro": "Alimenticio",
+    "empleados": 80,
+    "es_exportadora": true,
+    "es_familiar": true,
+    "mes_apertura": "Febrero",
+    "mes_cierre": "",
+    "activo": true
+  },
+  {
+    "nombre": "Sofia",
+    "anio_fundacion": 1980,
+    "tamano": "grande",
+    "departamento": "Santa Cruz",
+    "rubro": "Alimenticio",
+    "empleados": 80,
+    "es_exportadora": true,
+    "es_familiar": false,
+    "mes_apertura": "Junio",
+    "mes_cierre": "",
+    "activo": true
+  },
+  {
+    "nombre": "EcoTextiles Bolivia",
+    "anio_fundacion": 2012,
+    "tamano": "pequeña",
+    "departamento": "Tarija",
+    "rubro": "Textiles",
+    "empleados": 30,
+    "es_exportadora": true,
+    "es_familiar": false,
+    "mes_apertura": "Septiembre",
+    "mes_cierre": "Junio",
+    "activo": true
+  }
+]
