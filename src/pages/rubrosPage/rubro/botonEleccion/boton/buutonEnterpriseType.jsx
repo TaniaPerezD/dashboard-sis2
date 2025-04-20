@@ -1,24 +1,30 @@
-
-
 import React, { useId } from 'react';
-
 import './buutonEnterpriseType.css';
 
 const BotonType = ({ 
   width = "fit-content",
   height = "auto",
   options = [
-    { id: "btnradio1", label: "Grandes Empresas", defaultChecked: true },
-    { id: "btnradio2", label: "Medianas Empresas" },
-    { id: "btnradio3", label: "Empresas Familiares" }
+    { id: "btncheckbox1", label: "Grandes Empresas" },
+    { id: "btncheckbox2", label: "Medianas Empresas" },
+    { id: "btncheckbox3", label: "Empresas Familiares" }
   ],
-  selectedValue,
+  selectedValues = [],
   onChange,
   spacing = "2rem",
   buttonWidth = "350px"
 }) => {
-  const isControlled = selectedValue !== undefined;
   const groupId = useId();
+  
+  const handleChange = (optionId) => {
+    if (onChange) {
+      const newValues = selectedValues.includes(optionId)
+        ? selectedValues.filter(id => id !== optionId)
+        : [...selectedValues, optionId];
+      onChange(newValues);
+    }
+  };
+
   return (
     <div
       className="enterprise-type-container"
@@ -33,14 +39,13 @@ const BotonType = ({
         {options.map((option) => (
           <div key={option.id} style={{ position: "relative" }}>
             <input
-              type="radio"
+              type="checkbox"
               className="btn-check"
-              name={`btnradio-${groupId}`} // Usa el ID único en el name
+              name={`btncheckbox-${groupId}`} 
               id={`${option.id}-${groupId}`}
               autoComplete="off"
-              checked={isControlled ? selectedValue === option.id : undefined}
-              defaultChecked={!isControlled && option.defaultChecked}
-              onChange={() => onChange && onChange(option.id)}
+              checked={selectedValues.includes(option.id)}
+              onChange={() => handleChange(option.id)}
             />
             <label 
               className="enterprise-btn"

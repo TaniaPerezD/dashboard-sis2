@@ -26,8 +26,8 @@ const Periodo = ({
         borderColor: "#1A1A34"
       }}
     >
-      <h5 style={{ fontWeight: 400, margin: 0,color: "#1A1A34",
-        fontSize: "0.60rem", fontFamily: "Roboto, sans-serif",}}>{titulo}</h5>
+      <h5 style={{ fontWeight: 700, margin: 0,color: "#1A1A34",
+        fontSize: "0.80rem", fontFamily: "Roboto, sans-serif",}}>{titulo}</h5>
       <small style={{ fontWeight: 400, color: "#1A1A34",
         fontSize: "0.8rem", fontFamily: "Montserrat, sans-serif"}}>{subtitulo}</small>
     </div>

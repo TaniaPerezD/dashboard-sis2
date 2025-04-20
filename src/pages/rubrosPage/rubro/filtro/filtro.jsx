@@ -1,10 +1,7 @@
-
-
 import React, { useState } from 'react';
 
-
 const Filtro = ({ width = "40%", height = "10%" }) => {
-  const [filtroSeleccionado, setFiltroSeleccionado] = useState("Filtro");
+  const [filtroSeleccionado, setFiltroSeleccionado] = useState("GANADERIA"); // Cambié el valor por defecto aquí
 
   const handleSeleccion = (opcion) => {
     setFiltroSeleccionado(opcion);
@@ -27,31 +24,30 @@ const Filtro = ({ width = "40%", height = "10%" }) => {
     >
       {/* Botones con estilo personalizado */}
       <div className="btn-group" role="group">
-          <button
-            type="button"
-            className="btn dropdown-toggle "
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            style={{
-              backgroundColor: "#182335",
-              color: "#ffffff",
-              padding: "0.5rem 1.5rem",
-              fontSize: "0.9rem",
-              borderRadius: "8px",
-              fontWeight: 700,
-              fontFamily: "Montserrat, sans-serif",
-              width: "200px"
-            }}
-          >
-            RUBRO
-          </button>
-          <ul className="dropdown-menu">
-            <li><button className="dropdown-item" onClick={() => handleSeleccion("Opción A")}>Opción A</button></li>
-            <li><button className="dropdown-item" onClick={() => handleSeleccion("Opción B")}>Opción B</button></li>
-          </ul>
-        </div>
+        <button
+          type="button"
+          className="btn dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          style={{
+            backgroundColor: "#182335",
+            color: "#ffffff",
+            padding: "0.5rem 1.5rem",
+            fontSize: "0.9rem",
+            borderRadius: "8px",
+            fontWeight: 700,
+            fontFamily: "Montserrat, sans-serif",
+            width: "200px"
+          }}
+        >
+          RUBRO
+        </button>
+        <ul className="dropdown-menu">
+          <li><button className="dropdown-item" onClick={() => handleSeleccion("GANADERIA")}>GANADERIA</button></li>
+          <li><button className="dropdown-item" onClick={() => handleSeleccion("ROPA")}>ROPA</button></li>
+        </ul>
+      </div>
 
-      {/* Texto a la derecha */}
       <h5
         style={{
           margin: 0,
@@ -64,7 +60,6 @@ const Filtro = ({ width = "40%", height = "10%" }) => {
       >
         {filtroSeleccionado}
       </h5>
-      
     </div>
   );
 };

@@ -23,8 +23,8 @@ const Encabezado = ({ width = "100%", height = "100" }) => {
       }}
     >
       <Titulo width="100%" height="30%" />
-      <BotonEleccion width="100%" height="40%" />
-      <Periodos width="100%" height="30%" />
+      <BotonEleccion width="100%" height="20%" />
+      <Periodos width="100%" height="50%" />
     </div>
   );
 };
