@@ -12,8 +12,8 @@ const RubrosPage = () => {
         <div style={{
             height: "100vh", 
             width: "100%",
-            borderColor: 'black',
-            backgroundColor: "black",
+            borderColor: 'E9F5FE',
+            backgroundColor: "E9F5FE",
         }}>
             <Encabezado width="100%" height="20vh"/>
             
