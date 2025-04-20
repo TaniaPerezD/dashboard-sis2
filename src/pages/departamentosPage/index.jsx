@@ -243,13 +243,13 @@ const DepPage = () => {
                                     <YAxis tickFormatter={(value) => `${value}%`} />
                                     <Tooltip formatter={(value) => `${parseFloat(value).toFixed(2)}%`} />
                                     <Legend />
-                                    <Line type="monotone" dataKey="pequeña" stroke="#8884d8" strokeWidth={2}>
+                                    <Line type="monotone" dataKey="pequeña" stroke="#EEAF9D" strokeWidth={2}>
                                     <LabelList dataKey="pequeña" position="top" formatter={(value) => `${value.toFixed(1)}%`} />
                                     </Line>
-                                    <Line type="monotone" dataKey="mediana" stroke="#82ca9d" strokeWidth={2}>
+                                    <Line type="monotone" dataKey="mediana" stroke="#94A3BA" strokeWidth={2}>
                                     <LabelList dataKey="mediana" position="top" formatter={(value) => `${value.toFixed(1)}%`} />
                                     </Line>
-                                    <Line type="monotone" dataKey="grande" stroke="#8564d8" strokeWidth={2}>
+                                    <Line type="monotone" dataKey="grande" stroke="#465978" strokeWidth={2}>
                                     <LabelList dataKey="grande" position="top" formatter={(value) => `${value.toFixed(1)}%`} />
                                     </Line>
                                 </LineChart>
