@@ -15,19 +15,19 @@ const HorizontalBarChart = ({ chartData }) => {
                     <BarChart
                         data={data}
                         layout="vertical"
-                        margin={{ top: 8, right: 16, left: 75, bottom: 32 }}
+                        margin={{ top: 8, right: 20, left: 20, bottom: 32 }}
                         barGap={8}
                     >
                         <XAxis
                             type="number"
-                            tick={{ fill: 'var(--BlueTeal-Dark)', fontSize: 12, fontFamily: 'Roboto', fontWeight: 300 }}
+                            tick={{ fill: 'var(--BlueTeal-Ligth)', fontSize: 12, fontFamily: 'Montserrat', fontWeight: 400 }}
                             axisLine={true}
                             tickLine={true}
                         />
                         <YAxis
                             type="category"
                             dataKey="name"
-                            tick={{ fill: 'var(--BluePurple--Dark-)', fontSize: 12, fontFamily: 'Roboto', fontWeight: 300 }}
+                            tick={{ fill: 'var(--BlueTeal-Ligth)', fontSize: 12, fontFamily: 'Montserrat', fontWeight: 400 }}
                             axisLine={true}
                             tickLine={true}
                             width={100}
@@ -41,10 +41,10 @@ const HorizontalBarChart = ({ chartData }) => {
                             <LabelList
                                 dataKey="value"
                                 position="right"
-                                fill="var(--BluePurple--Dark-)"
+                                fill="var(--BlueTeal-Ligth)"
                                 fontSize={10}
-                                fontFamily="Roboto"
-                                fontWeight={300}
+                                fontFamily="Montserrat"
+                                fontWeight={400}
                             />
                         </Bar>
                     </BarChart>
