@@ -25,18 +25,21 @@ const SeccionDosPage = () => {
             const anioInicio = empresa.anio_inicio_familiar;
             const anioFin = empresa.anio_fin_familiar;
 
-            if (!resumen[anioInicio]) {
-                resumen[anioInicio] = { anio: anioInicio, familiar: 0, dejo_familiar: 0};
+            if (anioInicio != null) { // esto filtra null y undefined
+                if (!resumen[anioInicio]) {
+                    resumen[anioInicio] = { anio: anioInicio, familiar: 0, dejo_familiar: 0 };
+                }
+                resumen[anioInicio].familiar++;
             }
-            resumen[anioInicio].familiar++;
-
-            if (!resumen[anioFin]) {
-                resumen[anioFin] = { anio: anioFin, familiar: 0, dejo_familiar: 0};
-            }
-            resumen[anioFin].dejo_familiar++;
             
+            if (anioFin != null) {
+                if (!resumen[anioFin]) {
+                    resumen[anioFin] = { anio: anioFin, familiar: 0, dejo_familiar: 0 };
+                }
+                resumen[anioFin].dejo_familiar++;
+            }
         });
-
+        console.log('Resumen ',resumen);
         return Object.values(resumen).map(dep => ({
             anio: dep.departamento,
             familiar: dep.familiar,
@@ -175,19 +178,19 @@ const SeccionDosPage = () => {
                             </Dropdown>
                         </div>
                         <ResponsiveContainer width="100%" height={250}>
-                            <BarChart data={obtenerDatosActivasInactivas()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                            <LineChart data={obtenerDatosAntiguedadFamiliar()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="departamento" tick={{ fill: '#000' }} />
-                                <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: '#000' }} />
-                                <Tooltip formatter={(value) => `${value}%`} />
+                                <XAxis dataKey="anio" interval={0} angle={-45} tick={{ fill: '#000', fontSize: 12 }} />
+                                <YAxis tickFormatter={(v) => `${v}`} tick={{ fill: '#000' }} />
+                                <Tooltip formatter={(value) => `${value}`} />
                                 <Legend />
-                                <Bar dataKey="activa" fill="#2a9d8f">
-                                    <LabelList dataKey="activa" position="top" formatter={(val) => `${val}%`} />
-                                </Bar>
-                                <Bar dataKey="inactiva" fill="#e76f51">
-                                    <LabelList dataKey="inactiva" position="top" formatter={(val) => `${val}%`} />
-                                </Bar>
-                            </BarChart>
+                                <Line type="monotone" dataKey="familiar" stroke="#2a9d8f" strokeWidth={2}>
+                                    <LabelList dataKey="familiar" position="top" formatter={(val) => `${val}`} />
+                                </Line>
+                                <Line type="monotone" dataKey="dejo_familiar" stroke="#e76f51" strokeWidth={2}>
+                                    <LabelList dataKey="Dejo de ser familiar" position="top" formatter={(val) => `${val}`} />
+                                </Line>
+                            </LineChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
@@ -214,19 +217,19 @@ const SeccionDosPage = () => {
                             </Dropdown>
                         </div>
                         <ResponsiveContainer width="100%" height={300}>
-                            <LineChart data={obtenerDatosAntiguedadFamiliar()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                        <BarChart data={obtenerDatosActivasInactivas()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="anio" tick={{ fill: '#000' }} />
-                                <YAxis tickFormatter={(v) => `${v}`} tick={{ fill: '#000' }} />
-                                <Tooltip formatter={(value) => `${value}`} />
+                                <XAxis dataKey="departamento" tick={{ fill: '#000' }} />
+                                <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: '#000' }} />
+                                <Tooltip formatter={(value) => `${value}%`} />
                                 <Legend />
-                                <Line type="monotone" dataKey="familiar" stroke="#2a9d8f" strokeWidth={2}>
-                                    <LabelList dataKey="familiar" position="top" formatter={(val) => `${val}%`} />
-                                </Line>
-                                <Line type="monotone" dataKey="dejo_familiar" stroke="#e76f51" strokeWidth={2}>
-                                    <LabelList dataKey="Dejo de ser familiar" position="top" formatter={(val) => `${val}%`} />
-                                </Line>
-                            </LineChart>
+                                <Bar dataKey="activa" fill="#2a9d8f">
+                                    <LabelList dataKey="activa" position="top" formatter={(val) => `${val}%`} />
+                                </Bar>
+                                <Bar dataKey="inactiva" fill="#e76f51">
+                                    <LabelList dataKey="inactiva" position="top" formatter={(val) => `${val}%`} />
+                                </Bar>
+                            </BarChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
