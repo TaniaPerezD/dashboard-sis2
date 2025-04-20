@@ -221,9 +221,16 @@ const SeccionUnoPage = () => {
                     <div className="row">
                         <div className="card-dashboard" style={{ height: '350px'}}>
                             <div className="card-dashboard-header">Departamento</div>
-                            <div className="card-dashboard-content">
-                            <img src="https://i.pinimg.com/736x/86/bf/2f/86bf2fd1cef4d4e137d70eab4d0c8cbb.jpg" alt="" />
-                            </div>
+                                <div style={{ height: '600px', width: '100%' }}>
+                                    <iframe
+                                        src="http://localhost:3000/public/dashboard/0769bf67-5cc8-40ec-ab5b-871628bcf8c3"
+                                        frameBorder="0"
+                                        width="100%"
+                                        height="100%"
+                                        allowTransparency
+                                        title="Metabase Dashboard"
+                                    />
+                                    </div>
                             
                         </div>
                     </div>
