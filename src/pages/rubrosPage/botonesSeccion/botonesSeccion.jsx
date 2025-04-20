@@ -6,12 +6,12 @@ const BotonSeccion = ({
   height = "auto",
   options = [
     { id: "btnradio1", label: "Empresarial", route: "/Rubros/seccion1", defaultChecked: true },
-    { id: "btnradio2", label: "Departos", route: "/Rubros/seccion2" }
+    { id: "btnradio2", label: "Departamental", route: "/Rubros/seccion2" }
   ],
   selectedValue: externalSelectedValue,
   onChange,
   spacing = "2rem",
-  buttonWidth = "100px",
+  buttonWidth = "200px",
   name = "btnradio"
 }) => {
   const componentId = useId(); // 🟢 Esto garantiza unicidad
