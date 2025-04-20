@@ -34,7 +34,7 @@ const SeccionTresPage = () => {
             if (empresa.departamento !== departamentoSeleccionado && !flag) return;
 
             const departamento = empresa.departamento;
-            const activo = empresa.activo;
+            const activo = empresa.activa;
 
             if (!resumen[departamento]) {
                 resumen[departamento] = { departamento, activo: 0, inactivo: 0 };
@@ -71,16 +71,19 @@ const SeccionTresPage = () => {
             const mesApertura = empresa.mes_apertura;
             const mesCierre = empresa.mes_cierre;
 
-            if (!resumen[mesApertura]) {
-            resumen[mesApertura] = { mes: mesApertura, apertura: 0, cierre: 0 };
+            if (mesCierre!== "") {
+                if (!resumen[mesApertura]) {
+                resumen[mesApertura] = { mes: mesApertura, apertura: 0, cierre: 0 };
+                }
+                resumen[mesApertura].apertura++;
             }
-            resumen[mesApertura].apertura++;
+            
 
-            if (mesCierre) {
-            if (!resumen[mesCierre]) {
-                resumen[mesCierre] = { mes: mesCierre, apertura: 0, cierre: 0 };
-            }
-            resumen[mesCierre].cierre++;
+            if (mesCierre!== "") {
+                if (!resumen[mesCierre]) {
+                    resumen[mesCierre] = { mes: mesCierre, apertura: 0, cierre: 0 };
+                }
+                resumen[mesCierre].cierre++;
             }
             
         });
@@ -196,8 +199,12 @@ const SeccionTresPage = () => {
                                     <YAxis dataKey="mes" type="category" />
                                     <Tooltip />
                                     <Legend />
-                                    <Bar dataKey="apertura" fill="#EEAF9D" />
-                                    <Bar dataKey="cierre" fill="#94A3BA" />
+                                    <Bar dataKey="apertura" fill="#EEAF9D">
+                                        <LabelList dataKey="apertura" position="right" />
+                                    </Bar>
+                                    <Bar dataKey="cierre" fill="#94A3BA">
+                                        <LabelList dataKey="cierre" position="right" />
+                                    </Bar>
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>
@@ -252,8 +259,12 @@ const SeccionTresPage = () => {
                                 <YAxis dataKey="departamento" type="category" />
                                 <Tooltip />
                                 <Legend />
-                                <Bar dataKey="activo" fill="#EEAF9D" />
-                                <Bar dataKey="inactivo" fill="#94A3BA" />
+                                <Bar dataKey="activo" fill="#EEAF9D">
+                                    <LabelList dataKey="activo" position="right" />
+                                </Bar>
+                                <Bar dataKey="inactivo" fill="#94A3BA">
+                                    <LabelList dataKey="inactivo" position="right" />
+                                </Bar>
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>

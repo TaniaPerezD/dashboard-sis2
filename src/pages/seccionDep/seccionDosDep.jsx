@@ -183,7 +183,7 @@ const SeccionDosPage = () => {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
-                        <ResponsiveContainer width="100%" height={300}>
+                        <ResponsiveContainer width="100%" height={250}>
                             <LineChart data={obtenerDatosAntiguedadFamiliar()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis dataKey="anio" tickFormatter={(tick) => parseInt(tick)} />

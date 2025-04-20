@@ -266,11 +266,11 @@ const SeccionUnoPage = () => {
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="anio" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip formatter={(value) => `${value}`} />
                                     <Legend />
-                                    <Bar dataKey="pequeña" fill="#EEAF9D" />
-                                    <Bar dataKey="mediana" fill="#94A3BA" />
-                                    <Bar dataKey="grande"  fill="#465978" />
+                                    <Bar dataKey="pequeña" fill="#EEAF9D"  position="top" formatter={(val) => `${val}`} />
+                                    <Bar dataKey="mediana" fill="#94A3BA"  position="top" formatter={(val) => `${val}`}/>
+                                    <Bar dataKey="grande"  fill="#465978"  position="top" formatter={(val) => `${val}`}/>
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>

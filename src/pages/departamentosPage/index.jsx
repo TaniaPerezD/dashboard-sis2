@@ -208,7 +208,7 @@ const DepPage = () => {
                     </div>
                 </div>
 
-                <div className="col-7">
+                <div className="col-8">
                     <div className="card-dashboard">
                         <div className="card-dashboard-header">
 
@@ -266,11 +266,14 @@ const DepPage = () => {
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="anio" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip formatter={(value) => `${value}`} />
                                     <Legend />
-                                    <Bar dataKey="pequeña" fill="#EEAF9D" />
-                                    <Bar dataKey="mediana" fill="#94A3BA" />
-                                    <Bar dataKey="grande"  fill="#465978" />
+                                    <Bar dataKey="pequeña" fill="#EEAF9D">
+                                        <LabelList dataKey="pequeña" position="top" /></Bar>
+                                    <Bar dataKey="mediana" fill="#94A3BA">
+                                        <LabelList dataKey="mediana" position="top" /></Bar>
+                                    <Bar dataKey="grande" fill="#465978">
+                                        <LabelList dataKey="grande" position="top" />                                    </Bar>
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
