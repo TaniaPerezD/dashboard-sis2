@@ -9,7 +9,7 @@ const BotonType = ({
     { id: "btncheckbox2", label: "Medianas Empresas" },
     { id: "btncheckbox3", label: "Empresas Familiares" }
   ],
-  selectedValues = [],
+  selectedValues = options.map(option => option.id), 
   onChange,
   spacing = "2rem",
   buttonWidth = "350px"

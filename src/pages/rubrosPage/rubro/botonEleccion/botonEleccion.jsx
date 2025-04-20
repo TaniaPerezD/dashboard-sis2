@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import BotonType from './boton/buutonEnterpriseType';
 
 const BotonEleccion = ({ width = "15%", height = "10%" }) => {
-  const [selectedValues, setSelectedValues] = useState([]);
+  // Inicializamos el estado con todos los IDs activados
+  const [selectedValues, setSelectedValues] = useState([
+    "btncheckbox1", 
+    "btncheckbox2", 
+    "btncheckbox3"
+  ]);
 
   return (
     <div
@@ -24,10 +29,9 @@ const BotonEleccion = ({ width = "15%", height = "10%" }) => {
       <BotonType 
         width="100%" 
         height="100%"
-        selectedValues={selectedValues}
-        onChange={setSelectedValues}
+        selectedValues={selectedValues} // Usamos el estado
+        onChange={setSelectedValues} // Actualizamos el estado
       />
-      
     </div>
   );
 };
