@@ -208,7 +208,14 @@ const SeccionTresPage = () => {
                     <div className="card-dashboard" style={{ height: '70vh'}}>
                         <div className="card-dashboard-header">Departamento</div>
                         <div className="card-dashboard-content"   style={{ height: '50vh'}}>
-                            <img src="https://i.pinimg.com/736x/86/bf/2f/86bf2fd1cef4d4e137d70eab4d0c8cbb.jpg" alt="" />
+                                    <iframe
+                                        src="http://localhost:3000/public/dashboard/620db2bd-1323-4742-a7cc-899ab12994bf"
+                                        frameBorder="0"
+                                        width="100%"
+                                        height="100%"
+                                        allowTransparency
+                                        title="Metabase Dashboard"
+                                    />
                             
                         </div>
                     </div>
