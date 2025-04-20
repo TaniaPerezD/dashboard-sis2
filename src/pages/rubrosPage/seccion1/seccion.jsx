@@ -68,7 +68,7 @@ const Seccion2 = () => {
         <div style={{
             height: "75vh", 
             width: "100%",
-            borderColor: 'black',
+            borderColor: 'E9F5FE',
             backgroundColor: "#E9F5FE",
         }}>
             <div style={{height: "45%", width: "100%", display: "flex", flexDirection: "row", gap: "10px"}}>

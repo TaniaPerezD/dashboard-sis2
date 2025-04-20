@@ -12,19 +12,17 @@ const RubrosPage = () => {
         <div style={{
             height: "100vh", 
             width: "100%",
-            borderColor: 'black',
-            backgroundColor: "black",
+            borderColor: 'E9F5FE',
+            backgroundColor: "E9F5FE",
         }}>
             <Encabezado width="100%" height="20vh"/>
             
            
-        <Routes>
-          
-            <Route path="seccion1" element={<Rubro width="100%" height="80vh"/>} />
-            <Route path="seccion2" element={<Seccion2 />} />
-           
-        </Routes>
-      
+            <Routes>
+                <Route path="/" element={<Rubro width="100%" height="80vh"/>} />
+                <Route path="seccion1" element={<Rubro width="100%" height="80vh"/>} />
+                <Route path="seccion2" element={<Seccion2 />} />
+            </Routes>
         </div>
     );
 };

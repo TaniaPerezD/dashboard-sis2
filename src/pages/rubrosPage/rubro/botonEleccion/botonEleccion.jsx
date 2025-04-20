@@ -1,8 +1,14 @@
-
-
-
+import React, { useState } from 'react';
 import BotonType from './boton/buutonEnterpriseType';
+
 const BotonEleccion = ({ width = "15%", height = "10%" }) => {
+  // Inicializamos el estado con todos los IDs activados
+  const [selectedValues, setSelectedValues] = useState([
+    "btncheckbox1", 
+    "btncheckbox2", 
+    "btncheckbox3"
+  ]);
+
   return (
     <div
       className="card"
@@ -20,7 +26,12 @@ const BotonEleccion = ({ width = "15%", height = "10%" }) => {
         flexDirection: "row",
       }}
     >
-        <BotonType width="100%" height="100%"/>
+      <BotonType 
+        width="100%" 
+        height="100%"
+        selectedValues={selectedValues} // Usamos el estado
+        onChange={setSelectedValues} // Actualizamos el estado
+      />
     </div>
   );
 };
