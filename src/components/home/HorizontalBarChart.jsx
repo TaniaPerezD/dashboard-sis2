@@ -15,7 +15,7 @@ const HorizontalBarChart = ({ chartData }) => {
                     <BarChart
                         data={data}
                         layout="vertical"
-                        margin={{ top: 8, right: 20, left: 20, bottom: 32 }}
+                        margin={{ top: 8, right: 25, left: 5, bottom: 32 }}
                         barGap={8}
                     >
                         <XAxis
