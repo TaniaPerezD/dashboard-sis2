@@ -2,15 +2,15 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 const data = [
-  { name: 'Ene', ventas: 400 },
-  { name: 'Feb', ventas: 300 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
+  { name: 'Santa Cruz', ventas: 400 },
+  { name: 'Chuquisaca', ventas: 300 },
+  { name: 'Potosi', ventas: 600 },
+  { name: 'Tarija', ventas: 600 },
+  { name: 'La Paz', ventas: 600 },
+  { name: 'Cochabamba', ventas: 600 },
+  { name: 'Oruro', ventas: 600 },
+  { name: 'Beni', ventas: 600 },
+  { name: 'Pando', ventas: 600 },
 
 ];
 

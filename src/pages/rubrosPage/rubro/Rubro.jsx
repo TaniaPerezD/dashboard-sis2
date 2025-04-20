@@ -27,8 +27,8 @@ const Rubro = ({ width = "15%", height = "10%" }) => {
       
      
       <Indices  width="100%" height="10%" />
-      <Grafico1  width="100%" height="50%" />
-      <Estadistic  width="100%" height="40%" />
+      <Grafico1  width="100%" height="60%" />
+      <Estadistic  width="100%" height="30%" />
       
     </div>
   );
