@@ -16,17 +16,17 @@ const SeccionCuatroPage = () => {
                 <div className="col-1">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic" className="dropdown-custom">
-                            Secciones
+                            Sección 4
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
-                                Seccion 1</Dropdown.Item>
+                                Sección 1</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionDos')}>
-                                Seccion 2</Dropdown.Item>
+                                Sección 2</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionTres')}>
-                                Seccion 3</Dropdown.Item>
+                                Sección 3</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionCuatro')}>
-                                Seccion 4</Dropdown.Item>
+                                Sección 4</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>                    
                 </div>
