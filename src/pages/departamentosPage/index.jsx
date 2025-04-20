@@ -1,97 +1,106 @@
 import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import '../../styles/departamento.css';
-import React, { useState } from 'react';
-import {
-    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-    Legend, ResponsiveContainer, LineChart, Line, LabelList
-} from 'recharts';
 import { useNavigate } from 'react-router-dom';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, LabelList } from 'recharts';
-import { useNavigate } from 'react-router-dom';
-
-
 
 import empresas from '../../data/departamento/dataEmpresas.json';
 
-const DepPage = () => {
-    const navigate = useNavigate();
-
+const SeccionTresPage = () => {
+    
     const navigate = useNavigate(); //para la navegacion entre secciones
 
     const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState(null);
-    const [anioSeleccionado, setAnioSeleccionado] = useState(null);
-
+    
     const departamentoListados = () => {
-        return [...new Set(empresas.map(e => e.departamento))];
-    };
-
-    const aniosListados = () => {
-        return [...new Set(empresas.map(e => e.anio_fundacion))].sort();
-    };
-
-    const filtrarEmpresas = () => {
-        return empresas.filter(e => {
-            const filtrarDep = !departamentoSeleccionado || e.departamento === departamentoSeleccionado;
-            const filtrarAnio = !anioSeleccionado || e.anio_fundacion === anioSeleccionado;
-            return filtrarDep && filtrarAnio;
+        const departamentosSet = new Set();
+        empresas.forEach((empresa) => {
+            if (empresa.departamento) {
+                departamentosSet.add(empresa.departamento);
+            }
         });
+        return Array.from(departamentosSet);
     };
 
-    const procesoTarjetas = () => {
-        const datos = filtrarEmpresas();
-        const cuentaEmpresas = datos.length;
-        const cuentaExportan = datos.filter(e => e.es_exportadora).length;
-        const anios = datos.map(e => e.anio_fundacion);
-        const cuentaAnios = anios.length > 0 ? Math.max(...anios) - Math.min(...anios) + 1 : 0;
-        return {
-            cuentaEmpresas,
-            cuentaExportan,
-            cuentaAnios
-        };
-    };
-
-    const procesoGraficoBarras = () => {
+    const procesoGraficoActivo = (departamentoSeleccionado) => {
         const resumen = {};
-        filtrarEmpresas().forEach(e => {
-            const anio = e.anio_fundacion;
-            const tamano = e.tamano;
-            if (!resumen[anio]) {
-                resumen[anio] = { anio, pequeña: 0, mediana: 0, grande: 0 };
+        let flag = false;
+
+        if (departamentoSeleccionado === null) {
+            flag = true;
+        }
+
+        empresas.forEach((empresa) => {
+            if (empresa.departamento !== departamentoSeleccionado && !flag) return;
+
+            const departamento = empresa.departamento;
+            const activo = empresa.activo;
+
+            if (!resumen[departamento]) {
+                resumen[departamento] = { departamento, activo: 0, inactivo: 0 };
             }
-            if (resumen[anio][tamano] !== undefined) {
-                resumen[anio][tamano]++;
-            }
+
+                if(activo) {
+                    resumen[departamento].activo += 1;
+                }
+                else {
+                    resumen[departamento].inactivo += 1;
+                }
         });
-        return Object.values(resumen).sort((a, b) => a.anio - b.anio);
+
+        return Object.values(resumen);
     };
 
-    const procesoGraficoPorcentual = () => {
+    const procesoGraficoMes = (departamentoSeleccionado) => {
+
+        const ordenMeses = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
         const resumen = {};
-        filtrarEmpresas().forEach(e => {
-            const anio = e.anio_fundacion;
-            const tamano = e.tamano;
-            if (!resumen[anio]) {
-                resumen[anio] = { anio, pequeña: 0, mediana: 0, grande: 0, total: 0 };
+        let flag = false;
+
+        if (departamentoSeleccionado === null) {
+            flag = true;
+        }
+
+        empresas.forEach((empresa) => {
+            if (empresa.departamento !== departamentoSeleccionado && !flag) return;
+
+            const mesApertura = empresa.mes_apertura;
+            const mesCierre = empresa.mes_cierre;
+
+            if (!resumen[mesApertura]) {
+            resumen[mesApertura] = { mes: mesApertura, apertura: 0, cierre: 0 };
             }
-            if (resumen[anio][tamano] !== undefined) {
-                resumen[anio][tamano]++;
-                resumen[anio].total++;
+            resumen[mesApertura].apertura++;
+
+            if (mesCierre) {
+            if (!resumen[mesCierre]) {
+                resumen[mesCierre] = { mes: mesCierre, apertura: 0, cierre: 0 };
             }
+            resumen[mesCierre].cierre++;
+            }
+            
         });
-
-        return Object.values(resumen).map(({ anio, pequeña, mediana, grande, total }) => ({
-            anio,
-            pequeña: total ? parseFloat(((pequeña / total) * 100).toFixed(2)) : 0,
-            mediana: total ? parseFloat(((mediana / total) * 100).toFixed(2)) : 0,
-            grande: total ? parseFloat(((grande / total) * 100).toFixed(2)) : 0,
-        })).sort((a, b) => a.anio - b.anio);
+        
+        const resumenOrdenado = Object.values(resumen).sort((a, b) => {
+            return ordenMeses.indexOf(a.mes) - ordenMeses.indexOf(b.mes);
+        });
+        
+        return resumenOrdenado;
     };
 
-    const limpiarFiltros = () => {
-        setDepartamentoSeleccionado(null);
-        setAnioSeleccionado(null);
-    };
+    const ordenarMeses = (resumen) => {
+        const ordenMeses = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+        resumen.sort((a, b) => {
+            return ordenMeses.indexOf(a.mes) - ordenMeses.indexOf(b.mes);
+        });
+    }
 
     return (
         <div className="container">
@@ -116,160 +125,128 @@ const DepPage = () => {
                         </Dropdown.Menu>
                     </Dropdown>                    
                 </div>
-                <div className="col-11">
-                    <div className="titulos">DEPARTAMENTOS</div>
-                </div>
-                <div className="col-1">
-                    <Dropdown>
-                        <Dropdown.Toggle id="dropdown-basic" className="dropdown-custom">
-                            Sección 1
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>Sección 1</Dropdown.Item>
-                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionDos')}>Sección 2</Dropdown.Item>
-                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionTres')}>Sección 3</Dropdown.Item>
-                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionCuatro')}>Sección 4</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </div>
             </div>
             
             <div className="row">
                 <div className="col-4">
                     <div className="row">
-                        <div className="col-4">
-                            <div className="card-container">
-                                <div>{procesoTarjetas().cuentaEmpresas}</div>
-                                <div className="card-container-tooltip">Empresas</div>
+                        <div className="card-dashboard" style={{ height: '80px'}}>
+                            <div className="card-dashboard-header">
+                                Departamento 
                             </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="card-container">
-                                <div>{procesoTarjetas().cuentaExportan}</div>
-                                <div className="card-container-tooltip">Exportan</div>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="card-container">
-                                <div>{procesoTarjetas().cuentaAnios}</div>
-                                <div className="card-container-tooltip">Años</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row mt-2">
-                        <div className="col-6">
-                            <div className="card-dashboard" style={{ height: '80px' }}>
-                                <div className="card-dashboard-header">Departamento</div>
-                                <div className="card-dashboard-content" style={{ height: '30px' }}>
-                                    <Dropdown>
-                                        <Dropdown.Toggle
-                                            id="dropdown-dep"
-                                            style={{ color: '#182335', backgroundColor: 'white', border: '1px solid #182335' }}
-                                        >
-                                            {departamentoSeleccionado || 'Departamento'}
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            {departamentoListados().map(dep => (
-                                                <Dropdown.Item key={dep} onClick={() => setDepartamentoSeleccionado(dep)}>
-                                                    {dep}
-                                                </Dropdown.Item>
-                                            ))}
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <div className="card-dashboard" style={{ height: '80px' }}>
-                                <div className="card-dashboard-header">Años</div>
-                                <div className="card-dashboard-content" style={{ height: '30px' }}>
-                                    <Dropdown>
-                                        <Dropdown.Toggle
-                                            id="dropdown-anio"
-                                            style={{ color: '#182335', backgroundColor: 'white', border: '1px solid #182335' }}
-                                        >
-                                            {anioSeleccionado || 'Años'}
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            {aniosListados().map(anio => (
-                                                <Dropdown.Item key={anio} onClick={() => setAnioSeleccionado(anio)}>
-                                                    {anio}
-                                                </Dropdown.Item>
-                                            ))}
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </div>
-                            </div>
+                            <div className="d-flex justify-content-between align-items-center gap-2 mt-1 px-3 mb-3">
+                                 <Dropdown>
+                                     <Dropdown.Toggle
+                                         id="dropdown-basic"
+                                         style={{
+                                             backgroundColor: 'white',
+                                             color: '#182335',
+                                             border: '1px solid #182335'
+                                         }}
+                                     >
+                                         {departamentoSeleccionado || "Departamento"}
+                                     </Dropdown.Toggle>
+                                     <Dropdown.Menu>
+                                         {departamentoListados().map(dep => (
+                                             <Dropdown.Item key={dep} onClick={() => setDepartamentoSeleccionado(dep)}>
+                                                 {dep}
+                                             </Dropdown.Item>
+                                         ))}
+                                     </Dropdown.Menu>
+                                 </Dropdown>
+ 
+                                 <button
+                                     className="btn btn-outline-secondary btn-sm"
+                                     onClick={() => setDepartamentoSeleccionado(null)}
+                                 >
+                                     Limpiar filtros
+                                 </button>
+                             </div>
                         </div>
                     </div>
-
-                    <div className="text-end mt-2">
-                        <button className="btn btn-outline-secondary btn-sm" onClick={limpiarFiltros}>
-                            Limpiar filtros
-                        </button>
-                    </div>
-
-                    <div className="row mt-2">
-                        <div className="card-dashboard" style={{ height: '350px' }}>
-                            <div className="card-dashboard-header">Departamento</div>
+                    <div className="row">
+                        <div className="card-dashboard" style={{ height: '60vh'}}>
+                            <div className="card-dashboard-header">
+                                Q Aperturas y cierres por mes
+                                <Dropdown>
+                                    <Dropdown.Toggle variant="dark" id="dropdown-basic">
+                                        Departamento
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        {departamentoListados().map((departamento) => (
+                                            <Dropdown.Item
+                                                key={departamento}
+                                                onClick={() => setDepartamentoSeleccionado(departamento)}
+                                            >
+                                                {departamento}
+                                            </Dropdown.Item>
+                                        ))}
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </div>
                             <div className="card-dashboard-content">
-                                <img src="https://i.pinimg.com/736x/86/bf/2f/86bf2fd1cef4d4e137d70eab4d0c8cbb.jpg" alt="" />
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart
+                                    layout="vertical" 
+                                    data={procesoGraficoMes(departamentoSeleccionado)}
+                                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                                    >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis type="number" />
+                                    <YAxis dataKey="mes" type="category" />
+                                    <Tooltip />
+                                    <Legend />
+                                    <Bar dataKey="apertura" fill="#EEAF9D" />
+                                    <Bar dataKey="cierre" fill="#94A3BA" />
+                                    </BarChart>
+                                </ResponsiveContainer>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="col-4">
                     <div className="card-dashboard" style={{ height: '70vh'}}>
+                        <div className="card-dashboard-header">Departamento</div>
+                        <div className="card-dashboard-content"   style={{ height: '50vh'}}>
+                            <img src="https://i.pinimg.com/736x/86/bf/2f/86bf2fd1cef4d4e137d70eab4d0c8cbb.jpg" alt="" />
+                            
+                        </div>
+                    </div>
+                </div>
+                <div className="col-4">
+                    <div className="card-dashboard" style={{ height: '70vh'}}>
                         <div className="card-dashboard-header">
-                            Gráfico por{' '}
+                            Q empresas activas vs inactivas
                             <Dropdown>
                                 <Dropdown.Toggle variant="dark" id="dropdown-basic">
                                     Departamento
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    {departamentoListados().map(dep => (
-                                        <Dropdown.Item key={dep} onClick={() => setDepartamentoSeleccionado(dep)}>
-                                            {dep}
+                                    {departamentoListados().map((departamento) => (
+                                        <Dropdown.Item
+                                            key={departamento}
+                                            onClick={() => setDepartamentoSeleccionado(departamento)}
+                                        >
+                                            {departamento}
                                         </Dropdown.Item>
                                     ))}
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
-
-                        <div className="card-dashboard-content" style={{ height: '250px' }}>
-                            <ResponsiveContainer width="100%" height="100%">
-                                <LineChart data={procesoGraficoPorcentual()}>
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="anio" />
-                                    <YAxis tickFormatter={(v) => `${v}%`} />
-                                    <Tooltip formatter={(v) => `${parseFloat(v).toFixed(2)}%`} />
-                                    <Legend />
-                                    <Line type="monotone" dataKey="pequeña" stroke="#8884d8" strokeWidth={2}>
-                                        <LabelList dataKey="pequeña" position="top" />
-                                    </Line>
-                                    <Line type="monotone" dataKey="mediana" stroke="#82ca9d" strokeWidth={2}>
-                                        <LabelList dataKey="mediana" position="top" />
-                                    </Line>
-                                    <Line type="monotone" dataKey="grande" stroke="#8564d8" strokeWidth={2}>
-                                        <LabelList dataKey="grande" position="top" />
-                                    </Line>
-                                </LineChart>
-                            </ResponsiveContainer>
-                        </div>
-
                         <div className="card-dashboard-content">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={procesoGraficoBarras()}>
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="anio" />
-                                    <YAxis />
-                                    <Tooltip />
-                                    <Legend />
-                                    <Bar dataKey="pequeña" fill="#EEAF9D" />
-                                    <Bar dataKey="mediana" fill="#94A3BA" />
-                                    <Bar dataKey="grande" fill="#465978" />
+                            <ResponsiveContainer width=" 100%" height="100%">
+                                <BarChart
+                                layout="vertical" 
+                                data={procesoGraficoActivo(departamentoSeleccionado)}
+                                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                                >
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis type="number" />
+                                <YAxis dataKey="departamento" type="category" />
+                                <Tooltip />
+                                <Legend />
+                                <Bar dataKey="activo" fill="#EEAF9D" />
+                                <Bar dataKey="inactivo" fill="#94A3BA" />
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
