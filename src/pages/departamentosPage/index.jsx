@@ -94,7 +94,7 @@ const DepPage = () => {
                 <div className="col-1">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic" className="dropdown-custom">
-                            Sección 1
+                            Secciones
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>Sección 1</Dropdown.Item>
@@ -187,7 +187,7 @@ const DepPage = () => {
                         <div className="card-dashboard" style={{ height: '350px' }}>
                             <div className="card-dashboard-header">Departamento</div>
                             <div className="card-dashboard-content">
-                                <img src="https://i.pinimg.com/736x/86/bf/2f/86bf2fd1cef4d4e137d70eab4d0c8cbb.jpg" alt="" />
+                                <img src="https://i.pinimg.com/736x/86/bf/2f/86bf2fd1cef4d4e137d70eab4d0c8cbb.jpg" alt="Mapa del Departamento" />
                             </div>
                         </div>
                     </div>
@@ -233,7 +233,7 @@ const DepPage = () => {
                         </div>
 
                         <div className="card-dashboard-content">
-                            <ResponsiveContainer width="100%" height="100%">
+                            <ResponsiveContainer width="100%" height={250}>
                                 <BarChart data={procesoGraficoBarras()}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="anio" />

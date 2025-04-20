@@ -1,9 +1,16 @@
 import React from 'react';
-
+import Rubro from './rubro/Rubro';
 const RubrosPage = () => {
     return (
-        <div>
-            <h1>Pagina Rubros</h1>
+        <div
+        style={{
+            height: "100%",
+            width: "100%" ,
+            borderColor: '#black',
+            backgroundColor: "#black",
+    
+          }}>
+            <Rubro />
         </div>
     );
 }; export default RubrosPage;
