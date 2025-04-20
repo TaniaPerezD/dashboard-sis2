@@ -15,6 +15,7 @@ const Periodos = ({ width = "15%", height = "10%" }) => {
         gap: "3.5rem",
         boxShadow: "none",
         flexDirection: "row",
+        margin: "0px 105px"
       }}
     >
       <Periodo width="10%" height="100%" titulo='GRANDES E.' subtitulo='11.5% (149)'/>

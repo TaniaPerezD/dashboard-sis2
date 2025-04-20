@@ -10,7 +10,7 @@ const data = [
   { name: 'A.A.C.P.', value: 4, percentage: '3.8%' },
 ];
 
-const COLORS = ['#182335', '#E15546', '#EEAF9D', '#EAE4CC', '#A5D8DD', '#C5A6F0', '#F0A6A6'];
+const COLORS = ['#182335', '#E15546', '#EEAF9D', '#EAE4CC'];
 
 const Pastel = ({ width = "100%", height = "100%" }) => {
   return (
