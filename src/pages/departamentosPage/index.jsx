@@ -14,81 +14,61 @@ const DepPage = () => {
     const navigate = useNavigate(); //para la navegacion entre secciones
 
     const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState(null);
+    const [anioSeleccionado, setAnioSeleccionado] = useState(null);
 
     // Datos en trajetas
-    const procesoTarjetas = (departamentoSeleccionado) => {
-        const resumen = {};
-        let cuentaEmpresas = 0;
-        let cuentaAños = 0;
-        let cuentaExportan = 0;
-        let flag = false;
+    const departamentoListados = () => {
+        return [...new Set(empresas.map(e => e.departamento))];
+    };
 
-        if (departamentoSeleccionado === null) {
-            flag = true;
-        }
-        let anioMin= 9999;
-        let anioMax= 0;
-        empresas.forEach((empresa) => {
-            if (empresa.departamento !== departamentoSeleccionado && !flag) return;
-            if(empresa.anio_fundacion>anioMax) anioMax= empresa.anio_fundacion;
-            if(empresa.anio_fundacion<anioMin) anioMin= empresa.anio_fundacion;
-            if(empresa.es_exportadora) cuentaExportan++;
-            cuentaEmpresas++;
+    const aniosListados = () => {
+        return [...new Set(empresas.map(e => e.anio_fundacion))].sort();
+    };
+
+    const filtrarEmpresas = () => {
+        return empresas.filter(e => {
+            const filtrarDep = !departamentoSeleccionado || e.departamento === departamentoSeleccionado;
+            const filtrarAnio = !anioSeleccionado || e.anio_fundacion === anioSeleccionado;
+            return filtrarDep && filtrarAnio;
         });
-        cuentaAños= anioMax-anioMin+1;
+    };
+
+    const procesoTarjetas = () => {
+        const datos = filtrarEmpresas();
+        const cuentaEmpresas = datos.length;
+        const cuentaExportan = datos.filter(e => e.es_exportadora).length;
+        const anios = datos.map(e => e.anio_fundacion);
+        const cuentaAnios = anios.length > 0 ? Math.max(...anios) - Math.min(...anios) + 1 : 0;
         return {
-            cuentaEmpresas: cuentaEmpresas,
-            cuentaAnios: cuentaAños,
-            cuentaExportan: cuentaExportan,
+            cuentaEmpresas,
+            cuentaExportan,
+            cuentaAnios
         };
     };
 
-    // 📊 Datos en valores reales para gráfico de barras
-    const procesoGraficoBarras = (departamentoSeleccionado) => {
+    const procesoGraficoBarras = () => {
         const resumen = {};
-        let flag = false;
-
-        if (departamentoSeleccionado === null) {
-            flag = true;
-        }
-
-        empresas.forEach((empresa) => {
-            if (empresa.departamento !== departamentoSeleccionado && !flag) return;
-
-            const anio = empresa.anio_fundacion;
-            const tamano = empresa.tamano;
-
+        filtrarEmpresas().forEach(e => {
+            const anio = e.anio_fundacion;
+            const tamano = e.tamano;
             if (!resumen[anio]) {
                 resumen[anio] = { anio, pequeña: 0, mediana: 0, grande: 0 };
             }
-
             if (resumen[anio][tamano] !== undefined) {
                 resumen[anio][tamano]++;
             }
         });
-
         return Object.values(resumen).sort((a, b) => a.anio - b.anio);
     };
 
-    // 📈 Datos en porcentaje para gráfico de líneas
-    const procesoGraficoPorcentual = (departamentoSeleccionado) => {
+    const procesoGraficoPorcentual = () => {
         const resumen = {};
-        let flag = false;
-
-        if (departamentoSeleccionado === null) {
-            flag = true;
-        }
-
-        empresas.forEach((empresa) => {
-            if (empresa.departamento !== departamentoSeleccionado && !flag) return;
-
-            const anio = empresa.anio_fundacion;
-            const tamano = empresa.tamano;
-
+        filtrarEmpresas().forEach(e => {
+            const anio = e.anio_fundacion;
+            const tamano = e.tamano;
             if (!resumen[anio]) {
                 resumen[anio] = { anio, pequeña: 0, mediana: 0, grande: 0, total: 0 };
             }
-
             if (resumen[anio][tamano] !== undefined) {
                 resumen[anio][tamano]++;
                 resumen[anio].total++;
@@ -97,30 +77,17 @@ const DepPage = () => {
 
         return Object.values(resumen).map(({ anio, pequeña, mediana, grande, total }) => ({
             anio,
-            pequeña: total > 0 ? parseFloat(((pequeña / total) * 100).toFixed(2)) : 0,
-            mediana: total > 0 ? parseFloat(((mediana / total) * 100).toFixed(2)) : 0,
-            grande: total > 0 ? parseFloat(((grande / total) * 100).toFixed(2)) : 0,
+            pequeña: total ? parseFloat(((pequeña / total) * 100).toFixed(2)) : 0,
+            mediana: total ? parseFloat(((mediana / total) * 100).toFixed(2)) : 0,
+            grande: total ? parseFloat(((grande / total) * 100).toFixed(2)) : 0,
         })).sort((a, b) => a.anio - b.anio);
     };
 
-    const departamentoListados = () => {
-        const departamentosSet = new Set();
-        empresas.forEach((empresa) => {
-            if (empresa.departamento) {
-                departamentosSet.add(empresa.departamento);
-            }
-        });
-        return Array.from(departamentosSet);
+    const limpiarFiltros = () => {
+        setDepartamentoSeleccionado(null);
+        setAnioSeleccionado(null);
     };
-    const aniosListados = () => {
-        const aniosSet = new Set();
-        empresas.forEach((empresa) => {
-            if (empresa.anio_fundacion) {
-                aniosSet.add(empresa.anio_fundacion);
-            }
-        });
-        return Array.from(aniosSet);
-    };
+
     return (
         <div className="container">
             <div className="row">
@@ -194,20 +161,19 @@ const DepPage = () => {
                             </div>
                         </div>
                         <div className="col-6">
-                            <div className="card-dashboard" style={{ height: '80px'}}>
-                                <div className="card-dashboard-header">
-                                    Años 
-                                </div>
-                                <div className="card-dashboard-content" style={{ height: '30px'}}>
+                            <div className="card-dashboard" style={{ height: '80px' }}>
+                                <div className="card-dashboard-header">Años</div>
+                                <div className="card-dashboard-content" style={{ height: '30px' }}>
                                     <Dropdown>
-                                        <Dropdown.Toggle id="dropdown-basic" style={{ color: '#182335', backgroundColor: 'white' , border: '1px solid #182335'}}>
-                                            Años
+                                        <Dropdown.Toggle
+                                            id="dropdown-anio"
+                                            style={{ color: '#182335', backgroundColor: 'white', border: '1px solid #182335' }}
+                                        >
+                                            {anioSeleccionado || 'Años'}
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            {aniosListados().map((anio) => (
-                                                <Dropdown.Item
-                                                    key={anio}  
-                                                >
+                                            {aniosListados().map(anio => (
+                                                <Dropdown.Item key={anio} onClick={() => setAnioSeleccionado(anio)}>
                                                     {anio}
                                                 </Dropdown.Item>
                                             ))}
@@ -216,6 +182,11 @@ const DepPage = () => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="text-end mt-2">
+                        <button className="btn btn-outline-secondary btn-sm" onClick={limpiarFiltros}>
+                            Limpiar filtros
+                        </button>
                     </div>
                     <div className="row">
                         <div className="card-dashboard" style={{ height: '350px'}}>
