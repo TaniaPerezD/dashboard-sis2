@@ -39,14 +39,16 @@ const SeccionDosPage = () => {
                 resumen[anioFin].dejo_familiar++;
             }
         });
-        console.log('Resumen ',resumen);
+
         return Object.values(resumen).map(dep => ({
-            anio: dep.departamento,
+            anio: dep.anio,
             familiar: dep.familiar,
             dejo_familiar: dep.dejo_familiar,
         }));
     };
 
+    console.log("DATOS FAMILIAR:", obtenerDatosAntiguedadFamiliar()); 
+    
     const obtenerDatosActivasInactivas = () => {
         const resumen = {};
 
@@ -181,10 +183,10 @@ const SeccionDosPage = () => {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
-                        <ResponsiveContainer width="100%" height={250}>
+                        <ResponsiveContainer width="100%" height={300}>
                             <LineChart data={obtenerDatosAntiguedadFamiliar()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="anio" interval={0} angle={-45} tick={{ fill: '#000', fontSize: 12 }} />
+                                <XAxis dataKey="anio" tickFormatter={(tick) => parseInt(tick)} />
                                 <YAxis tickFormatter={(v) => `${v}`} tick={{ fill: '#000' }} />
                                 <Tooltip formatter={(value) => `${value}`} />
                                 <Legend />
@@ -192,7 +194,7 @@ const SeccionDosPage = () => {
                                     <LabelList dataKey="familiar" position="top" formatter={(val) => `${val}`} />
                                 </Line>
                                 <Line type="monotone" dataKey="dejo_familiar" stroke="#e76f51" strokeWidth={2}>
-                                    <LabelList dataKey="Dejo de ser familiar" position="top" formatter={(val) => `${val}`} />
+                                    <LabelList dataKey="dejo_familiar" position="top" formatter={(val) => `${val}`} />
                                 </Line>
                             </LineChart>
                         </ResponsiveContainer>

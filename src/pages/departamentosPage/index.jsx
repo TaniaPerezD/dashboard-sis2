@@ -74,6 +74,7 @@ const DepPage = () => {
                 resumen[anio].total++;
             }
         });
+        console.log(resumen);
 
         return Object.values(resumen).map(({ anio, pequeña, mediana, grande, total }) => ({
             anio,
@@ -89,7 +90,7 @@ const DepPage = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container-fluid">
             <div className="row">
                 <div className="col-11">
                     <div className="titulos">DEPARTAMENTOS</div>

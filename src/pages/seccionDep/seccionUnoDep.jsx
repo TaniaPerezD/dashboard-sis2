@@ -88,7 +88,7 @@ const SeccionUnoPage = () => {
         setAnioSeleccionado(null);
     };
     return (
-        <div className="container">
+        <div className="container-fluid">
             <div className="row">
                 <div className="col-11">
                     <div className="titulos">DEPARTAMENTOSSSSSS</div>
