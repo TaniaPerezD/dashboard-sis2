@@ -2,7 +2,7 @@ import React from 'react';
 
 const MapaDepartamentos = () => {
   return (
-    <div style={{ height: '600px', width: '100%' }}>
+    <div style={{ height: '100%', width: '100%' }}>
       <iframe
         src="http://localhost:3000/public/dashboard/0769bf67-5cc8-40ec-ab5b-871628bcf8c3"
         frameBorder="0"
