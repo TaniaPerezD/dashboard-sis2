@@ -21,6 +21,7 @@ body {
     color: var(--dash-blue-dark);
     font-size: 35px;
     margin-top: 1rem;
+    padding-right: 40px;
     font-weight: 700;
 }
 .sidebar-icon {
@@ -132,10 +133,11 @@ body {
     color: var(--text-color);
     background-color: var(--card-color);
     border: var(--card-color);
-    padding: 1rem;
+    padding: 1rem 2rem 1rem 2rem;
+    width: 200px;
+    border-radius: 20px;
 }
 .dropdown-custom:hover {
-    
     color: var(--text-color);
     background-color: var(--card-color);
     border: var(--card-color);

@@ -88,7 +88,7 @@ const SeccionUnoPage = () => {
         setAnioSeleccionado(null);
     };
     return (
-        <div className="container">
+        <div className="container-fluid">
             <div className="row">
                 <div className="col-11">
                     <div className="titulos">DEPARTAMENTOSSSSSS</div>
@@ -100,13 +100,13 @@ const SeccionUnoPage = () => {
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
-                                Seccion 1</Dropdown.Item>
+                                Linea de tiempo</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionDos')}>
-                                Seccion 2</Dropdown.Item>
+                                Tipo empresa</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionTres')}>
-                                Seccion 3</Dropdown.Item>
+                                Empresas Activas</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionCuatro')}>
-                                Seccion 4</Dropdown.Item>
+                                Empresas Rubros</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>                    
                 </div>
@@ -266,11 +266,11 @@ const SeccionUnoPage = () => {
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="anio" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip formatter={(value) => `${value}`} />
                                     <Legend />
-                                    <Bar dataKey="pequeña" fill="#EEAF9D" />
-                                    <Bar dataKey="mediana" fill="#94A3BA" />
-                                    <Bar dataKey="grande"  fill="#465978" />
+                                    <Bar dataKey="pequeña" fill="#EEAF9D"  position="top" formatter={(val) => `${val}`} />
+                                    <Bar dataKey="mediana" fill="#94A3BA"  position="top" formatter={(val) => `${val}`}/>
+                                    <Bar dataKey="grande"  fill="#465978"  position="top" formatter={(val) => `${val}`}/>
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>

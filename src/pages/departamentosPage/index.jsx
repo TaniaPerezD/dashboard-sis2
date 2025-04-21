@@ -74,6 +74,7 @@ const DepPage = () => {
                 resumen[anio].total++;
             }
         });
+        console.log(resumen);
 
         return Object.values(resumen).map(({ anio, pequeña, mediana, grande, total }) => ({
             anio,
@@ -89,25 +90,25 @@ const DepPage = () => {
     };
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-11">
-                    <div className="titulos">DEPARTAMENTOS</div>
+        <div className="container-fluid">
+            <div className="row align-items-center mb-2">
+                <div className="col">
+                    <div className="titulos">DEPARTAMENTOS <span className="subtitulo">  linea de tiempo</span></div>
                 </div>
-                <div className="col-1">
+                <div className="col-auto">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic" className="dropdown-custom">
-                            Secciones
+                            Linea de tiempo
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
-                                Seccion 1</Dropdown.Item>
+                                Linea de tiempo</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionDos')}>
-                                Seccion 2</Dropdown.Item>
+                                Tipo empresa</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionTres')}>
-                                Seccion 3</Dropdown.Item>
+                                Empresas Activas</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionCuatro')}>
-                                Seccion 4</Dropdown.Item>
+                                Empresas Rubros</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>                    
                 </div>
@@ -207,7 +208,7 @@ const DepPage = () => {
                     </div>
                 </div>
 
-                <div className="col-7">
+                <div className="col-8">
                     <div className="card-dashboard">
                         <div className="card-dashboard-header">
 
@@ -242,13 +243,13 @@ const DepPage = () => {
                                     <YAxis tickFormatter={(value) => `${value}%`} />
                                     <Tooltip formatter={(value) => `${parseFloat(value).toFixed(2)}%`} />
                                     <Legend />
-                                    <Line type="monotone" dataKey="pequeña" stroke="#8884d8" strokeWidth={2}>
+                                    <Line type="monotone" dataKey="pequeña" stroke="#EEAF9D" strokeWidth={2}>
                                     <LabelList dataKey="pequeña" position="top" formatter={(value) => `${value.toFixed(1)}%`} />
                                     </Line>
-                                    <Line type="monotone" dataKey="mediana" stroke="#82ca9d" strokeWidth={2}>
+                                    <Line type="monotone" dataKey="mediana" stroke="#94A3BA" strokeWidth={2}>
                                     <LabelList dataKey="mediana" position="top" formatter={(value) => `${value.toFixed(1)}%`} />
                                     </Line>
-                                    <Line type="monotone" dataKey="grande" stroke="#8564d8" strokeWidth={2}>
+                                    <Line type="monotone" dataKey="grande" stroke="#465978" strokeWidth={2}>
                                     <LabelList dataKey="grande" position="top" formatter={(value) => `${value.toFixed(1)}%`} />
                                     </Line>
                                 </LineChart>
@@ -265,11 +266,14 @@ const DepPage = () => {
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="anio" />
                                     <YAxis />
-                                    <Tooltip />
+                                    <Tooltip formatter={(value) => `${value}`} />
                                     <Legend />
-                                    <Bar dataKey="pequeña" fill="#EEAF9D" />
-                                    <Bar dataKey="mediana" fill="#94A3BA" />
-                                    <Bar dataKey="grande"  fill="#465978" />
+                                    <Bar dataKey="pequeña" fill="#EEAF9D">
+                                        <LabelList dataKey="pequeña" position="top" /></Bar>
+                                    <Bar dataKey="mediana" fill="#94A3BA">
+                                        <LabelList dataKey="mediana" position="top" /></Bar>
+                                    <Bar dataKey="grande" fill="#465978">
+                                        <LabelList dataKey="grande" position="top" />                                    </Bar>
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
