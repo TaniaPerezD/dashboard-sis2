@@ -90,6 +90,7 @@ const HomePage = () => {
                 <h2 className={styles.h2}>"Las empresas familiares no solo son mayoría, también representan el pasado, presente y futuro del tejido empresarial boliviano."</h2>
             </footer>
         </div>
+    </>
     );
 };
 
