@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 import empresas from '../../data/departamento/dataEmpresas.json';
 
-const DepPage = () => {
-
+const SeccionUnoPage = () => {
+    
     const navigate = useNavigate(); //para la navegacion entre secciones
 
     const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState(null);
@@ -74,7 +74,6 @@ const DepPage = () => {
                 resumen[anio].total++;
             }
         });
-        console.log(resumen);
 
         return Object.values(resumen).map(({ anio, pequeña, mediana, grande, total }) => ({
             anio,
@@ -88,17 +87,16 @@ const DepPage = () => {
         setDepartamentoSeleccionado(null);
         setAnioSeleccionado(null);
     };
-
     return (
         <div className="container-fluid">
-            <div className="row align-items-center mb-2">
-                <div className="col">
-                    <div className="titulos">DEPARTAMENTOS <span className="subtitulo">  linea de tiempo</span></div>
+            <div className="row">
+                <div className="col-11">
+                    <div className="titulos">DEPARTAMENTOSSSSSS</div>
                 </div>
-                <div className="col-auto">
+                <div className="col-1">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic" className="dropdown-custom">
-                            Linea de tiempo
+                            Secciones
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
@@ -136,7 +134,8 @@ const DepPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
+                    
+                    <div className="row mt-2">
                         <div className="col-6">
                             <div className="card-dashboard" style={{ height: '80px'}}>
                                 <div className="card-dashboard-header">
@@ -162,7 +161,7 @@ const DepPage = () => {
                             </div>
                         </div>
                         <div className="col-6">
-                            <div className="card-dashboard" style={{ height: '80px' }}>
+                        <div className="card-dashboard" style={{ height: '80px' }}>
                                 <div className="card-dashboard-header">Años</div>
                                 <div className="card-dashboard-content" style={{ height: '30px' }}>
                                     <Dropdown>
@@ -184,16 +183,17 @@ const DepPage = () => {
                             </div>
                         </div>
                     </div>
+
                     <div className="text-end mt-2">
                         <button className="btn btn-outline-secondary btn-sm" onClick={limpiarFiltros}>
                             Limpiar filtros
                         </button>
                     </div>
+
                     <div className="row">
                         <div className="card-dashboard" style={{ height: '350px'}}>
                             <div className="card-dashboard-header">Departamento</div>
-                            <div className="card-dashboard-content">
-                            
+                                <div style={{ height: '600px', width: '100%' }}>
                                     <iframe
                                         src="http://localhost:3000/public/dashboard/0769bf67-5cc8-40ec-ab5b-871628bcf8c3"
                                         frameBorder="0"
@@ -202,13 +202,13 @@ const DepPage = () => {
                                         allowTransparency
                                         title="Metabase Dashboard"
                                     />
-                            </div>
+                                    </div>
                             
                         </div>
                     </div>
                 </div>
 
-                <div className="col-8">
+                <div className="col-7">
                     <div className="card-dashboard">
                         <div className="card-dashboard-header">
 
@@ -243,13 +243,13 @@ const DepPage = () => {
                                     <YAxis tickFormatter={(value) => `${value}%`} />
                                     <Tooltip formatter={(value) => `${parseFloat(value).toFixed(2)}%`} />
                                     <Legend />
-                                    <Line type="monotone" dataKey="pequeña" stroke="#EEAF9D" strokeWidth={2}>
+                                    <Line type="monotone" dataKey="pequeña" stroke="#8884d8" strokeWidth={2}>
                                     <LabelList dataKey="pequeña" position="top" formatter={(value) => `${value.toFixed(1)}%`} />
                                     </Line>
-                                    <Line type="monotone" dataKey="mediana" stroke="#94A3BA" strokeWidth={2}>
+                                    <Line type="monotone" dataKey="mediana" stroke="#82ca9d" strokeWidth={2}>
                                     <LabelList dataKey="mediana" position="top" formatter={(value) => `${value.toFixed(1)}%`} />
                                     </Line>
-                                    <Line type="monotone" dataKey="grande" stroke="#465978" strokeWidth={2}>
+                                    <Line type="monotone" dataKey="grande" stroke="#8564d8" strokeWidth={2}>
                                     <LabelList dataKey="grande" position="top" formatter={(value) => `${value.toFixed(1)}%`} />
                                     </Line>
                                 </LineChart>
@@ -268,12 +268,9 @@ const DepPage = () => {
                                     <YAxis />
                                     <Tooltip formatter={(value) => `${value}`} />
                                     <Legend />
-                                    <Bar dataKey="pequeña" fill="#EEAF9D">
-                                        <LabelList dataKey="pequeña" position="top" /></Bar>
-                                    <Bar dataKey="mediana" fill="#94A3BA">
-                                        <LabelList dataKey="mediana" position="top" /></Bar>
-                                    <Bar dataKey="grande" fill="#465978">
-                                        <LabelList dataKey="grande" position="top" />                                    </Bar>
+                                    <Bar dataKey="pequeña" fill="#EEAF9D"  position="top" formatter={(val) => `${val}`} />
+                                    <Bar dataKey="mediana" fill="#94A3BA"  position="top" formatter={(val) => `${val}`}/>
+                                    <Bar dataKey="grande"  fill="#465978"  position="top" formatter={(val) => `${val}`}/>
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
@@ -282,6 +279,6 @@ const DepPage = () => {
             </div>
         </div>
     );
-};
+}
 
-export default DepPage;
+export default SeccionUnoPage;
