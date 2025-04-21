@@ -78,15 +78,15 @@ const Seccion2 = () => {
                 <Pastel width={WIDTH} height={HEIGHT} title='Oruro' data={dataOruro}/>
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', height: '100%' }}>
                     <div className={styles.detalles} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <p style={{ fontWeight: 'bold' }}>500</p>
+                        <p style={{ fontWeight: 'bold' ,marginTop: '0.2rem', marginBottom:'0.2rem'}}>500</p>
                         <p>Empresas</p>
                     </div><br />
                     <div className={styles.detalles} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <p style={{ fontWeight: 'bold' }}>10%</p>
+                        <p style={{ fontWeight: 'bold' , marginTop: '0.2rem', marginBottom:'0.2rem'}}>10%</p>
                         <p>crecimiento</p>
                     </div><br />
                     <div className={styles.detalles} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <p style={{ fontWeight: 'bold' }}>200</p>
+                        <p style={{ fontWeight: 'bold' , marginTop: '0.2rem', marginBottom:'0.2rem'}}>200</p>
                         <p>años</p>
                     </div>
                 </div>
