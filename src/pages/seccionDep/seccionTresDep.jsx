@@ -214,7 +214,7 @@ const SeccionTresPage = () => {
                 <div className="col-4">
                     <div className="card-dashboard" style={{ height: '70vh'}}>
                         <div className="card-dashboard-header">Departamento</div>
-                        <div className="card-dashboard-content"   style={{ height: '50vh'}}>
+                        <div className="card-dashboard-content">
                                     <iframe
                                         src="http://localhost:3000/public/dashboard/620db2bd-1323-4742-a7cc-899ab12994bf"
                                         frameBorder="0"
