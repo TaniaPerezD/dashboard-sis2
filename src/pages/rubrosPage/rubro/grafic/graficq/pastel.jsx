@@ -1,18 +1,17 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { name: 'S.R.L.', value: 52, percentage: '52.1%' }, 
-  { name: 'S.E.M.', value: 19, percentage: '19.4%' },
-  { name: 'S.A.', value: 11, percentage: '10.9%' },
-  { name: 'S.C.S', value: 5, percentage: '5.4%' },
-  { name: 'S.', value: 4, percentage: '4.3%' },
-  { name: 'S.C.A', value: 4, percentage: '4.1%' },
-  { name: 'A.A.C.P.', value: 4, percentage: '3.8%' },
-];
-
 const COLORS = ['#182335', '#E15546', '#EEAF9D', '#EAE4CC'];
 
-const Pastel = ({ width = "100%", height = "100%" }) => {
+const Pastel = ({ width = "100%", height = "100%", data }) => {
+  // Calcula el total de los valores
+  const totalValue = data.reduce((sum, entry) => sum + entry.value, 0);
+  
+  // Función para formatear el tooltip con el porcentaje calculado
+  const formatTooltip = (value, name, props) => {
+    const percentage = ((value / totalValue) * 100).toFixed(1);
+    return [`${value} empresas (${percentage}%)`, name];
+  };
+
   return (
     <div
       className="card"
@@ -26,10 +25,10 @@ const Pastel = ({ width = "100%", height = "100%" }) => {
         flexDirection: 'column'
       }}
     >
-      <h5 
-        style={{ 
-          textAlign: "center", 
-          fontFamily: "'Montserrat', sans-serif", 
+      <h5
+        style={{
+          textAlign: "center",
+          fontFamily: "'Montserrat', sans-serif",
           fontWeight: 700,
           margin: "0 0 10px 10px",
           fontSize: "14px",
@@ -54,19 +53,16 @@ const Pastel = ({ width = "100%", height = "100%" }) => {
               label={false}
             >
               {data.map((entry, index) => (
-                <Cell 
-                  key={`cell-${index}`} 
-                  fill={COLORS[index % COLORS.length]} 
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
                   stroke="#fff"
                   strokeWidth={1}
                 />
               ))}
             </Pie>
-            <Tooltip 
-              formatter={(value, name) => {
-                const entry = data.find(item => item.name === name);
-                return [`${value} empresas (${entry?.percentage || ''})`, name];
-              }}
+            <Tooltip
+              formatter={formatTooltip}
               contentStyle={{
                 borderRadius: '8px',
                 border: 'none',
@@ -84,29 +80,30 @@ const Pastel = ({ width = "100%", height = "100%" }) => {
         display: 'grid',
         gridTemplateColumns: 'repeat(2, 1fr)',
         gap: '8px',
-        
         padding: '0 10px',
-        
       }}>
-        {data.map((entry, index) => (
-          <div key={`legend-${index}`} style={{
-            display: 'flex',
-            alignItems: 'center',
-            fontFamily: "'Montserrat', sans-serif",
-            fontSize: '12px'
-          }}>
-            <div style={{
-              width: '12px',
-              height: '12px',
-              backgroundColor: COLORS[index % COLORS.length],
-              marginRight: '8px',
-              borderRadius: '8px'
-            }} />
-            <span style={{ color: '#182335', fontWeight: 500 }}>
-              {entry.name} <span style={{ color: '#7f8c8d' }}>({entry.percentage})</span>
-            </span>
-          </div>
-        ))}
+        {data.map((entry, index) => {
+          const percentage = ((entry.value / totalValue) * 100).toFixed(1);
+          return (
+            <div key={`legend-${index}`} style={{
+              display: 'flex',
+              alignItems: 'center',
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: '12px'
+            }}>
+              <div style={{
+                width: '12px',
+                height: '12px',
+                backgroundColor: COLORS[index % COLORS.length],
+                marginRight: '8px',
+                borderRadius: '8px'
+              }} />
+              <span style={{ color: '#182335', fontWeight: 500 }}>
+                {entry.name} <span style={{ color: '#7f8c8d' }}>({percentage}%)</span>
+              </span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

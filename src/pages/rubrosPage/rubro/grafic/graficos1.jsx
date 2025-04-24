@@ -3,7 +3,7 @@
 
 import Puntos from './graficq/puntos';
 import Pastel from './graficq/pastel';
-const Grafico1 = ({ width = "15%", height = "10%" }) => {
+const Grafico1 = ({ width = "15%", height = "10%" , data,dataPastel}) => {
   return (
     <div
       className="card"
@@ -23,8 +23,8 @@ const Grafico1 = ({ width = "15%", height = "10%" }) => {
       }}
     >
     
-      <Puntos  width="75.35%" height="100%" />
-      <Pastel  width="24.65%" height="100%" />
+      <Puntos  width="75.35%" height="100%" data={data}/>
+      <Pastel  width="24.65%" height="100%" data={dataPastel}/>
     </div>
   );
 };
