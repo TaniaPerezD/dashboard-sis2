@@ -23,7 +23,7 @@ FROM nginx:1.22.0-alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy built assets from build stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html/
+COPY --from=build-stage /app/build /usr/share/nginx/html/
 
 # Copy nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
