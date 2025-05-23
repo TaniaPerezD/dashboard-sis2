@@ -14,7 +14,7 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # Build the project
-RUN npm run build
+RUN CI='' npm run build
 
 # Production stage
 FROM nginx:1.22.0-alpine
