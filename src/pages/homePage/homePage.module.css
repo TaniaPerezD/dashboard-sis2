@@ -1,7 +1,208 @@
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    padding: 0 2%;
+
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    padding: 1vh 0;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
 .h1 {
     font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
-    font-size: 10rem;
-    font-weight: 900;
+    font-size: 4vh;
+    font-weight: 800;
     color: var(--BluePurple-Dark);
     text-align: center;
+    margin: 0;
+}
+
+.h2 {
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    font-size: 2.2vh;
+    font-weight: 600;
+    color: var(--BluePurple-Dark);
+    text-align: center;
+    margin: 2vh 0;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 2%;
+    padding: 1vh 0;
+
+}
+
+.sidebar {
+    flex: 0 0 auto;
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    padding: 0.5vh 0.5% 0.5vh 0.5%;
+
+    border-right: 1px solid #e0e0e0;
+}
+
+.mainArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.dataVisuals {
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+    padding: 0.5vh 0.5% 0.5vh 0.5%;
+
+    flex-wrap: wrap;
+}
+
+.mapContainer {
+    flex: 1;
+    min-height: 50vh;
+    min-width: 40%;
+
+}
+
+.chartsContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    min-width: 40%;
+
+}
+
+.chartWrapper {
+    width: 100%;
+    height: auto;
+}
+
+.footer {
+    margin-top: 0.5vh;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .dataVisuals {
+        flex-direction: column;
+    }
+    
+    .mapContainer, .chartsContainer {
+        width: 100%;
+    }
+    
+    .sidebar {
+        width: 22%;
+
+    }
+}
+
+@media (max-width: 840px) {
+    .mainContent {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-bottom: 1.5vh;
+        margin-bottom: 1.5vh;
+        margin-top: 1.5vh;
+        
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+        gap: 1.5vh;
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+    
+    .h1 {
+        font-size: 3.5vh;
+    }
+    
+    .h2 {
+        font-size: 2vh;
+
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5vh;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+}
+
+@media (max-width: 480px) {
+    .h1 {
+        font-size: 3vh;
+        padding: 1vh;
+    }
+    
+    .h2 {
+        font-size: 1.8vh;
+    }
+    
+    .container {
+        padding: 0 1%;
+    }
+    
+    .mainContent {
+        padding: 0.5vh 0;
+        gap: 1.5vh;
+    }
+    
+    .dataVisuals {
+        gap: 2vh;
+        margin: 1vh 0;
+    }
+    
+    .mapContainer {
+        min-height: 40vh;
+    }
+
+    .sidebar {
+        grid-template-columns: repeat(2, 1fr);
+        padding-left: 0.5%;
+        padding-right: 0.5%;
+    }
+}
+
+@media (max-width: 360px) {
+    .sidebar {
+        gap: 1vh;
+        padding-left: 0.5%;
+        padding-right: 0.5%;
+    }
 }

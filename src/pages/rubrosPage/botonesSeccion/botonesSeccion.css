@@ -1,0 +1,53 @@
+.enterprise-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .enterprise {
+    
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn-check {
+    display: none; /* Ocultamos los botones de radio, usaremos las etiquetas para el diseño */
+  }
+  
+  .enterprise label {
+    
+    white-space: nowrap;
+  font-size: 0.875rem;
+  padding: 0.375rem 0.1rem;
+  margin: 0;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: #EEAF9D;
+  color: #182335;
+  border: 1px solid #EEAF9D;
+  }
+  
+  .enterprise label:hover {
+    background-color: #E15546 !important;
+  color: white !important;
+  border-color: #E15546 !important;
+  }
+  
+  .enterprise input:checked + label {
+    background-color: #E15546 !important;
+  color: white !important;
+  border-color: #E15546 !important;
+  }
+  
+  .enterprise input:checked + label:hover {
+    background-color: #E15546;
+  color: white;
+  }
+  
