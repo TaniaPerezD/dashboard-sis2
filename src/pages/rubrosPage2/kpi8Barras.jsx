@@ -26,7 +26,7 @@ const Barras8 = () => {
       </div>
       */}
       <iframe 
-            src="http://localhost:3000/public/question/92017644-d64b-4652-935b-1943f3fdcf08" 
+            src="https://meta-tania.serverbb.site/public/question/d1fee9c9-6221-4028-81c1-517d09791ba7" 
             frameborder="0"
             width={"100%"}
             height={"100%"}

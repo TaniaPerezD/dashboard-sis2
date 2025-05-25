@@ -13,7 +13,7 @@ const getColorForAge = (edad) => {
   return item ? item.color : '#ccc';
 };
 
-const Heatmap20 = () => {
+const Mapa11 = () => {
   const [data, setData] = useState([]);
 
   
@@ -26,7 +26,7 @@ const Heatmap20 = () => {
       </div>
       */}
       <iframe 
-            src="https://meta-tania.serverbb.site/public/question/0ae15efa-f52d-4f3e-9c8f-133e915cb24c" 
+            src="https://meta-tania.serverbb.site/public/question/f1f8a56d-75e8-418e-b7c7-35e9fb6eb7a8" 
             frameborder="0"
             width={"100%"}
             height={"100%"}
@@ -47,4 +47,4 @@ const Heatmap20 = () => {
   );
 };
 
-export default Heatmap20;
+export default Mapa11;

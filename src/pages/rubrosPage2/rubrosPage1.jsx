@@ -5,6 +5,7 @@ import Barras14 from './kpi14Barras';
 import Barras11 from './kpi11Barras';
 import Barras22 from './kpi22Barras';
 import Barras8 from './kpi8Barras';
+import Mapa11 from './kpi11Mapa';
 
 const RubrosPage1 = () => {
   return (
@@ -13,7 +14,7 @@ const RubrosPage1 = () => {
         <h1 className="h1">RUBROS EMPRESARIALES DE BOLIVIA</h1>
     </header>
     <div className="componente-columna">
-        <div className="contenedor" style={{ height: '140vh' }}> {/* Se le pone altura para cuando es componente superios e inferior */}
+        <div className="contenedor" style={{ height: '130vh' }}> {/* Se le pone altura para cuando es componente superios e inferior */}
             <div className="lado-izquierdo">
                 <div className="componente-superior">
                     <Barras14/>
@@ -36,7 +37,7 @@ const RubrosPage1 = () => {
                 <Heatmap20/>
             </div>
             <div className="lado-derecho">
-                <Barras11/>
+                <Mapa11/>
             </div>
         </div>  
         
