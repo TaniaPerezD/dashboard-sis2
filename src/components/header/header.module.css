@@ -3,8 +3,8 @@
   display: flex;
   align-items: center;
   justify-content: center; 
-  height: 60px;
-  background-color: #ffffff;
+  height: 80px;
+  background-color:#007654 ;
   color: var(--BlueTeal-Dark);
   font-family: 'Trajan Pro', serif;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
@@ -16,7 +16,7 @@
   left: 20px;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.9rem;
   color: var(--BlueTeal-Dark);
   cursor: pointer;
 }
@@ -26,9 +26,9 @@
 }
 
 .title {
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   font-weight: bold;
-  color: var(--BluePurple-Dark);
+  color: #fff;
   text-align: center;
   font-family: 'Trajan Pro';
 }
