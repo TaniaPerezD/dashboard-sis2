@@ -14,11 +14,9 @@ const TamanosPage = () => {
             <Boxplot/>
         </div>
         <div className="componente-inferior">
-            <BarPlot/>
         </div>
       </div>
       <div className="lado-derecho">
-        <Heatmap/>
       </div>
     </div>
     </>

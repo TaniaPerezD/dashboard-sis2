@@ -17,7 +17,7 @@ const Heatmap = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://172.25.1.99:3000/public/question/be5dab7f-1756-4fd0-8d6a-332eebafde20.json')
+    fetch('')
       .then(res => res.json())
       .then(setData)
       .catch(err => console.error('Error cargando datos:', err));

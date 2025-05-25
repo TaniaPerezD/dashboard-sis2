@@ -20,7 +20,7 @@ const Heatmap = () => {
   const [heatmapData, setHeatmapData] = useState([]);
 
   useEffect(() => {
-    fetch('http://172.25.1.99:3000/public/question/f79969a2-fc26-4459-8af9-8373c594b2a7.json')
+    fetch('')
       .then((res) => res.json())
       .then((data) => setHeatmapData(data))
       .catch((err) => console.error('Error al obtener datos de Metabase:', err));
