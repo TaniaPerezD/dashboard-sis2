@@ -20,15 +20,16 @@ const Heatmap20 = () => {
 
   return (
     <div className="plot-card" style={{ height: '100vh' }}>
+      {/*
       <div className="plot-header">
         <h2 className="h2">Edad Promedio por Rubro y Tamaño</h2>
       </div>
-
+      */}
       <iframe 
             src="http://localhost:3000/public/question/5ec776a4-df8e-4eb9-aa06-e7c26bb62c43" 
             frameborder="0"
             width={"100%"}
-            height={"80%"}
+            height={"100%"}
             title="Heatmap Visualization"
             allowFullScreen
         />

@@ -20,15 +20,16 @@ const Barras14 = () => {
 
   return (
     <div className="plot-card" style={{ height: '60vh' }}>
+      {/*
       <div className="plot-header">
-        <h2 className="h2">Edad Promedio por Rubro y Tamaño</h2>
+        <h2 className="h2">Tasa de empresas premiadas por rubro o tamaño</h2>
       </div>
-
+      */}
       <iframe 
             src="http://localhost:3000/public/question/3a05d79b-da0d-41c2-addf-12eb1c9b420e" 
             frameborder="0"
             width={"100%"}
-            height={"80%"}
+            height={"100%"}
             title="Heatmap Visualization"
             allowFullScreen
         />

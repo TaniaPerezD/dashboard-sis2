@@ -20,9 +20,11 @@ const Barras22 = () => {
 
   return (
     <div className="plot-card" style={{ height: '60vh' }}>
+      {/*
       <div className="plot-header">
-        <h2 className="h2">Edad Promedio por Rubro y Tamaño</h2>
+        <h2 className="h2">Cohorte de fundación por rubro</h2>
       </div>
+      */}
 
       <iframe 
             src="http://localhost:3000/public/question/212bbcd1-5e63-4b65-8a2c-89906d0bb53e" 

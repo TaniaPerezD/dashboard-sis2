@@ -10,7 +10,7 @@ const RubrosPage1 = () => {
   return (
     <>
     <header className="header">
-        <h1 className="h1">RADIOGRAFIA EMPRESARIAL DE BOLIVIA</h1>
+        <h1 className="h1">RUBROS EMPRESARIALES DE BOLIVIA</h1>
     </header>
     <div className="componente-columna">
         <div className="contenedor" style={{ height: '140vh' }}> {/* Se le pone altura para cuando es componente superios e inferior */}
@@ -36,7 +36,7 @@ const RubrosPage1 = () => {
                 <Heatmap20/>
             </div>
             <div className="lado-derecho">
-                <Heatmap20/>
+                <Barras11/>
             </div>
         </div>  
         

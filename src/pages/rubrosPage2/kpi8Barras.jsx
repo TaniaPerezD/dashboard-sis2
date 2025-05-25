@@ -20,15 +20,16 @@ const Barras8 = () => {
 
   return (
     <div className="plot-card" style={{ height: '60vh' }}>
+      {/*
       <div className="plot-header">
-        <h2 className="h2">Edad Promedio por Rubro y Tamaño</h2>
+        <h2 className="h2">Índice de expansión territorial por rubro</h2>
       </div>
-
+      */}
       <iframe 
             src="http://localhost:3000/public/question/92017644-d64b-4652-935b-1943f3fdcf08" 
             frameborder="0"
             width={"100%"}
-            height={"80%"}
+            height={"100%"}
             title="Heatmap Visualization"
             allowFullScreen
         />

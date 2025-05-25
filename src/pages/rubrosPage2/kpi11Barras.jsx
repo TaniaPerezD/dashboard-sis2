@@ -16,19 +16,20 @@ const getColorForAge = (edad) => {
 const Barras11 = () => {
   const [data, setData] = useState([]);
 
-  
+
 
   return (
     <div className="plot-card" style={{ height: '60vh' }}>
+        {/* 
       <div className="plot-header">
-        <h2 className="h2">Edad Promedio por Rubro y Tamaño</h2>
+        <h2 className="h2">Participación de empresas familiares por región</h2>
       </div>
-
+        */}
       <iframe 
             src="http://localhost:3000/public/question/c0855052-5294-4559-a860-0e35bbbef7f6" 
             frameborder="0"
             width={"100%"}
-            height={"80%"}
+            height={"100%"}
             title="Heatmap Visualization"
             allowFullScreen
         />
