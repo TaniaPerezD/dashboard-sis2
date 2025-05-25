@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './rubros.css';
 
 const heatmapData = [
-  { range: [0, 5], color: '#FFE5D9', label: '0-5 años' },
-  { range: [6, 15], color: '#FF4201', label: '6-15 años' },
-  { range: [16, 25], color: '#199ECA', label: '16-25 años' },
-  { range: [26, Infinity], color: '#2C00FF', label: '25+ años' },
+  { range: [0, 5], color: '#FFE5D9', label: '40-60 años' },
+  { range: [6, 15], color: '#6f9bc9', label: '60-80 años' },
+  { range: [16, 25], color: '#336ba7', label: '80-100 años' },
+  { range: [26, Infinity], color: '#00448e', label: '100+ años' },
 ];
 
 const getColorForAge = (edad) => {
