@@ -1,15 +1,27 @@
 .app {
-    min-height: 100vh;
-    display: flex;
-    background-color: var(#FFF7E8);
+  min-height: 100vh;
+  display: flex;
+  background-color: var(--Cream-Light);
 }
 
 .content {
-    flex: 1;
-    padding: calc(var(--spacing-unit, 8px) * 2);
-    margin-left: 60px; /* Espacio fijo barra lateral con i[conos */
-    
-    @media (max-width: 768px) {
-        margin-left: 0; /* Sin espacio celu, oculta */
-    }
+  flex: 1;
+  padding: calc(var(--spacing-unit, 8px) * 2);
+  margin-left: 60px; 
+  transition: margin-left 0.3s ease;
 }
+
+.sidebarOpen {
+  margin-left: 250px; 
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0;
+  }
+
+  .sidebarOpen {
+    margin-left: 0;
+  }
+}
+
