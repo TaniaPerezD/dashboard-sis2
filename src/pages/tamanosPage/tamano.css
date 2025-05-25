@@ -135,3 +135,34 @@
   border-radius: 2px;
   margin-right: 0.5rem;
 }
+
+.contenedor {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.lado-izquierdo {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ccc;
+}
+
+.componente-superior,
+.componente-inferior {
+  flex: 1;
+  padding: 16px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+}
+
+.componente-inferior {
+  border-bottom: none;
+}
+
+.lado-derecho {
+  width: 70%;
+  padding: 16px;
+  box-sizing: border-box;
+}

@@ -1,10 +1,10 @@
 import React from 'react';
-import './tamañosPage.css'; 
+import './tamano.css';
 import Heatmap from './Heatmap';
+import BarPlot from './BarPlot';
 import Boxplot from './BoxPlot';
-import BarPlot from './Barplot';
 
-const TamañosPage: React.FC = () => {
+const TamanosPage = () => {
   return (
     <div className="contenedor">
       <div className="lado-izquierdo">
@@ -21,3 +21,5 @@ const TamañosPage: React.FC = () => {
     </div>
   );
 }
+
+export default TamanosPage;

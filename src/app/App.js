@@ -1,6 +1,6 @@
 import DepPage from '../pages/departamentosPage/index';
 import { Routes, Route } from 'react-router-dom';
-import { HomePage, ErrorPage, RubrosPage, SeccionDosPage, SeccionTresPage, SeccionCuatroPage
+import { HomePage, ErrorPage, RubrosPage, SeccionDosPage, SeccionTresPage, SeccionCuatroPage, TamanosPage
  } from '../pages';
 import Lateralbar from '../components/barraLateral/lateralbar';
 import styles from './App.module.css';
@@ -18,6 +18,7 @@ function App() {
           <Route path="/Departamental/SeccionTres" element={<SeccionTresPage />} />
           <Route path="/Departamental/SeccionCuatro" element={<SeccionCuatroPage />} />
           <Route path="/Rubros/*" element={<RubrosPage />} />
+          <Route path="/Tamanos" element={<TamanosPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>

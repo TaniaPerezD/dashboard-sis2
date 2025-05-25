@@ -1,5 +1,5 @@
 import React from 'react';
-import './tamaño.css'
+import './tamano.css'
 
 const heatmapData = [
   { color: '#FFE5D9', label: '0-5 años' },

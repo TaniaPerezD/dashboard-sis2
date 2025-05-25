@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import './tamaño.css';
+import './tamano.css';
 
 const BarPlot = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
