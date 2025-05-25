@@ -1,17 +1,19 @@
 import React from 'react';
 import './rubros.css';
-import Heatmap from './kpi20heatmap';
+import Heatmap20 from './kpi20heatmap';
 
 const RubrosPage1 = () => {
   return (
     <>
-      <h1 className="titulo">Análisis por Tamaño Empresarial</h1>
+    <header className="header">
+                <h1 className="h1">RADIOGRAFIA EMPRESARIAL DE BOLIVIA</h1>
+            </header>
     <div className="contenedor">
       <div className="lado-izquierdo">
-      <Heatmap/>
+        <Heatmap20/>
       </div>
       <div className="lado-derecho">
-        <Heatmap/>
+        <Heatmap20/>
       </div>
     </div>
     </>

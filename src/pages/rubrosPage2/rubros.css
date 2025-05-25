@@ -1,3 +1,30 @@
+.header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    padding: 1vh 0;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.h1 {
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    font-size: 4vh;
+    font-weight: 800;
+    color: var(--BluePurple-Dark);
+    text-align: center;
+    margin: 0;
+}
+.h2 {
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    font-size: 3vh;
+    font-weight: 600;
+    color: var(--BluePurple-Dark);
+    text-align: center;
+    margin: 1vh 0;
+}
 .plot-card {
     background-color: #fff;
     border-radius: 16px;

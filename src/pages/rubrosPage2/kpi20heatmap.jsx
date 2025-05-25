@@ -13,35 +13,25 @@ const getColorForAge = (edad) => {
   return item ? item.color : '#ccc';
 };
 
-const Heatmap = () => {
+const Heatmap20 = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:3000/public/dashboard/1f93d9c0-fa2a-42a7-82a1-3e796d1600aa.json')
-      .then(res => res.json())
-      .then(setData)
-      .catch(err => console.error('Error cargando datos:', err));
-  }, []);
+  
 
   return (
-    <div className="plot-card">
+    <div className="plot-card" style={{ height: '100vh' }}>
       <div className="plot-header">
-        <h2 className="plot-title">Edad Promedio por Rubro y Tamaño</h2>
+        <h2 className="h2">Edad Promedio por Rubro y Tamaño</h2>
       </div>
 
-      <div className="heatmap-container">
-        {data.map((item, i) => (
-          <div
-            key={i}
-            className="heatmap-cell"
-            style={{ backgroundColor: getColorForAge(item.edad_promedio) }}
-          >
-            {item.edad_promedio} años
-            <br />
-            <small>{item.rubro}<br />{item.tamano}</small>
-          </div>
-        ))}
-      </div>
+      <iframe 
+            src="http://localhost:3000/public/question/5ec776a4-df8e-4eb9-aa06-e7c26bb62c43" 
+            frameborder="0"
+            width={"100%"}
+            height={"80%"}
+            title="Heatmap Visualization"
+            allowFullScreen
+        />
 
       <div className="heatmap-legend">
         {heatmapData.map((item, index) => (
@@ -51,8 +41,9 @@ const Heatmap = () => {
           </div>
         ))}
       </div>
+        
     </div>
   );
 };
 
-export default Heatmap;
+export default Heatmap20;
