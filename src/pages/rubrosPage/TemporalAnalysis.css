@@ -1,0 +1,435 @@
+/* Custom Fonts */
+@font-face {
+  font-family: 'Trajan Pro';
+  src: local('Trajan Pro Regular'), local('TrajanPro-Regular'),
+       url('https://fonts.cdnfonts.com/css/trajan-pro') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  src: local('Century Gothic'), local('CenturyGothic'),
+       url('https://fonts.cdnfonts.com/css/century-gothic') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Variables for consistent styling */
+:root {
+  --color-cream: #f9f1e7;
+  --color-dark-blue: #0e3e71;
+  --color-sand: #e5c783;
+  --color-dark-green: #0d6b4e;
+  --color-white: #ffffff;
+  --color-error: #721c24;
+  --color-error-bg: #f8d7da;
+  --color-error-border: #f5c6cb;
+  --color-kpi-active: #c5e1a5; /* A gentle green for active state */
+  --color-kpi-border-active: #8bc34a; /* Darker green for active border */
+}
+
+/* Global Resets and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CRUCIAL: Mantener body y html a 100% altura y overflow: hidden */
+/* Esto asegura que el scroll principal lo maneje tu aplicación y no el navegador */
+html, body, #root {
+  height: 100%;
+  overflow: hidden; /* Evita barras de scroll no deseadas en el cuerpo */
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  font-family: 'Century Gothic', sans-serif;
+  /* CRUCIAL: El 100vh aquí es correcto si tu dashboard ocupa la ventana completa. */
+  /* Si este componente va dentro de un layout con un encabezado o pie de página,
+     podría necesitar `height: 100%;` y su contenedor padre manejaría la altura. */
+  height: 100%; /* Altura completa del viewport */
+  width: 100%; /* Ancho completo del viewport */
+  display: flex;
+  flex-direction: column; /* Apila el encabezado sobre el contenido */
+  padding: 20px;
+  background-color: var(--color-cream);
+  /* CRUCIAL: `overflow: hidden;` aquí es correcto para el contenedor principal del dashboard,
+     ya que los scrolls internos se manejarán en `kpi-list` y, potencialmente, en `main-content-area`
+     para el scroll horizontal en móviles. */
+   /* Asegura que el contenido no se desborde fuera */
+}
+
+/* Header Styles */
+.dashboard-header {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+  padding: 20px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0; /* Evita que el encabezado se encoja */
+}
+
+.dashboard-title {
+  font-family: 'Trajan Pro', serif;
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.dashboard-subtitle {
+  font-family: 'Century Gothic', sans-serif;
+  margin: 10px 0 0;
+  font-size: 1.15rem;
+  opacity: 0.95;
+}
+
+/* Main Content Area: Flex Container for KPIs and Iframe */
+.main-content-area {
+  display: flex; /* Esto es clave: siempre en fila */
+  flex-grow: 1; /* Permite que ocupe todo el espacio vertical disponible restante */
+  gap: 20px; /* Espacio entre la sección de KPI y el iframe */
+  /* CRUCIAL: `overflow-x: hidden;` previene el scroll horizontal a menos que lo habilitemos explícitamente en `@media` para móviles. */
+  overflow-x: hidden;
+  padding-bottom: 0;
+  flex-wrap: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+  /* NO se necesita `overflow-y: auto;` aquí si el scroll principal está en `kpi-list`
+     y el iframe tiene su propio scroll si es necesario. */
+}
+
+/* KPI Section (Left Side) */
+.kpi-section {
+  flex: 0 0 400px; /* flex-grow: 0, flex-shrink: 0, flex-basis: 400px. Intentará tener 400px y no se encogerá. */
+  background-color: var(--color-white);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  /* CRUCIAL: `overflow: hidden;` aquí es vital. El scroll real para los KPIs lo maneja `.kpi-list`. */
+  overflow: hidden;
+  /* CRUCIAL: Asegura que ocupe la altura completa disponible en `main-content-area`. */
+  height: 100%;
+  min-width: auto;
+}
+
+.section-title {
+  font-family: 'Trajan Pro', serif;
+  color: var(--color-dark-green);
+  border-bottom: 2px solid var(--color-sand);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  letter-spacing: 0.8px;
+  flex-shrink: 0; /* Evita que el título se encoja */
+}
+
+.kpi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-grow: 1; /* Permite que la lista ocupe el espacio restante */
+  /* CRUCIAL: Habilita el scroll vertical para las tarjetas KPI si hay muchas. */
+  overflow-y: auto;
+  padding-right: 5px; /* Evita que la barra de desplazamiento cubra el contenido */
+}
+
+/* Scrollbar styling for kpi-list */
+.kpi-list::-webkit-scrollbar {
+  width: 8px;
+}
+.kpi-list::-webkit-scrollbar-track {
+  background: var(--color-cream);
+  border-radius: 10px;
+}
+.kpi-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-sand);
+  border-radius: 4px;
+  border: 2px solid var(--color-cream);
+}
+.kpi-list::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-dark-green);
+}
+
+/* KPI Card (Button) Styles */
+.kpi-card {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-out;
+  border-left: 5px solid var(--color-dark-blue);
+  cursor: pointer;
+  position: relative;
+}
+
+.kpi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  background-color: #f5f5f5;
+}
+
+/* Styles for when a KPI card is expanded/active */
+.kpi-card.expanded {
+  background-color: var(--color-kpi-active);
+  border-left: 5px solid var(--color-kpi-border-active);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.kpi-card.expanded .kpi-title {
+  color: var(--color-dark-blue);
+}
+
+.kpi-card.expanded .kpi-icon {
+  color: var(--color-dark-green);
+}
+
+.kpi-title {
+  font-family: 'Trajan Pro', serif;
+  color: var(--color-dark-blue);
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+/* New: KPI Icon Styling */
+.kpi-icon {
+  font-size: 1.5rem;
+  color: var(--color-sand);
+  transition: color 0.3s ease;
+  margin-left: 10px;
+}
+
+.kpi-description {
+  font-family: 'Century Gothic', sans-serif;
+  color: #555;
+  margin-top: 0;
+  max-height: 0; /* Oculto por defecto */
+  overflow: hidden; /* IMPORTANTE: Mantener `overflow: hidden` aquí para el efecto de deslizamiento */
+  transition: max-height 0.4s ease-in-out, margin-top 0.4s ease-in-out;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.kpi-description.expanded {
+  margin-top: 12px;
+  max-height: 200px; /* Ajusta esto según la longitud máxima esperada de la descripción */
+}
+
+/* iframe Container (Right Side) */
+.iframe-container {
+  flex: 1 1 60%; /* Crece y se encoge, comenzando en 60% */
+  background-color: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  /* CRUCIAL: `overflow: hidden;` aquí es vital para el iframe. Si el contenido del iframe genera su propio scroll,
+     esta propiedad lo ocultará, y el iframe tendrá su propia barra de scroll interna. */
+  overflow: hidden;
+  /* CRUCIAL: Asegura que ocupe la altura completa disponible en `main-content-area`. */
+  height: 100%;
+  min-width: auto;
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block; /* Asegura que ocupe todo el espacio */
+}
+
+/* Loading and Error States for iframe */
+.iframe-loading,
+.iframe-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  z-index: 10;
+  font-family: 'Century Gothic', sans-serif;
+}
+
+.iframe-loading p, .iframe-error p {
+  color: var(--color-dark-blue);
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.loading-spinner {
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-top: 5px solid var(--color-dark-blue);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.iframe-error {
+  background-color: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  color: var(--color-error);
+}
+
+.iframe-error button {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.iframe-error button:hover {
+  background-color: var(--color-dark-green);
+}
+
+/* --- Responsive Design --- */
+
+/* No hay cambio en flex-direction: row para .main-content-area.
+   Confiamos en min-width y overflow-x: auto (en pantallas pequeñas) */
+
+/* Para pantallas más pequeñas de 1200px (ej. tablets grandes en horizontal) */
+@media (max-width: 1200px) {
+  .dashboard-container {
+    padding: 15px;
+  }
+
+  .main-content-area {
+    gap: 15px; /* Reduce ligeramente el espacio */
+  }
+
+  .kpi-section {
+    flex: 0 0 350px; /* Ancho más flexible, permitiendo un poco más de encogimiento */
+  }
+
+  .iframe-container {
+    flex: 1 1 500px; /* Permite más encogimiento, pero mantiene un mínimo */
+  }
+
+  .dashboard-title {
+    font-size: 2.2rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .kpi-title {
+    font-size: 1.1rem;
+  }
+}
+
+/* Para pantallas más pequeñas de 992px (ej. tablets más pequeñas y móviles grandes en horizontal) */
+@media (max-width: 992px) {
+  .kpi-section {
+    flex: 0 0 300px; /* Reduce aún más el ancho base */
+    padding: 20px;
+  }
+
+  .iframe-container {
+    flex: 1 1 400px; /* Reduce aún más el ancho base */
+  }
+
+  .dashboard-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .kpi-card {
+    padding: 15px;
+  }
+
+  .kpi-title {
+    font-size: 1.05rem;
+  }
+
+  .kpi-icon {
+    font-size: 1.3rem;
+  }
+}
+
+/* Para pantallas más pequeñas de 768px (ej. la mayoría de los dispositivos móviles en horizontal) */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+
+  .dashboard-header {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .dashboard-title {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+
+  .dashboard-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .main-content-area {
+    gap: 10px; /* Reduce aún más el espacio */
+    /* CRUCIAL: En pantallas muy pequeñas, habilitamos el scroll horizontal en `main-content-area`
+       para que el usuario pueda ver ambas secciones (KPI y Iframe) si no caben. */
+    overflow-x: auto;
+  }
+
+  .kpi-section {
+    flex: 0 0 280px; /* Ancho más pequeño para KPIs */
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+  }
+
+  .kpi-card {
+    padding: 12px 15px;
+  }
+
+  .kpi-title {
+    font-size: 0.95rem;
+  }
+
+  .kpi-icon {
+    font-size: 1.1rem;
+  }
+
+  .iframe-container {
+    flex: 0 0 300px; /* Ancho más pequeño para el iframe */
+  }
+}

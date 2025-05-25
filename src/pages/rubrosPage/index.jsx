@@ -1,13 +1,15 @@
+// src/pages/rubrosPage/index.jsx
+
 import React, { useState } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import Rubro from './rubro/Rubro';
-import Encabezado from './encabezado/encabezado';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "@fontsource/montserrat/700.css";
 import { Routes, Route } from 'react-router-dom';
-import Seccion2 from './seccion1/seccion';
 
-// Simulación de tu base de datos (reemplaza con tu data real)
+import Rubro from './rubro/Rubro';
+import Seccion2 from './seccion1/seccion';
+import TemporalAnalysisDashboard from './TemporalAnalysis';
+
 const empresas = [
   { id: 1, nombre: "ALA", ciudad: "LA PAZ", tipo: "S.A.", rubro: "LACTEOS", anio_fundat: 2001, tamanio: "GRANDE" },
   { id: 2, nombre: "AORURO", ciudad: "ORURO", tipo: "S.A.", rubro: "CARNE", anio_fundat: 2001, tamanio: "PEQUEÑA" },
@@ -20,9 +22,11 @@ const empresas = [
   { id: 9, nombre: "ACOCHABAMBA", ciudad: "COCHABAMBA", tipo: "S.R.L.", rubro: "ROPA", anio_fundat: 2003, tamanio: "GRANDE" },
   { id: 10, nombre: "ASANTA CRUZ", ciudad: "SANTA CRUZ", tipo: "S.R.L.", rubro: "ROPA", anio_fundat: 2003, tamanio: "PEQUEÑA" },
 ];
+
 const filtrarEmpresasPorTamanio = (empresas, tamanio) => {
   return empresas.filter(empresa => empresa.tamanio.toUpperCase() === tamanio.toUpperCase());
 };
+
 const procesarDatosPorClave = (data, clave) => {
   const resultado = {};
   data.forEach(item => {
@@ -36,16 +40,17 @@ const procesarDatosPorClave = (data, clave) => {
     value: resultado[key],
   }));
 };
+
 const RubrosPage = () => {
-    const check=[
-        "btncheckbox1",
-        "btncheckbox2",
-        "btncheckbox3"
-      ];
-  const checkFiltro=["TODOS","GANADERIA", "ROPA", "ALIMENTOS", "TECNOLOGIA", "SERVICIOS","LACTEOS"]; 
-  
-  const [filtroSeleccionado, setFiltroSeleccionado] = useState(checkFiltro[0]); // Valor por defecto desde el array
-  console.log("asdasd",filtroSeleccionado);
+  const check = [
+    "btncheckbox1",
+    "btncheckbox2",
+    "btncheckbox3"
+  ];
+  const checkFiltro = ["TODOS", "GANADERIA", "ROPA", "ALIMENTOS", "TECNOLOGIA", "SERVICIOS", "LACTEOS"];
+
+  const [filtroSeleccionado, setFiltroSeleccionado] = useState(checkFiltro[0]);
+  console.log("asdasd", filtroSeleccionado);
   const handleSeleccion = (opcion) => {
     setFiltroSeleccionado(opcion);
   };
@@ -59,33 +64,78 @@ const RubrosPage = () => {
     btncheckbox2: "PEQUEÑA",
     btncheckbox3: "MEDIANA",
   };
-  
+
   const empresasFiltradasPorTamanio = Object.keys(tamanioFiltros)
     .filter(checkboxId => selectedValues.includes(checkboxId))
-    .map(checkboxId => filtrarEmpresasPorTamanio(empresas, tamanioFiltros[checkboxId]));
-    
-  const empresasfiltradas = empresasFiltradasPorTamanio.flat(); // Usamos .flat() para aplanar el array de arrays
-  console.log("las empresas filtradas", empresasfiltradas);
-  
-  const empresasFiltradasPorRubro = filtroSeleccionado === "TODOS" // O tu valor por defecto para "mostrar todos"
-  ? empresasfiltradas // Si se selecciona "TODOS", no aplicamos filtro de rubro
-  : empresasfiltradas.filter(empresasfiltradas => empresasfiltradas.rubro.toUpperCase() === filtroSeleccionado.toUpperCase());
+    .flatMap(checkboxId => filtrarEmpresasPorTamanio(empresas, tamanioFiltros[checkboxId]));
 
- 
-  const dataParaFiltro = procesarDatosPorClave(empresasFiltradasPorRubro, "rubro");  
+  const empresasFiltradasPorRubro = filtroSeleccionado === "TODOS"
+    ? empresasFiltradasPorTamanio
+    : empresasFiltradasPorTamanio.filter(empresa => empresa.rubro.toUpperCase() === filtroSeleccionado.toUpperCase());
+
+  const dataParaFiltro = procesarDatosPorClave(empresasFiltradasPorRubro, "rubro");
   console.log("data dataParaFiltro ", dataParaFiltro);
   const dataParaPuntos = procesarDatosPorClave(empresasFiltradasPorRubro, "anio_fundat");
   const dataParaDepa = procesarDatosPorClave(empresasFiltradasPorRubro, "ciudad");
   const dataParaPastel = procesarDatosPorClave(empresasFiltradasPorRubro, "tipo");
   console.log("data para Puntos", dataParaPuntos);
-  return (
-    <div style={{ height: "100vh", width: "100%", borderColor: 'E9F5FE', backgroundColor: "E9F5FE" }}>
-      <Encabezado width="100%" height="20vh" selectedValues={selectedValues} handleValueChange={handleValueChange} opcionesRubro={checkFiltro} handleSeleccion={handleSeleccion} filtroSeleccionado={filtroSeleccionado} datafiltro={dataParaFiltro} />
 
+  const encabezadoProps = {
+    width: "100%",
+    height: "20vh",
+    selectedValues: selectedValues,
+    handleValueChange: handleValueChange,
+    opcionesRubro: checkFiltro,
+    handleSeleccion: handleSeleccion,
+    filtroSeleccionado: filtroSeleccionado,
+    datafiltro: dataParaFiltro,
+  };
+
+  const rubroDataProps = {
+    data: dataParaPuntos,
+    datadep: dataParaDepa,
+    dataPastel: dataParaPastel
+  };
+
+  return (
+    <div style={{ height: "100vh", width: "100%", borderColor: '#E9F5FE', backgroundColor: "#E9F5FE" }}>
       <Routes>
-        <Route path="/" element={<Rubro width="100%" height="80vh" data={dataParaPuntos} datadep={dataParaDepa} dataPastel={dataParaPastel}/>} />
-        <Route path="seccion1" element={<Rubro width="100%" height="80vh" data={dataParaPuntos} datadep={dataParaDepa} dataPastel={dataParaPastel}/>} />
-        <Route path="seccion2" element={<Seccion2 />} />
+        <Route
+          index
+          element={
+            <Rubro
+              {...rubroDataProps}
+              encabezadoProps={encabezadoProps}
+            />
+          }
+        />
+        <Route
+          path=":id"
+          element={
+            <Rubro
+              {...rubroDataProps}
+              encabezadoProps={encabezadoProps}
+            />
+          }
+        />
+        <Route
+          path="seccion1"
+          element={
+            <Rubro
+              {...rubroDataProps}
+              encabezadoProps={encabezadoProps}
+            />
+          }
+        />
+        <Route
+          path="seccion2"
+          element={
+            <Seccion2
+              encabezadoProps={encabezadoProps}
+            />
+          }
+        />
+        <Route path="seccion3" element={<TemporalAnalysisDashboard />} />
       </Routes>
     </div>
   );
