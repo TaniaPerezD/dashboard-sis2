@@ -8,16 +8,17 @@
 /* Montserrat Variable Font */
 @font-face {
     font-family: 'Montserrat';
-    src: url('../assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+    src: url('../assets/fonts/TrajanPro-Bold.otf') format('truetype');
     font-weight: 100 900; /* Rango Peso */
     font-style: normal;
     font-display: swap;
+    fon-bold: bold;
 }
 
 /* Roboto Variable Font */
 @font-face {
     font-family: 'Roboto';
-    src: url('../assets/fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+    src: url('../assets/fonts/Century\ Gothic.ttf') format('truetype');
     font-weight: 100 900; /* Rango Peso*/
     font-variation-settings: 'wdth' 100; /* Ajuste inicial para ancho */
     font-style: normal;
@@ -26,12 +27,12 @@
 
 /* Variables globales */
 :root {
-    --BluePurple-Dark: #1A1A34;
-    --BlueTeal-Dark: #182335;
-    --Cream-Light: #FFF7E8;
-    --Cream2-Light: #EADBCC;
+    --BluePurple-Dark: #fff;
+    --BlueTeal-Dark: #fff;
+    --Cream-Light: #007654;
+    --Cream2-Light: #01503a;
     --BlueTeal-Ligth: #465978;
-    --RedCarmen-dark: #E05649;
+    --RedCarmen-dark: #fff;
     --PickCarmen-light: #EEAF9D;
 }
 
