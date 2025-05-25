@@ -6,6 +6,8 @@ import Boxplot from './BoxPlot';
 
 const TamanosPage = () => {
   return (
+    <>
+      <h1 className="titulo">Análisis por Tamaño Empresarial</h1>
     <div className="contenedor">
       <div className="lado-izquierdo">
         <div className="componente-superior">
@@ -19,6 +21,7 @@ const TamanosPage = () => {
         <Heatmap/>
       </div>
     </div>
+    </>
   );
 }
 

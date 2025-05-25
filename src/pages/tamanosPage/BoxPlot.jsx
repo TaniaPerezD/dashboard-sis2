@@ -1,43 +1,33 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import './tamano.css';
 
 const BoxPlot = () => {
   const canvasRef = useRef(null);
+  const [boxData, setBoxData] = useState([]);
 
   useEffect(() => {
-    const ctx = canvasRef.current.getContext('2d');
+    fetch('http://172.25.1.99:3000/public/question/21311596-fa60-4b25-9964-cba0fe817aab.json')
+      .then(res => res.json())
+      .then(data => setBoxData(data))
+      .catch(err => console.error('Error al obtener datos de Metabase:', err));
+  }, []);
 
-    const data = {
-      labels: ['Electrónica', 'Ropa', 'Hogar', 'Alimentos'],
-      datasets: [{
-        label: 'Ventas',
-        data: [
-          { x: 'Electrónica', min: 150, q1: 270, median: 320, q3: 375, max: 420, outliers: [100, 450, 470] },
-          { x: 'Ropa', min: 100, q1: 230, median: 280, q3: 330, max: 390, outliers: [80, 95, 405] },
-          { x: 'Hogar', min: 90, q1: 150, median: 190, q3: 250, max: 290, outliers: [60, 305] },
-          { x: 'Alimentos', min: 200, q1: 350, median: 410, q3: 460, max: 520, outliers: [180, 540, 600] }
-        ],
-        backgroundColor: 'rgba(255, 66, 1, 0.3)',
-        borderColor: '#FF4201',
-        borderWidth: 2
-      }]
-    };
+  useEffect(() => {
+    if (boxData.length === 0) return;
+
+    const ctx = canvasRef.current.getContext('2d');
 
     const drawBoxplot = (ctx, chartArea) => {
       const { left, right, top, bottom } = chartArea;
-      const boxWidth = (right - left) / data.labels.length * 0.6;
-      const spacing = (right - left) / data.labels.length;
+      const boxWidth = (right - left) / boxData.length * 0.6;
+      const spacing = (right - left) / boxData.length;
 
       ctx.save();
-      data.datasets[0].data.forEach((item, index) => {
+      boxData.forEach((item, index) => {
         const centerX = left + spacing * (index + 0.5);
         const boxLeft = centerX - boxWidth / 2;
         const boxRight = centerX + boxWidth / 2;
-        const scaleY = (value) => {
-          const min = 0, max = 650;
-          return bottom - ((value - min) / (max - min)) * (bottom - top);
-        };
 
         const minY = scaleY(item.min);
         const q1Y = scaleY(item.q1);
@@ -83,101 +73,81 @@ const BoxPlot = () => {
       ctx.restore();
     };
 
+    const scaleY = (value) => {
+      const min = 0;
+      const max = 2100; // Ajusta según tu rango
+      const { top, bottom } = chart.chartArea;
+      return bottom - ((value - min) / (max - min)) * (bottom - top);
+    };
+
     const plugin = {
-      id: 'boxplotPlugin2',
+      id: 'boxplotPlugin',
       afterDatasetsDraw(chart) {
-        const { ctx, chartArea } = chart;
-        drawBoxplot(ctx, chartArea);
+        drawBoxplot(chart.ctx, chart.chartArea);
       }
     };
 
-    const config = {
+    const chart = new Chart(ctx, {
       type: 'scatter',
       data: {
+        labels: boxData.map(d => d.x),
         datasets: [{ data: [], showLine: false, pointRadius: 0 }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false }
+        },
         scales: {
           x: {
             type: 'category',
-            labels: data.labels,
-            grid: { display: false },
-            ticks: {
-              color: '#333',
-              font: { family: 'Poppins', size: 12, weight: '500' }
-            }
+            labels: boxData.map(d => d.x),
+            ticks: { color: '#333', font: { family: 'Poppins', size: 12 } }
           },
           y: {
             min: 0,
-            max: 650,
-            grid: { color: 'rgba(0,0,0,0.1)' },
+            max: 2100,
             ticks: {
               color: '#666',
               font: { family: 'Poppins', size: 11 },
-              callback: value => value + ' unidades'
+              callback: value => `${value}`
             },
             title: {
               display: true,
-              text: 'Cantidad de Ventas',
+              text: 'Año de Fundación',
               color: '#333',
               font: { family: 'Poppins', size: 12, weight: '600' }
             }
           }
         },
         layout: { padding: 20 },
-        animation: { duration: 2000, easing: 'easeInOutQuart' }
+        animation: { duration: 1500, easing: 'easeInOutCubic' }
       },
       plugins: [plugin]
-    };
-
-    const chart = new Chart(ctx, config);
+    });
 
     return () => chart.destroy();
-  }, []);
+  }, [boxData]);
 
   return (
     <div className="plot-card">
       <div className="plot-header">
-        <div className="plot-number">6</div>
-        <h2 className="plot-title">Distribución de Ventas por Categoría</h2>
+        <h2 className="plot-title">Distribución de Años de Fundación por Tamaño</h2>
       </div>
 
       <div className="chart-container">
         <canvas ref={canvasRef} className="chart-canvas"></canvas>
       </div>
 
-      <div className="boxplot-legend">
-        <div className="legend-item">
-          <div className="legend-symbol" style={{ backgroundColor: '#FF4201' }}></div> Mediana
-        </div>
-        <div className="legend-item">
-          <div className="legend-symbol" style={{ backgroundColor: '#199ECA', borderRadius: '50%' }}></div> Valores atípicos
-        </div>
-        <div className="legend-item">
-          <div className="legend-symbol" style={{ backgroundColor: 'rgba(255, 66, 1, 0.3)', height: '12px' }}></div> IQR (Q1 - Q3)
-        </div>
-      </div>
-
       <div className="stats-grid">
-        <div className="stat-item">
-          <div className="stat-value">320</div>
-          <div className="stat-label">Electrónica</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-value">280</div>
-          <div className="stat-label">Ropa</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-value">190</div>
-          <div className="stat-label">Hogar</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-value">410</div>
-          <div className="stat-label">Alimentos</div>
-        </div>
+        {boxData.map((item, i) => (
+          <div className="stat-item" key={i}>
+            <div className="stat-value">{item.median}</div>
+            <div className="stat-label">{item.x}</div>
+          </div>
+        ))}
       </div>
     </div>
   );
