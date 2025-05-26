@@ -14,10 +14,10 @@ import Barras6 from './kpi6Barras';
 const RubrosPage1 = () => {
   return (
     <>
-    <header className="header">
-        <h1 className="h1">RUBROS EMPRESARIALES DE BOLIVIA</h1>
-    </header>
       <div className="page-container">
+        <header className="header">
+          <h1 className="h1">RUBROS EMPRESARIALES DE BOLIVIA</h1>
+        </header>
         <section className="section section-large">
           <header className="header">
             <h2 className="h2">Departamentos</h2>

@@ -3,7 +3,7 @@
     top: 0;
     background-color: white;
     z-index: 100;
-    padding: 1rem 0;
+    padding: 0.4rem 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
 }
@@ -18,11 +18,11 @@
 }
 .h2 {
     font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight: 600;
     color: var(--BluePurple-Dark);
     text-align: center;
-    margin: 1vh 0;
+    margin: 0;
 }
 .plot-card {
     background-color: #fff;
