@@ -12,38 +12,39 @@ const BarPlot = ({ data }) => {
         chartInstanceRef.current.destroy();
       }
 
-      // Extraer etiquetas y valores para el gráfico
       const labels = data.map(item => item.x);
-      const medianValues = data.map(item => item.median);
+      const totalValues = data.map(item => item.total);
+      const premiadasValues = data.map(item => item.premiadas);
 
       chartInstanceRef.current = new Chart(canvasRef.current, {
         type: 'bar',
         data: {
           labels,
-          datasets: [{
-            label: 'Mediana',
-            data: medianValues,
-            backgroundColor: [
-              '#FF420180',
-              '#199ECA80',
-              '#2C00FF80',
-              '#FF420160'
-            ],
-            borderColor: [
-              '#FF4201',
-              '#199ECA',
-              '#2C00FF',
-              '#FF4201'
-            ],
-            borderWidth: 2,
-            borderRadius: 8,
-            borderSkipped: false,
-          }]
+          datasets: [
+            {
+              label: 'Total Empresas',
+              data: totalValues,
+              backgroundColor: '#199ECA80',
+              borderColor: '#199ECA',
+              borderWidth: 2,
+              borderRadius: 6,
+              borderSkipped: false
+            },
+            {
+              label: 'Empresas Premiadas',
+              data: premiadasValues,
+              backgroundColor: '#FF420180',
+              borderColor: '#FF4201',
+              borderWidth: 2,
+              borderRadius: 6,
+              borderSkipped: false
+            }
+          ]
         },
         options: {
           responsive: true,
           plugins: {
-            legend: { display: false },
+            legend: { display: true },
           },
           scales: {
             y: {
@@ -72,12 +73,15 @@ const BarPlot = ({ data }) => {
         <canvas ref={canvasRef} className="chart-canvas" />
       </div>
       <div className="stats-grid">
-        {data && data.map((item, index) => (
-          <div className="stat-item" key={index}>
-            <div className="stat-value">{item.median}</div>
-            <div className="stat-label">{item.x}</div>
-          </div>
-        ))}
+        {data && data.map((item, index) => {
+          const porcentaje = ((item.premiadas / item.total) * 100).toFixed(1);
+          return (
+            <div className="stat-item" key={index}>
+              <div className="stat-value">{porcentaje}%</div>
+              <div className="stat-label">{item.x}</div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

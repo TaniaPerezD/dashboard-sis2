@@ -5,9 +5,9 @@ import BarPlot from './BarPlot';
 import Boxplot from './BoxPlot';
 
 const datosBar = [
-  {"x":"Gran Empresa","min":1925,"q1":1933.25,"median":1962.0,"q3":1989.75,"max":1995},
-  {"x":"Mediana Empresa","min":1942,"q1":1942.0,"median":1942.0,"q3":1942.0,"max":1942},
-  {"x":"Pequeña Empresa","min":1949,"q1":1954.75,"median":1960.5,"q3":1966.25,"max":1972}
+  { x: "Gran Empresa", total: 100, premiadas: 60},
+  { x: "Mediana Empresa", total: 80, premiadas: 20},
+  { x: "Pequeña Empresa",total: 150,premiadas: 30}
 ];
 
 const datosBox = [
@@ -38,7 +38,6 @@ const dataHeat = [
 const TamanosPage = () => {
   return (
     <>
-      <h1 className="titulo">Análisis por Tamaño Empresarial</h1>
     <div className="contenedor">
       <div className="lado-izquierdo">
         <div className="componente-superior">
@@ -49,6 +48,7 @@ const TamanosPage = () => {
         </div>
       </div>
       <div className="lado-derecho">
+            <h1 className="titulo">Análisis por Tamaño Empresarial</h1><br />
             <Heatmap data={dataHeat} title="Edad Promedio por Rubro y Tamaño"/>
       </div>
     </div>

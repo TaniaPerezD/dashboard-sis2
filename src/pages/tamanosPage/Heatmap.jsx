@@ -1,5 +1,5 @@
 import React from 'react';
-import './tamano.css';
+import './heat.css';
 
 const getColorForAge = (edad) => {
   if (edad <= 5) return '#FFE5D9';
