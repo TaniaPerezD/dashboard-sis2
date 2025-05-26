@@ -42,7 +42,7 @@
 /* Esto asegura que el scroll principal lo maneje tu aplicación y no el navegador */
 html, body, #root {
   height: 100%;
-  overflow: hidden; /* Evita barras de scroll no deseadas en el cuerpo */
+  /* Evita barras de scroll no deseadas en el cuerpo */
 }
 
 /* Dashboard Container */
