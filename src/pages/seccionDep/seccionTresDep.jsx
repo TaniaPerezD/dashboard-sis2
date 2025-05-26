@@ -34,7 +34,7 @@ const SeccionTresPage = () => {
             if (empresa.departamento !== departamentoSeleccionado && !flag) return;
 
             const departamento = empresa.departamento;
-            const activo = empresa.activo;
+            const activo = empresa.activa;
 
             if (!resumen[departamento]) {
                 resumen[departamento] = { departamento, activo: 0, inactivo: 0 };
@@ -71,16 +71,19 @@ const SeccionTresPage = () => {
             const mesApertura = empresa.mes_apertura;
             const mesCierre = empresa.mes_cierre;
 
-            if (!resumen[mesApertura]) {
-            resumen[mesApertura] = { mes: mesApertura, apertura: 0, cierre: 0 };
+            if (mesCierre!== "") {
+                if (!resumen[mesApertura]) {
+                resumen[mesApertura] = { mes: mesApertura, apertura: 0, cierre: 0 };
+                }
+                resumen[mesApertura].apertura++;
             }
-            resumen[mesApertura].apertura++;
+            
 
-            if (mesCierre) {
-            if (!resumen[mesCierre]) {
-                resumen[mesCierre] = { mes: mesCierre, apertura: 0, cierre: 0 };
-            }
-            resumen[mesCierre].cierre++;
+            if (mesCierre!== "") {
+                if (!resumen[mesCierre]) {
+                    resumen[mesCierre] = { mes: mesCierre, apertura: 0, cierre: 0 };
+                }
+                resumen[mesCierre].cierre++;
             }
             
         });
@@ -103,25 +106,25 @@ const SeccionTresPage = () => {
     }
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-11">
-                    <div className="titulos">DEPARTAMENTOS</div>
+        <div className="container-fluid">
+            <div className="row align-items-center mb-2">
+                <div className="col">
+                    <div className="titulos">DEPARTAMENTOS <span className="subtitulo">empresas activas</span></div>
                 </div>
-                <div className="col-1">
+                <div className="col-auto">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic" className="dropdown-custom">
-                            Secciones
+                            Empresas Activas
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
-                                Seccion 1</Dropdown.Item>
+                                Linea de tiempo</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionDos')}>
-                                Seccion 2</Dropdown.Item>
+                                Tipo empresa</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionTres')}>
-                                Seccion 3</Dropdown.Item>
+                                Empresas Activas</Dropdown.Item>
                             <Dropdown.Item onClick={() => navigate('/Departamental/SeccionCuatro')}>
-                                Seccion 4</Dropdown.Item>
+                                Empresas Rubros</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>                    
                 </div>
@@ -189,15 +192,19 @@ const SeccionTresPage = () => {
                                     <BarChart
                                     layout="vertical" 
                                     data={procesoGraficoMes(departamentoSeleccionado)}
-                                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                                    margin={{ top: 5, right: 30, left: 30, bottom: 5 }}
                                     >
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis type="number" />
                                     <YAxis dataKey="mes" type="category" />
                                     <Tooltip />
                                     <Legend />
-                                    <Bar dataKey="apertura" fill="#EEAF9D" />
-                                    <Bar dataKey="cierre" fill="#94A3BA" />
+                                    <Bar dataKey="apertura" fill="#EEAF9D">
+                                        <LabelList dataKey="apertura" position="right" />
+                                    </Bar>
+                                    <Bar dataKey="cierre" fill="#94A3BA">
+                                        <LabelList dataKey="cierre" position="right" />
+                                    </Bar>
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>
@@ -207,8 +214,15 @@ const SeccionTresPage = () => {
                 <div className="col-4">
                     <div className="card-dashboard" style={{ height: '70vh'}}>
                         <div className="card-dashboard-header">Departamento</div>
-                        <div className="card-dashboard-content"   style={{ height: '50vh'}}>
-                            <img src="https://i.pinimg.com/736x/86/bf/2f/86bf2fd1cef4d4e137d70eab4d0c8cbb.jpg" alt="" />
+                        <div className="card-dashboard-content">
+                                    <iframe
+                                        src="http://localhost:3000/public/dashboard/620db2bd-1323-4742-a7cc-899ab12994bf"
+                                        frameBorder="0"
+                                        width="100%"
+                                        height="100%"
+                                        allowTransparency
+                                        title="Metabase Dashboard"
+                                    />
                             
                         </div>
                     </div>
@@ -238,15 +252,19 @@ const SeccionTresPage = () => {
                                 <BarChart
                                 layout="vertical" 
                                 data={procesoGraficoActivo(departamentoSeleccionado)}
-                                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                                margin={{ top: 5, right: 30, left: 40, bottom: 5 }}
                                 >
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis type="number" />
                                 <YAxis dataKey="departamento" type="category" />
                                 <Tooltip />
                                 <Legend />
-                                <Bar dataKey="activo" fill="#EEAF9D" />
-                                <Bar dataKey="inactivo" fill="#94A3BA" />
+                                <Bar dataKey="activo" fill="#EEAF9D">
+                                    <LabelList dataKey="activo" position="right" />
+                                </Bar>
+                                <Bar dataKey="inactivo" fill="#94A3BA">
+                                    <LabelList dataKey="inactivo" position="right" />
+                                </Bar>
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>

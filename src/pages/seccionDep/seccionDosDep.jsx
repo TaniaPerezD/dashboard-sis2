@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid,
-    Tooltip, Legend, ResponsiveContainer, LabelList
+    Tooltip, Legend, ResponsiveContainer, LabelList,
+    LineChart, Line
 } from 'recharts';
 import empresas from '../../data/departamento/dataEmpresas.json';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +14,41 @@ const SeccionDosPage = () => {
     const [departamentoFiltro, setDepartamentoFiltro] = useState(null);
     const [tipoEmpresaFiltro, setTipoEmpresaFiltro] = useState(null);
 
+    const obtenerDatosAntiguedadFamiliar = () => {
+        const resumen = {};
+
+        empresas.forEach((empresa) => {
+            if (tipoFiltro && empresa.tamano !== tipoFiltro) return;
+            if (departamentoFiltro && empresa.departamento !== departamentoFiltro) return;
+
+            
+            const anioInicio = empresa.anio_inicio_familiar;
+            const anioFin = empresa.anio_fin_familiar;
+
+            if (anioInicio != null) { // esto filtra null y undefined
+                if (!resumen[anioInicio]) {
+                    resumen[anioInicio] = { anio: anioInicio, familiar: 0, dejo_familiar: 0 };
+                }
+                resumen[anioInicio].familiar++;
+            }
+            
+            if (anioFin != null) {
+                if (!resumen[anioFin]) {
+                    resumen[anioFin] = { anio: anioFin, familiar: 0, dejo_familiar: 0 };
+                }
+                resumen[anioFin].dejo_familiar++;
+            }
+        });
+
+        return Object.values(resumen).map(dep => ({
+            anio: dep.anio,
+            familiar: dep.familiar,
+            dejo_familiar: dep.dejo_familiar,
+        }));
+    };
+
+    console.log("DATOS FAMILIAR:", obtenerDatosAntiguedadFamiliar()); 
+    
     const obtenerDatosActivasInactivas = () => {
         const resumen = {};
 
@@ -84,23 +120,25 @@ const SeccionDosPage = () => {
     };
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-11">
-                    <div className="titulos">
-                        DEPARTAMENTOS <span className="subtitulo">tamaño</span>
-                    </div>
+        <div className="container-fluid">
+            <div className="row align-items-center mb-2">
+                <div className="col">
+                    <div className="titulos">DEPARTAMENTOS <span className="subtitulo">tipo empresa</span></div>
                 </div>
-                <div className="col-1">
+                <div className="col-auto">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic" className="dropdown-custom">
-                            Sección 2
+                            Tipo empresa
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>Sección 1</Dropdown.Item>
-                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionDos')}>Sección 2</Dropdown.Item>
-                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionTres')}>Sección 3</Dropdown.Item>
-                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionCuatro')}>Sección 4</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionUno')}>
+                                Linea de tiempo</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionDos')}>
+                                Tipo empresa</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionTres')}>
+                                Empresas Activas</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate('/Departamental/SeccionCuatro')}>
+                                Empresas Rubros</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
@@ -124,75 +162,119 @@ const SeccionDosPage = () => {
                     Limpiar filtros
                 </button>
             </div>
-
-            {/* Gráfico Activas vs Inactivas */}
-            <div className="grafico-box">
-                <div className="bg-dark text-white p-2 rounded-top d-flex justify-content-between align-items-center">
-                    <span>Porcentaje empresas activas vs inactivas por departamentos</span>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="secondary" size="sm">
-                            Departamento
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {departamentosUnicos.map(dep => (
-                                <Dropdown.Item key={dep} onClick={() => setDepartamentoFiltro(dep)}>
-                                    {dep}
-                                </Dropdown.Item>
-                            ))}
-                        </Dropdown.Menu>
-                    </Dropdown>
+            <div className="row">
+                <div className="col-12">
+                    {/* Gráfico Activas vs Inactivas */}
+                    <div className="grafico-box">
+                        <div className="bg-dark text-white p-2 rounded-top d-flex justify-content-between align-items-center">
+                            <span>Linea de tiempo de Q empresas con antiguedad de familiar</span>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="secondary" size="sm">
+                                    Departamento
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    {departamentosUnicos.map(dep => (
+                                        <Dropdown.Item key={dep} onClick={() => setDepartamentoFiltro(dep)}>
+                                            {dep}
+                                        </Dropdown.Item>
+                                    ))}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                        <ResponsiveContainer width="100%" height={250}>
+                            <LineChart data={obtenerDatosAntiguedadFamiliar()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="anio" tickFormatter={(tick) => parseInt(tick)} />
+                                <YAxis tickFormatter={(v) => `${v}`} tick={{ fill: '#000' }} />
+                                <Tooltip formatter={(value) => `${value}`} />
+                                <Legend />
+                                <Line type="monotone" dataKey="familiar" stroke="#2a9d8f" strokeWidth={2}>
+                                    <LabelList dataKey="familiar" position="top" formatter={(val) => `${val}`} />
+                                </Line>
+                                <Line type="monotone" dataKey="dejo_familiar" stroke="#e76f51" strokeWidth={2}>
+                                    <LabelList dataKey="dejo_familiar" position="top" formatter={(val) => `${val}`} />
+                                </Line>
+                            </LineChart>
+                        </ResponsiveContainer>
+                    </div>
                 </div>
-                <ResponsiveContainer width="100%" height={250}>
-                    <BarChart data={obtenerDatosActivasInactivas()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="departamento" tick={{ fill: '#000' }} />
-                        <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: '#000' }} />
-                        <Tooltip formatter={(value) => `${value}%`} />
-                        <Legend />
-                        <Bar dataKey="activa" fill="#2a9d8f">
-                            <LabelList dataKey="activa" position="top" formatter={(val) => `${val}%`} />
-                        </Bar>
-                        <Bar dataKey="inactiva" fill="#e76f51">
-                            <LabelList dataKey="inactiva" position="top" formatter={(val) => `${val}%`} />
-                        </Bar>
-                    </BarChart>
-                </ResponsiveContainer>
             </div>
-
-            {/* Gráfico por tipo de empresa */}
-            <div className="grafico-box mt-4">
-                <div className="bg-dark text-white p-2 rounded-top d-flex justify-content-between align-items-center">
-                    <span>% Tipos de empresa por departamento</span>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="secondary" size="sm">
-                            Tipo
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {tiposUnicos.map(tipo => (
-                                <Dropdown.Item key={tipo} onClick={() => setTipoEmpresaFiltro(tipo)}>
-                                    {tipo}
-                                </Dropdown.Item>
-                            ))}
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </div>
-                <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={obtenerTiposPorDepartamento()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="departamento" tick={{ fill: '#000' }} />
-                        <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: '#000' }} />
-                        <Tooltip formatter={(value) => `${value}%`} />
-                        <Legend />
-                        {tiposUnicos.map((tipo) =>
-                            !tipoEmpresaFiltro || tipoEmpresaFiltro === tipo ? (
-                                <Bar key={tipo} dataKey={tipo} fill={colores[tipo] || '#8884d8'}>
-                                    <LabelList dataKey={tipo} position="top" formatter={(val) => `${val}%`} />
+            
+            
+            <div className="row">
+                <div className="col-6">
+                    {/* Antiguedad */}
+                    <div className="grafico-box mt-4">
+                    <div className="bg-dark text-white p-2 rounded-top d-flex justify-content-between align-items-center">
+                        <span>Porcentaje empresas activas vs inactivas por departamentos</span>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="secondary" size="sm">
+                                    Departamento
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    {departamentosUnicos.map(dep => (
+                                        <Dropdown.Item key={dep} onClick={() => setDepartamentoFiltro(dep)}>
+                                            {dep}
+                                        </Dropdown.Item>
+                                    ))}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                        <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={obtenerDatosActivasInactivas()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="departamento" tick={{ fill: '#000' }} />
+                                <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: '#000' }} />
+                                <Tooltip formatter={(value) => `${value}%`} />
+                                <Legend />
+                                <Bar dataKey="activa" fill="#2a9d8f">
+                                    <LabelList dataKey="activa" position="top" formatter={(val) => `${val}%`} />
                                 </Bar>
-                            ) : null
-                        )}
-                    </BarChart>
-                </ResponsiveContainer>
+                                <Bar dataKey="inactiva" fill="#e76f51">
+                                    <LabelList dataKey="inactiva" position="top" formatter={(val) => `${val}%`} />
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+                <div className="col-6">
+                    {/* Gráfico por tipo de empresa */}
+                    <div className="grafico-box mt-4">
+                        <div className="bg-dark text-white p-2 rounded-top d-flex justify-content-between align-items-center">
+                            <span>% Tipos de empresa por departamento</span>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="secondary" size="sm">
+                                    Tipo
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    {tiposUnicos.map(tipo => (
+                                        <Dropdown.Item key={tipo} onClick={() => setTipoEmpresaFiltro(tipo)}>
+                                            {tipo}
+                                        </Dropdown.Item>
+                                    ))}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                        <ResponsiveContainer width="100%" height={300}>
+                            <BarChart data={obtenerTiposPorDepartamento()} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="departamento" tick={{ fill: '#000' }} />
+                                <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: '#000' }} />
+                                <Tooltip formatter={(value) => `${value}%`} />
+                                <Legend />
+                                {tiposUnicos.map((tipo) =>
+                                    !tipoEmpresaFiltro || tipoEmpresaFiltro === tipo ? (
+                                        <Bar key={tipo} dataKey={tipo} fill={colores[tipo] || '#8884d8'}>
+                                            <LabelList dataKey={tipo} position="top" formatter={(val) => `${val}%`} />
+                                        </Bar>
+                                    ) : null
+                                )}
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
             </div>
+            
         </div>
     );
 };

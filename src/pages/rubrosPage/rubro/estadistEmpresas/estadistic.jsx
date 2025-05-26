@@ -1,19 +1,15 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import "@fontsource/montserrat/700.css";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LabelList } from 'recharts';
 
 const data = [
-  { name: 'Ene', ventas: 400 },
-  { name: 'Feb', ventas: 300 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-  { name: 'Mar', ventas: 600 },
-
+  { name: 'Santa Cruz', Empresas: 400 },
+  { name: 'Chuquisaca', Empresas: 300 },
+  { name: 'Potosi', Empresas: 300 },
+  { name: 'Tarija', Empresas: 300 },
+  { name: 'La Paz', Empresas: 400 },
+  { name: 'Cochabamba', Empresas: 400 },
+  { name: 'Oruro', Empresas: 400 },
+  { name: 'Beni', Empresas: 400 },
+  { name: 'Pando', Empresas: 400 },
 ];
 
 const Estadistic = ({ width = "100%", height = "300px" }) => {
@@ -24,39 +20,39 @@ const Estadistic = ({ width = "100%", height = "300px" }) => {
         width: width,
         height: height,
         backgroundColor: "#ffffff",
-        padding: "10px",
+        padding: "0px",
         boxShadow: "none",
         display: "flex",
         flexDirection: "column"
       }}
     >
-      <h5 
-        style={{ 
-          textAlign: "left", 
-          fontFamily: "'Montserrat', sans-serif", 
-          fontWeight: 700,
-         margin: "10px 20px"
-        }}
-      >
+      <h5 style={{ 
+        textAlign: "left", 
+        fontFamily: "'Montserrat', sans-serif", 
+        fontWeight: 700,
+        margin: "10px 20px"
+      }}>
         Departamentos
       </h5>
 
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, padding: '0 10px' }}>
         <ResponsiveContainer width="100%" height="95%">
-          <BarChart data={data}>
-            {/* Eje X sin líneas */}
+          <BarChart 
+            data={data}
+            margin={{ top: 20, right: 10, left: 10, bottom: 5 }}
+          >
             <XAxis 
               dataKey="name" 
-              axisLine={false}  // Elimina la línea del eje
-              tickLine={false}  // Elimina las marcas de los ticks
+              axisLine={false}
+              tickLine={false}
               tick={{ fontSize: 12 }}
             />
             
-            {/* Eje Y sin líneas */}
             <YAxis 
               axisLine={false}
               tickLine={false}
               tick={{ fontSize: 12 }}
+              domain={[0, 'dataMax + 100']} 
             />
             
             <Tooltip 
@@ -64,19 +60,26 @@ const Estadistic = ({ width = "100%", height = "300px" }) => {
                 borderRadius: '0px',
                 fontFamily: "'Montserrat', sans-serif"
               }}
-              // Personaliza el tooltip para no mostrar "ventas:"
               formatter={(value) => [value, '']}
               labelFormatter={(label) => label}
             />
             
-            {/* Barra sin leyenda */}
             <Bar 
-              dataKey="ventas" 
+              dataKey="Empresas" 
               fill="#EEAF9D" 
               barSize={25}
               radius={[10, 10, 10, 10]}
-              name=""  // Cadena vacía para eliminar la leyenda
-            />
+            >
+              <LabelList 
+                dataKey="Empresas" 
+                position="top"
+                fill="#182335"
+                fontFamily="'Montserrat', sans-serif"
+                fontSize={12}
+                fontWeight={700}
+                offset={10}
+              />
+            </Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>

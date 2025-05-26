@@ -1,6 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import "@fontsource/montserrat/700.css";
+
 import Periodo from './periodoComp/periodo';
 import Filtro from '../filtro/filtro'
 const Periodos = ({ width = "15%", height = "10%" }) => {
@@ -13,18 +11,17 @@ const Periodos = ({ width = "15%", height = "10%" }) => {
         borderColor: '#E9F5FE',
         backgroundColor: "#E9F5FE",
         display: "flex",
-        alignItems: "center",
-        padding: 0,
+        justifyContent: "left",
+        gap: "3.5rem",
         boxShadow: "none",
-        position: "relative",
-        gap: "0.5rem",
         flexDirection: "row",
+        margin: "0px 0px"
       }}
     >
-      <Periodo width="10%" height="100%"/>
-      <Periodo width="10%" height="100%"/>
-      <Periodo width="10%" height="100%"/>
-      <Periodo width="10%" height="100%"/>
+      <Periodo width="15%" height="100%" titulo='GRANDES EMPRESAS.' subtitulo='11.5% (149)'/>
+      <Periodo width="15%" height="100%"titulo='MEDIANAS EMPRESAS.' subtitulo='32.7% (422)'/>
+      <Periodo width="15%" height="100%"titulo='EMPRESAS FAMILIARES.' subtitulo='55.8% (759)'/>
+      
       <Filtro width="10%" height="100%"/>
     </div>
   );

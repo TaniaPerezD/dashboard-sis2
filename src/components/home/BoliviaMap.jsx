@@ -6,8 +6,6 @@ const BoliviaMap = () => {
     return (
         <div className={[styles.container]}>
             <MapaDepartamentos />
-                
-
         </div>
         
     );
