@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './rubros.css';
+import './estilos.css';
 
 const grafico7 = () => {
 

@@ -8,8 +8,9 @@ import styles from './lateralbar.module.css';
 const LateralBar = ({ isOpen, toggleSidebar }) => {
   const menuItems = [
     { path: '/', icon: <FaHome />, name: 'Inicio' },
-    { path: '/Departamental', icon: <GiBolivia />, name: 'Departamentos' },
     { path: '/Rubros', icon: <BiSolidCategory />, name: 'Rubros' },
+    { path: '/Departamental', icon: <BiSolidCategory />, name: 'Departamental' },
+
   ];
 
   return (
