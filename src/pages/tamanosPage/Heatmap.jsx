@@ -1,51 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './tamano.css';
 
-const heatmapData = [
-  { range: [0, 5], color: '#FFE5D9', label: '0-5 años' },
-  { range: [6, 15], color: '#FF4201', label: '6-15 años' },
-  { range: [16, 25], color: '#199ECA', label: '16-25 años' },
-  { range: [26, Infinity], color: '#2C00FF', label: '25+ años' },
-];
-
 const getColorForAge = (edad) => {
-  const item = heatmapData.find(d => edad >= d.range[0] && edad <= d.range[1]);
-  return item ? item.color : '#ccc';
+  if (edad <= 5) return '#FFE5D9';
+  if (edad <= 15) return '#FF4201';
+  if (edad <= 25) return '#199ECA';
+  return '#2C00FF';
 };
 
-const Heatmap = () => {
-  const [data, setData] = useState([]);
+const Heatmap = ({ data, title = "Edad Promedio por Rubro y Tamaño" }) => {
+  if (!Array.isArray(data) || data.length === 0) {
+    return <div>No hay datos disponibles.</div>;
+  }
 
-  useEffect(() => {
-    fetch('')
-      .then(res => res.json())
-      .then(setData)
-      .catch(err => console.error('Error cargando datos:', err));
-  }, []);
+  const rubros = Array.from(new Set(data.map(item => item.rubro)));
+  const tamanos = Array.from(new Set(data.map(item => item.tamano)));
 
   return (
     <div className="plot-card">
       <div className="plot-header">
-        <h2 className="plot-title">Edad Promedio por Rubro y Tamaño</h2>
+        <h2 className="plot-title">{title}</h2>
       </div>
 
-      <div className="heatmap-container">
-        {data.map((item, i) => (
-          <div
-            key={i}
-            className="heatmap-cell"
-            style={{ backgroundColor: getColorForAge(item.edad_promedio) }}
-          >
-            {item.edad_promedio} años
-            <br />
-            <small>{item.rubro}<br />{item.tamano}</small>
-          </div>
+      <div className="heatmap-grid">
+        <div className="heatmap-header"></div>
+        {tamanos.map((tam, i) => (
+          <div key={i} className="heatmap-header">{tam}</div>
+        ))}
+
+        {rubros.map((rubro, rowIdx) => (
+          <React.Fragment key={rowIdx}>
+            <div className="heatmap-label">{rubro}</div>
+            {tamanos.map((tamano, colIdx) => {
+              const match = data.find(d => d.rubro === rubro && d.tamano === tamano);
+              const edad = match ? match.edad : null;
+              return (
+                <div
+                  key={`${rowIdx}-${colIdx}`}
+                  className="heatmap-cell"
+                  style={{ backgroundColor: edad !== null ? getColorForAge(edad) : '#ccc' }}
+                >
+                  {edad !== null ? `${edad} años` : '—'}
+                </div>
+              );
+            })}
+          </React.Fragment>
         ))}
       </div>
 
       <div className="heatmap-legend">
-        {heatmapData.map((item, index) => (
-          <div key={index} className="legend-item">
+        {[
+          { label: '0-5 años', color: '#FFE5D9' },
+          { label: '6-15 años', color: '#FF4201' },
+          { label: '16-25 años', color: '#199ECA' },
+          { label: '25+ años', color: '#2C00FF' },
+        ].map((item, idx) => (
+          <div key={idx} className="legend-item">
             <div className="legend-color" style={{ background: item.color }}></div>
             <span>{item.label}</span>
           </div>

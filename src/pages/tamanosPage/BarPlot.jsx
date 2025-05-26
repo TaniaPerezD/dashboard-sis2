@@ -1,60 +1,81 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js/auto';
 import './tamano.css';
 
-const heatmapDataLegend = [
-  { color: '#FFE5D9', label: '0-5 años', min: 0, max: 5 },
-  { color: '#FF4201', label: '6-15 años', min: 6, max: 15 },
-  { color: '#199ECA', label: '16-25 años', min: 16, max: 25 },
-  { color: '#2C00FF', label: '25+ años', min: 26, max: Infinity },
-];
-
-const getColorForAge = (age) => {
-  for (let i = 0; i < heatmapDataLegend.length; i++) {
-    const range = heatmapDataLegend[i];
-    if (age >= range.min && age <= range.max) return range.color;
-  }
-  return '#ccc';
-};
-
-const Heatmap = () => {
-  const [heatmapData, setHeatmapData] = useState([]);
+const BarPlot = ({ data }) => {
+  const canvasRef = useRef(null);
+  const chartInstanceRef = useRef(null);
 
   useEffect(() => {
-    fetch('')
-      .then((res) => res.json())
-      .then((data) => setHeatmapData(data))
-      .catch((err) => console.error('Error al obtener datos de Metabase:', err));
-  }, []);
+    if (canvasRef.current && data) {
+      if (chartInstanceRef.current) {
+        chartInstanceRef.current.destroy();
+      }
 
-  const uniqueRubros = [...new Set(heatmapData.map(item => item.rubro))];
-  const uniqueTamanos = [...new Set(heatmapData.map(item => item.tamano))];
+      // Extraer etiquetas y valores para el gráfico
+      const labels = data.map(item => item.x);
+      const medianValues = data.map(item => item.median);
+
+      chartInstanceRef.current = new Chart(canvasRef.current, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Mediana',
+            data: medianValues,
+            backgroundColor: [
+              '#FF420180',
+              '#199ECA80',
+              '#2C00FF80',
+              '#FF420160'
+            ],
+            borderColor: [
+              '#FF4201',
+              '#199ECA',
+              '#2C00FF',
+              '#FF4201'
+            ],
+            borderWidth: 2,
+            borderRadius: 8,
+            borderSkipped: false,
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { precision: 0 }
+            }
+          }
+        }
+      });
+    }
+
+    return () => {
+      if (chartInstanceRef.current) {
+        chartInstanceRef.current.destroy();
+      }
+    };
+  }, [data]);
 
   return (
     <div className="plot-card">
       <div className="plot-header">
-        <h2 className="plot-title">Edad Promedio por Rubro y Tamaño</h2>
+        <div className="plot-number"></div>
+        <h2 className="plot-title">Tasa de Empresas Premiadas por Tamaño</h2>
       </div>
-
-      <div className="heatmap-grid" style={{ gridTemplateColumns: `repeat(${uniqueTamanos.length}, 1fr)` }}>
-        {uniqueRubros.map(rubro => (
-          uniqueTamanos.map(tamano => {
-            const item = heatmapData.find(i => i.rubro === rubro && i.tamano === tamano);
-            const edad = item?.edad_promedio ?? '-';
-            const color = typeof edad === 'number' ? getColorForAge(edad) : '#eee';
-            return (
-              <div key={`${rubro}-${tamano}`} className="heatmap-cell" style={{ backgroundColor: color }}>
-                {edad} años
-              </div>
-            );
-          })
-        ))}
+      <div className="chart-container">
+        <canvas ref={canvasRef} className="chart-canvas" />
       </div>
-
-      <div className="heatmap-legend">
-        {heatmapDataLegend.map((item, index) => (
-          <div key={index} className="legend-item">
-            <div className="legend-color" style={{ background: item.color }}></div>
-            <span>{item.label}</span>
+      <div className="stats-grid">
+        {data && data.map((item, index) => (
+          <div className="stat-item" key={index}>
+            <div className="stat-value">{item.median}</div>
+            <div className="stat-label">{item.x}</div>
           </div>
         ))}
       </div>
@@ -62,4 +83,5 @@ const Heatmap = () => {
   );
 };
 
-export default Heatmap;
+export default BarPlot;
+
