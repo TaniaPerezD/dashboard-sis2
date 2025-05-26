@@ -19,7 +19,7 @@ const Mapa11 = () => {
   
 
   return (
-    <div className="plot-card" style={{ height: '105vh' }}>
+    <div className="plot-card">
       {/*
       <div className="plot-header">
         <h2 className="h2">Edad Promedio por Rubro y Tamaño</h2>

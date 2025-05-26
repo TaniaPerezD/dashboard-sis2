@@ -6,6 +6,10 @@ import Barras11 from './kpi11Barras';
 import Barras22 from './kpi22Barras';
 import Barras8 from './kpi8Barras';
 import Mapa11 from './kpi11Mapa';
+import Barras1 from './kpi1BarrasH';
+import Cascada2 from './kpi2Cascade';
+import Rare4 from './kpi4Rare';
+import Barras6 from './kpi6Barras';
 
 const RubrosPage1 = () => {
   return (
@@ -13,61 +17,80 @@ const RubrosPage1 = () => {
     <header className="header">
         <h1 className="h1">RUBROS EMPRESARIALES DE BOLIVIA</h1>
     </header>
-    <div className="componente-columna">
-        <header className="header">
+      <div className="page-container">
+        <section className="section section-large">
+          <header className="header">
             <h2 className="h2">Departamentos</h2>
-        </header>
-        <div className="contenedor" style={{ height: '100vh' }}> {/* Se le pone altura para cuando es componente superios e inferior */}
-            <div className="lado-izquierdo">
-                <Mapa11/>
+          </header>
+
+          <div className="grid-container two-columns">
+            <div className="grid-item full-height">
+              <Mapa11 />
             </div>
-            <div className="lado-derecho">
-                <div className="componente-superior">
-                    <Barras11/>
-                </div>
-                <div className="componente-inferior">
-                    <Barras8/>
-                </div>
+            <div className="grid-item stacked">
+              <div className="stacked-item">
+                <Barras11 />
+              </div>
+              <div className="stacked-item">
+                <Barras8 />
+              </div>
             </div>
-        </div>
-        <header className="header">
-            <h2 className="h2">Premios</h2>
-        </header>
-        <div className="contenedor" style={{ height: '62vh' }}>
-            <div className="lado-izquierdo">
-                <Barras14/>
-            </div>
-            <div className="lado-derecho">
-                <Barras8/>
-            </div>
-        </div>  
-        
-        <header className="header">
+          </div>
+        </section>
+        <section className="section section-large">
+          <header className="header">
             <h2 className="h2">Tiempo</h2>
-        </header>
-        <div className="contenedor">
-            <div className="lado-izquierdo">
-                <Heatmap20/>
+          </header>
+
+          <div className="grid-container two-columns">
+            <div className="grid-item">
+              <Heatmap20 />
             </div>
-            <div className="lado-derecho">
-                <Mapa11/>
+            <div className="grid-item">
+              <Mapa11 />
             </div>
-        </div>  
-        <header className="header">
+          </div>
+          <div className="grid-container two-columns">
+            <div className="grid-item">
+              <Barras1 />
+            </div>
+            <div className="grid-item">
+              <Cascada2 />
+            </div>
+          </div>
+        </section>
+        <section className="section section-large">
+          <header className="header">
             <h2 className="h2">Tipo societario</h2>
-        </header>
-        <div className="contenedor">
-            <div className="lado-izquierdo">
-                <Heatmap20/>
+          </header>
+          <div className="grid-container single-column">
+            <div className="grid-item">
+              <Barras22 />
             </div>
-            <div className="lado-derecho">
-                <Mapa11/>
+          </div>
+          <div className="grid-container two-columns">
+            <div className="grid-item">
+              <Rare4 />
             </div>
-        </div>  
-        
-    </div>
+            <div className="grid-item">
+              <Barras6 />
+            </div>
+          </div>
+        </section>
+        <section className="section section-large">
+          <header className="header">
+            <h2 className="h2">Premios</h2>
+          </header>
+          <div className="grid-container two-columns">
+            <div className="grid-item">
+              <Barras14 />
+            </div>
+            <div className="grid-item">
+              <Barras8 />
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
-}
-
-export default RubrosPage1;
+}; export default RubrosPage1;

@@ -3,15 +3,14 @@
     top: 0;
     background-color: white;
     z-index: 100;
-    padding: 1vh 0;
-
+    padding: 1rem 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
 }
 
 .h1 {
     font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
-    font-size: 4vh;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight: 800;
     color: var(--BluePurple-Dark);
     text-align: center;
@@ -19,7 +18,7 @@
 }
 .h2 {
     font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
-    font-size: 3vh;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 600;
     color: var(--BluePurple-Dark);
     text-align: center;
@@ -29,9 +28,10 @@
     background-color: #fff;
     border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    padding: 20px;
-    margin-bottom: 40px;
-    font-family: 'Poppins', sans-serif;
+    padding: 1.5rem;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
     position: relative;
     overflow: hidden;
     transition: all 0.4s ease;
@@ -47,22 +47,22 @@
   .plot-header {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 20px;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
   }
   
   .plot-number {
     background-color: #FF4201;
     color: #fff;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    padding: 8px 16px;
+    padding: 0.5rem 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(255, 66, 1, 0.3);
   }
   
   .plot-title {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     color: #333;
     font-weight: 600;
     flex: 1;
@@ -71,8 +71,9 @@
   .chart-container {
     position: relative;
     width: 100%;
-    height: 260px;
-    margin-bottom: 20px;
+    height: 100%;
+    min-height: 300px;
+    margin-bottom: 1rem;
   }
   
   .chart-canvas {
@@ -85,28 +86,28 @@
   
   .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
     margin-top: 1.5rem;
   }
   
   .stat-item {
     text-align: center;
-    padding: 1rem;
-    background: linear-gradient(135deg, #F6EEE3, rgba(255, 66, 1, 0.05));
+    padding: 1.2rem;
+    background: linear-gradient(135deg, #f6eee3, rgba(255, 66, 1, 0.05));
     border-radius: 12px;
     border: 1px solid rgba(255, 66, 1, 0.1);
   }
   
   .stat-value {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: #FF4201;
     margin-bottom: 0.25rem;
   }
   
   .stat-label {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: black;
     opacity: 0.7;
     font-weight: 500;
@@ -115,13 +116,13 @@
   .heatmap-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    gap: 0.75rem;
     margin-top: 1rem;
   }
   
   .heatmap-cell {
-    width: clamp(30px, 10vw, 60px);
-    height: clamp(30px, 10vw, 60px);
+    width: clamp(40px, 12vw, 80px);
+    height: clamp(40px, 12vw, 80px);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -144,7 +145,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 1rem;
-    padding: 0.5rem;
+    padding: 0.75rem;
     background: #333;
     border-radius: 8px;
   }
@@ -152,61 +153,70 @@
   .legend-item {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 0.8rem;
+    gap: 0.5rem;
+    font-size: 0.9rem;
   }
   
   .legend-color,
   .legend-symbol {
-    width: 12px;
+    width: 14px;
     height: 12px;
     border-radius: 2px;
     margin-right: 0.5rem;
   }
-  
-  .contenedor {
-    display: flex;
-    height: 90vh;
-    width: 90vw;
-  }
-  
-  .lado-izquierdo {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid #ccc;
-    margin-right: 1rem;
-    margin-top: 1rem;
-  }
-  
-  .componente-superior,
-  .componente-inferior {
-    flex: 1;
-    box-sizing: border-box;
-    border-bottom: 1px solid #eee;
-  }
-  .componente-columna {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .componente-inferior {
-    border-bottom: none;
-  }
-  
-  .lado-derecho {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid #ccc;
-    margin-top: 1rem;
-  }
-  
-  .titulo {
-    font-family: 'Poppins', sans-serif;
-    color: #000000;
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  max-width: 98vw;
+  box-sizing: border-box;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.grid-container {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.grid-container.single-column {
+  grid-template-columns: 1fr;
+}
+
+.grid-container.two-columns {
+  grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
+}
+
+.grid-item.full-height {
+  min-height: 90vh;
+}
+
+.grid-item.stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stacked-item {
+  flex: 1;
+  min-height: 45vh;
+  max-height: 50vh;
+  overflow: hidden;
+}
+
+.section-large .grid-item {
+  min-height: 70vh;
+  max-height: 100vh;
+}
+
+.section-large .stacked-item {
+  min-height: 50vh;
+  max-height: 55vh;
+}

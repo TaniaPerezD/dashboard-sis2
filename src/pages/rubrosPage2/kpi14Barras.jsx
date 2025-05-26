@@ -19,7 +19,7 @@ const Barras14 = () => {
   
 
   return (
-    <div className="plot-card" style={{ height: '60vh' }}>
+    <div className="plot-card">
       {/*
       <div className="plot-header">
         <h2 className="h2">Tasa de empresas premiadas por rubro o tamaño</h2>

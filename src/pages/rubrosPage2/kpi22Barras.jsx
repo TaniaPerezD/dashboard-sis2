@@ -19,7 +19,7 @@ const Barras22 = () => {
   
 
   return (
-    <div className="plot-card" style={{ height: '60vh' }}>
+    <div className="plot-card">
       {/*
       <div className="plot-header">
         <h2 className="h2">Cohorte de fundación por rubro</h2>
@@ -27,7 +27,7 @@ const Barras22 = () => {
       */}
 
       <iframe 
-            src="http://localhost:3000/public/question/212bbcd1-5e63-4b65-8a2c-89906d0bb53e" 
+            src="https://meta-tania.serverbb.site/public/question/ac9139f3-3aab-45f2-9844-e3fe9a47580a" 
             frameborder="0"
             width={"100%"}
             height={"80%"}
