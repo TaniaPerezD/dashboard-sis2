@@ -19,7 +19,7 @@ const Barras8 = () => {
   
 
   return (
-    <div className="plot-card" style={{ height: '60vh' }}>
+    <div className="plot-card" style={{ height: '45vh' }}>
       {/*
       <div className="plot-header">
         <h2 className="h2">Índice de expansión territorial por rubro</h2>

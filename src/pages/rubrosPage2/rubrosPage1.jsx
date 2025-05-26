@@ -14,24 +14,48 @@ const RubrosPage1 = () => {
         <h1 className="h1">RUBROS EMPRESARIALES DE BOLIVIA</h1>
     </header>
     <div className="componente-columna">
-        <div className="contenedor" style={{ height: '130vh' }}> {/* Se le pone altura para cuando es componente superios e inferior */}
+        <header className="header">
+            <h2 className="h2">Departamentos</h2>
+        </header>
+        <div className="contenedor" style={{ height: '100vh' }}> {/* Se le pone altura para cuando es componente superios e inferior */}
             <div className="lado-izquierdo">
-                <div className="componente-superior">
-                    <Barras14/>
-                </div>
-                <div className="componente-inferior">
-                    <Barras11/>
-                </div>
+                <Mapa11/>
             </div>
             <div className="lado-derecho">
                 <div className="componente-superior">
-                    <Barras8/>
+                    <Barras11/>
                 </div>
                 <div className="componente-inferior">
-                    <Barras22/>
+                    <Barras8/>
                 </div>
             </div>
         </div>
+        <header className="header">
+            <h2 className="h2">Premios</h2>
+        </header>
+        <div className="contenedor" style={{ height: '62vh' }}>
+            <div className="lado-izquierdo">
+                <Barras14/>
+            </div>
+            <div className="lado-derecho">
+                <Barras8/>
+            </div>
+        </div>  
+        
+        <header className="header">
+            <h2 className="h2">Tiempo</h2>
+        </header>
+        <div className="contenedor">
+            <div className="lado-izquierdo">
+                <Heatmap20/>
+            </div>
+            <div className="lado-derecho">
+                <Mapa11/>
+            </div>
+        </div>  
+        <header className="header">
+            <h2 className="h2">Tipo societario</h2>
+        </header>
         <div className="contenedor">
             <div className="lado-izquierdo">
                 <Heatmap20/>
