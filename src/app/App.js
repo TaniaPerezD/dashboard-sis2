@@ -18,8 +18,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="societario" element={<SocietarioPage />} />
-        <Route path="rubros/*" element={<RubrosPage />} />
+       
         <Route index element={<HomePage />} />
         <Route path="Departamental" element={<DepartamentalPage />} />
         <Route path="Departamental/SeccionUno" element={<DepartamentalPage />} />
@@ -28,6 +27,7 @@ function App() {
         <Route path="Departamental/SeccionCuatro" element={<SeccionCuatroPage />} />
         <Route path="Temporal/*" element={<RubrosPage />} />
         <Route path="Tamanos" element={<TamanosPage />} />
+         <Route path="Societario" element={<SocietarioPage />} />
         <Route path="*" element={<ErrorPage />} />
         <Route path="/Rubros" element={<RubrosPage2 />} />
       </Route>
