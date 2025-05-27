@@ -16,6 +16,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+   
+        
+        <Route path="rubros/*" element={<RubrosPage />} />
         <Route index element={<HomePage />} />
         <Route path="Departamental" element={<DepartamentalPage />} />
         <Route path="Departamental/SeccionUno" element={<DepartamentalPage />} />
@@ -31,4 +34,3 @@ function App() {
 }
 
 export default App;
-
