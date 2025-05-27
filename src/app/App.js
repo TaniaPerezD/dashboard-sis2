@@ -28,8 +28,10 @@ function App() {
         <Route path="Rubros/*" element={<RubrosPage />} />
         <Route path="Tamanos" element={<TamanosPage />} />
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/Rubros2" element={<RubrosPage2 />} />
       </Route>
     </Routes>
+
   );
 }
 
