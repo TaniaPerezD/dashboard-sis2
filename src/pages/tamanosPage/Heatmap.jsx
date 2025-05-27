@@ -2,9 +2,9 @@ import React from 'react';
 import './heat.css';
 
 const getColorForAge = (edad) => {
-  if (edad <= 5) return '#FFE5D9';
-  if (edad <= 15) return '#FF4201';
-  if (edad <= 25) return '#199ECA';
+  if (edad <= 20) return '#FFE5D9';
+  if (edad <= 50) return '#FF4201';
+  if (edad <= 80) return '#199ECA';
   return '#2C00FF';
 };
 
