@@ -20,11 +20,11 @@
 /* Variables for consistent styling */
 :root {
   --color-cream: #f9f1e7;
-  --color-dark-blue: #0e3e71;
+  --color-dark-blue: #007654;
   --color-sand: #e5c783;
   --color-dark-green: #0d6b4e;
   --color-white: #ffffff;
-  --color-error: #721c24;
+  --color-error: #007654;
   --color-error-bg: #f8d7da;
   --color-error-border: #f5c6cb;
   --color-kpi-active: #c5e1a5; /* A gentle green for active state */
