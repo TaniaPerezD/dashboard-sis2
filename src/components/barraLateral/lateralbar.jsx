@@ -12,6 +12,8 @@ const LateralBar = ({ isOpen, toggleSidebar }) => {
     { path: '/Departamental', icon: <BiSolidCategory />, name: 'Análisis Departamental' },
     { path: '/Tamanos', icon: <BiSolidCategory />, name: 'Análisis por tamaño empresarial' },
     { path: '/Temporal', icon: <BiSolidCategory />, name: 'Análisis Temporal' },
+    { path: '/Societario', icon: <BiSolidCategory />, name: 'Análisis por tipo de empresa' },
+    
 
 
   ];
