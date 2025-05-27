@@ -2,8 +2,10 @@
 import Titulo from '../rubro/Tittle/titulo';
 import Periodos from '../rubro/periodos/periodos';
 import BotonEleccion from '../rubro/botonEleccion/botonEleccion';
+import React from 'react';
 
-const Encabezado = ({ width = "100%", height = "100" }) => {
+const Encabezado = ({ width = "100%", height = "100",selectedValues, handleValueChange,opcionesRubro,filtroSeleccionado,handleSeleccion,datafiltro}) => {
+  
   return (
     <div
       className="card"
@@ -23,8 +25,8 @@ const Encabezado = ({ width = "100%", height = "100" }) => {
       }}
     >
       <Titulo width="100%" height="30%" />
-      <BotonEleccion width="100%" height="20%" />
-      <Periodos width="100%" height="50%" />
+      <BotonEleccion width="100%" height="20%" selectedValues={selectedValues} handleValueChange={handleValueChange} />
+      <Periodos width="100%" height="50%" opcionesRubro={opcionesRubro} handleSeleccion={handleSeleccion} filtroSeleccionado={filtroSeleccionado} datafiltro={datafiltro}/>
     </div>
   );
 };

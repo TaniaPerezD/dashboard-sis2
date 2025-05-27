@@ -14,8 +14,9 @@ const BotonType = ({
   spacing = "2rem",
   buttonWidth = "350px"
 }) => {
+  const a=5;
   const groupId = useId();
-  
+  console.log("esto",!onChange);
   const handleChange = (optionId) => {
     if (onChange) {
       const newValues = selectedValues.includes(optionId)

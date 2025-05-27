@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "@fontsource/montserrat/700.css";
 
-const Filtro = ({ width = "40%", height = "10%" }) => {
-  const [filtroSeleccionado, setFiltroSeleccionado] = useState("GANADERIA"); // Cambié el valor por defecto aquí
+const Filtro = ({ width = "40%", height = "10%", opcionesRubro, handleSeleccion, filtroSeleccionado, data }) => {
+  // Encuentra el objeto en 'data' que coincide con el 'filtroSeleccionado'
+  const filtroSeleccionadoData = data ? data.find(item => item.name?.toUpperCase() === filtroSeleccionado?.toUpperCase()) : null;
 
-  const handleSeleccion = (opcion) => {
-    setFiltroSeleccionado(opcion);
-  };
+  // Obtiene el 'value' del filtro seleccionado o 0 si no se encuentra
+  const cantidadFiltrada = filtroSeleccionadoData ? filtroSeleccionadoData.value : 0;
+
+  // Calcula el total de todos los 'value' en 'data'
+  const totalCantidad = data ? data.reduce((sum, item) => sum + (item.value || 0), 0) : 0;
 
   return (
     <div
@@ -43,8 +49,11 @@ const Filtro = ({ width = "40%", height = "10%" }) => {
           RUBRO
         </button>
         <ul className="dropdown-menu">
-          <li><button className="dropdown-item" onClick={() => handleSeleccion("GANADERIA")}>GANADERIA</button></li>
-          <li><button className="dropdown-item" onClick={() => handleSeleccion("ROPA")}>ROPA</button></li>
+          {opcionesRubro.map((opcion) => (
+            <li key={opcion}>
+              <button className="dropdown-item" onClick={() => handleSeleccion(opcion)}>{opcion}</button>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -59,7 +68,8 @@ const Filtro = ({ width = "40%", height = "10%" }) => {
         }}
       >
         {filtroSeleccionado}
-      </h5><h5
+      </h5>
+      <h5
         style={{
           margin: 0,
           color: "#182335",
@@ -69,7 +79,7 @@ const Filtro = ({ width = "40%", height = "10%" }) => {
           whiteSpace: "nowrap"
         }}
       >
-        43% (555 total)
+        {cantidadFiltrada} total ({totalCantidad} global)
       </h5>
     </div>
   );

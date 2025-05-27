@@ -1,15 +1,13 @@
-
-
-
 import Puntos from './graficq/puntos';
 import Pastel from './graficq/pastel';
-const Grafico1 = ({ width = "15%", height = "10%" }) => {
+
+const Grafico1 = ({ width = "100%", height = "60%", data, dataPastel }) => {
   return (
     <div
       className="card"
       style={{
-        width: width,
-        height: height,
+        width,
+        height,
         borderColor: '#E9F5FE',
         backgroundColor: "#E9F5FE",
         display: "flex",
@@ -17,14 +15,12 @@ const Grafico1 = ({ width = "15%", height = "10%" }) => {
         alignItems: "center",
         padding: 0,
         boxShadow: "none",
-        position: "relative",
         flexDirection: "row",
         gap: "0.5rem",
       }}
     >
-    
-      <Puntos  width="75.35%" height="100%" />
-      <Pastel  width="24.65%" height="100%" />
+      <Puntos width="75%" height="100%" data={data} />
+      <Pastel width="25%" height="100%" data={dataPastel} />
     </div>
   );
 };
