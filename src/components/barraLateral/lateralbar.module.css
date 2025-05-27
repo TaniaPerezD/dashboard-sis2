@@ -71,7 +71,6 @@
 .active {
   background-color: #f6eee3; 
   color: #007654;
-  font-weight: bold;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
