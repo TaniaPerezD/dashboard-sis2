@@ -26,10 +26,10 @@ function App() {
         <Route path="Departamental/SeccionDos" element={<SeccionDosPage />} />
         <Route path="Departamental/SeccionTres" element={<SeccionTresPage />} />
         <Route path="Departamental/SeccionCuatro" element={<SeccionCuatroPage />} />
-        <Route path="Rubros/*" element={<RubrosPage />} />
+        <Route path="Temporal/*" element={<RubrosPage />} />
         <Route path="Tamanos" element={<TamanosPage />} />
         <Route path="*" element={<ErrorPage />} />
-        <Route path="/Rubros2" element={<RubrosPage2 />} />
+        <Route path="/Rubros" element={<RubrosPage2 />} />
       </Route>
     </Routes>
 
