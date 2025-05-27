@@ -8,8 +8,14 @@ import styles from './lateralbar.module.css';
 const LateralBar = ({ isOpen, toggleSidebar }) => {
   const menuItems = [
     { path: '/', icon: <FaHome />, name: 'Inicio' },
-    { path: '/Departamental', icon: <GiBolivia />, name: 'Departamentos' },
-    { path: '/Rubros', icon: <BiSolidCategory />, name: 'Rubros' },
+    { path: '/Rubros', icon: <BiSolidCategory />, name: 'Análisis por rubro' },
+    { path: '/Departamental', icon: <BiSolidCategory />, name: 'Análisis Departamental' },
+    { path: '/Tamanos', icon: <BiSolidCategory />, name: 'Análisis por tamaño empresarial' },
+    { path: '/Temporal', icon: <BiSolidCategory />, name: 'Análisis Temporal' },
+    { path: '/Societario', icon: <BiSolidCategory />, name: 'Análisis por tipo de empresa' },
+    
+
+
   ];
 
   return (
