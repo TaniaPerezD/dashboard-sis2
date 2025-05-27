@@ -8,6 +8,10 @@ const BoxPlot = ({ data }) => {
   useEffect(() => {
     const ctx = canvasRef.current.getContext('2d');
 
+    const allValues = data.flatMap(d => [d.min, d.q1, d.median, d.q3, d.max, ...(d.outliers || [])]);
+    const yMin = 0;
+    const yMax = Math.ceil(Math.max(...allValues) / 10) * 10;
+
     const drawBoxplot = (ctx, chartArea) => {
       const { left, right, top, bottom } = chartArea;
       const boxWidth = (right - left) / data.length * 0.6;
@@ -19,8 +23,7 @@ const BoxPlot = ({ data }) => {
         const boxLeft = centerX - boxWidth / 2;
         const boxRight = centerX + boxWidth / 2;
         const scaleY = (value) => {
-          const min = 0, max = 650;
-          return bottom - ((value - min) / (max - min)) * (bottom - top);
+          return bottom - ((value - yMin) / (yMax - yMin)) * (bottom - top);
         };
 
         const minY = scaleY(item.min);
@@ -88,7 +91,10 @@ const BoxPlot = ({ data }) => {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false }
+        },
         scales: {
           x: {
             type: 'category',
@@ -100,13 +106,13 @@ const BoxPlot = ({ data }) => {
             }
           },
           y: {
-            min: 0,
-            max: 650,
+            min: yMin,
+            max: yMax,
             grid: { color: 'rgba(0,0,0,0.1)' },
             ticks: {
               color: '#666',
               font: { family: 'Poppins', size: 11 },
-              callback: value => value + ' unidades'
+              callback: value => value + ' ventas'
             },
             title: {
               display: true,
