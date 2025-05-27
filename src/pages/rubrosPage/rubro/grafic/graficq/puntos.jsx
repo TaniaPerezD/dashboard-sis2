@@ -32,18 +32,18 @@ const data = [
 ];
 
 
-const Puntos = ({ width = "100%", height = "100%" }) => {
-  const years = data.map(item => parseInt(item.año));
+const Puntos = ({ width = "100%", height = "100%",data }) => {
+  const years = data.map(item => parseInt(item.name));
   const minYear = Math.min(...years);
   const maxYear = Math.max(...years);
 
   const [yearRange, setYearRange] = React.useState([minYear, maxYear]);
 
   const filteredData = data.filter(item => {
-    const year = parseInt(item.año);
+    const year = parseInt(item.name);
     return year >= yearRange[0] && year <= yearRange[1];
   });
-  const totalEmpresas = filteredData.reduce((acc, curr) => acc + curr.empresas, 0);
+  const totalEmpresas = filteredData.reduce((acc, curr) => acc + curr.value, 0);
   return (
     <div
       className="card"
@@ -84,9 +84,9 @@ const Puntos = ({ width = "100%", height = "100%" }) => {
     <CartesianGrid stroke="#f5f5f5" />
     
     <XAxis 
-      dataKey="año"
+      dataKey="name"
       label={{ 
-        value: 'Año', 
+        value: 'name', 
         position: 'bottom', 
         offset: 0, 
         style: { fontSize: 12, fontFamily: "'Montserrat', sans-serif" }
@@ -111,7 +111,7 @@ const Puntos = ({ width = "100%", height = "100%" }) => {
     
     <Line
       type="monotone"
-      dataKey="empresas"
+      dataKey="value"
       stroke="#182335"
       strokeWidth={2}
       dot={{ r: 4 }}

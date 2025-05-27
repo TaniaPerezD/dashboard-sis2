@@ -1,0 +1,244 @@
+.header {
+    position: sticky;
+    top: 0;
+    background-color:#007654;
+    z-index: 100;
+    padding: 1vh 0;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.h1 {
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    font-size: 4vh;
+    font-weight: 800;
+    color: var(--BluePurple-Dark);
+    text-align: center;
+    margin: 0;
+}
+.h2 {
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    font-size: 3vh;
+    font-weight: 600;
+    color: var(--BluePurple-Dark);
+    text-align: center;
+    margin: 1vh 0;
+}
+.plot-card {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  
+  .plot-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  .plot-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .plot-number {
+    background-color: #FF4201;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(255, 66, 1, 0.3);
+  }
+  
+  .plot-title {
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 600;
+    flex: 1;
+  }
+  
+  .chart-container {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    margin-bottom: 20px;
+  }
+  
+  .chart-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    margin-top: 1.5rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, #F6EEE3, rgba(255, 66, 1, 0.05));
+    border-radius: 12px;
+    border: 1px solid rgba(255, 66, 1, 0.1);
+  }
+  
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FF4201;
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-label {
+    font-size: 0.85rem;
+    color: black;
+    opacity: 0.7;
+    font-weight: 500;
+  }
+  
+  .heatmap-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 1rem;
+  }
+  
+  .heatmap-cell {
+    width: clamp(30px, 10vw, 60px);
+    height: clamp(30px, 10vw, 60px);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .heatmap-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .heatmap-legend {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: #333;
+    border-radius: 8px;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+  }
+  
+  .legend-color,
+  .legend-symbol {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-right: 0.5rem;
+  }
+  
+  .contenedor {
+    display: flex;
+    height: 90vh;
+    width: 90vw;
+  }
+  
+  .lado-izquierdo {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ccc;
+    margin-right: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .componente-superior,
+  .componente-inferior {
+    flex: 1;
+    padding: 16px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee;
+  }
+  .componente-columna {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .componente-inferior {
+    border-bottom: none;
+  }
+  
+  .lado-derecho {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ccc;
+    margin-top: 1rem;
+  }
+  
+  .titulo {
+    font-family: 'Poppins', sans-serif;
+    color: #000000;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .grafico9-centro {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.grafico9-centro > * {
+  max-width: 900px;
+  width: 100%;
+}
+
+.fila {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.fila-doble > .plot-card {
+  flex: 1 1 calc(50% - 0.5rem);
+}
+
+.fila-centrada {
+  justify-content: center;
+}
+
+.fila-centrada .grafico9 {
+  max-width: 900px;
+  width: 100%;
+}

@@ -12,7 +12,7 @@ const data = [
   { name: 'Pando', Empresas: 400 },
 ];
 
-const Estadistic = ({ width = "100%", height = "300px" }) => {
+const Estadistic = ({ width = "100%", height = "300px",data }) => {
   return (
     <div
       className="card"
@@ -52,7 +52,7 @@ const Estadistic = ({ width = "100%", height = "300px" }) => {
               axisLine={false}
               tickLine={false}
               tick={{ fontSize: 12 }}
-              domain={[0, 'dataMax + 100']} 
+              domain={[0, 'dataMax']} 
             />
             
             <Tooltip 
@@ -65,13 +65,13 @@ const Estadistic = ({ width = "100%", height = "300px" }) => {
             />
             
             <Bar 
-              dataKey="Empresas" 
+              dataKey="value" 
               fill="#EEAF9D" 
               barSize={25}
               radius={[10, 10, 10, 10]}
             >
               <LabelList 
-                dataKey="Empresas" 
+                dataKey="value" 
                 position="top"
                 fill="#182335"
                 fontFamily="'Montserrat', sans-serif"
