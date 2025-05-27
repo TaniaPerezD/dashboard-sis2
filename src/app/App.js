@@ -9,6 +9,7 @@ import {
   SeccionTresPage,
   SeccionCuatroPage,
   TamanosPage,
+  SocietarioPage 
 } from '../pages';
 import Layout from '../components/layout/layout';
 import DepartamentalPage from '../pages/departamental/departamentalPage';
@@ -17,8 +18,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-   
-        
+        <Route path="societario" element={<SocietarioPage />} 
         <Route path="rubros/*" element={<RubrosPage />} />
         <Route index element={<HomePage />} />
         <Route path="Departamental" element={<DepartamentalPage />} />
