@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import './TemporalAnalysis.css';
-import Titulo from '../rubrosPage/rubro/Tittle/titulo'
+
 const TemporalAnalysisDashboard = () => {
   const [expandedKPI, setExpandedKPI] = useState(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -76,7 +76,6 @@ const TemporalAnalysisDashboard = () => {
 
   return (
     <div className="dashboard-container">
-        <Titulo width="100%" height="15%" />
       <header className="dashboard-header">
         <h1 className="dashboard-title">ANÁLISIS TEMPORAL / LONGITUDINAL</h1>
       </header>

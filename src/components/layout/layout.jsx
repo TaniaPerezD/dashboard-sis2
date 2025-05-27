@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import Header from '../header/header';
 import Sidebar from '../barraLateral/lateralbar';
 import styles from './layout.module.css';
 
-const Layout = ({ children }) => {
+const Layout = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -17,7 +18,7 @@ const Layout = ({ children }) => {
         toggleSidebar={() => setSidebarOpen(!isSidebarOpen)} 
       />
       <main className={styles.main}>
-        {children}
+        <Outlet />
       </main>
     </div>
   );

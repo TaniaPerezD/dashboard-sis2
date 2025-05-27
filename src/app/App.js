@@ -4,6 +4,7 @@ import {
   HomePage,
   ErrorPage,
   RubrosPage,
+  RubrosPage2,
   SeccionDosPage,
   SeccionTresPage,
   SeccionCuatroPage,
