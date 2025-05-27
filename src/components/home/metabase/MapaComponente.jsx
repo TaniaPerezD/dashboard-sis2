@@ -4,7 +4,7 @@ const MapaDepartamentos = () => {
   return (
     <div style={{ height: '100%', width: '100%' }}>
       <iframe
-        src="http://localhost:3000/public/dashboard/166209f7-57f0-47f6-ba07-abb381707b3a"
+        src="http://meta-tania.serverbb.site/public/question/9f6330ce-d954-4afd-8f4f-1865c3293697"
         frameBorder="0"
         width="100%"
         height="100%"

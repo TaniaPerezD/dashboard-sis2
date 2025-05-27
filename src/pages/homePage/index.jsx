@@ -1,72 +1,71 @@
 import React from 'react';
 import styles from './homePage.module.css';
 import HomeCard from '../../components/home/HomeCard';
-import HorizontalBarChart from '../../components/home/HorizontalBarChart';
-import BoliviaMap from '../../components/home/BoliviaMap';
 
 const HomePage = () => {
-  const cardProps = [
-    { numero: '60%', texto: 'Empresas Familiares' },
-    { numero: '108.232', texto: 'Empresas en Bolivia' },
-    { numero: '8.5', texto: 'Años de Vida Promedio' },
-    { numero: '200', texto: 'Empresas Cerradas' },
-    { numero: '1871', texto: 'Primera Empresa' },
+  const cardUrls = [
+    'http://meta-tania.serverbb.site/public/question/46f330eb-5b1b-4074-8f6e-6e746d30cb2c',
+    'http://meta-tania.serverbb.site/public/question/5e6ae2b3-bb1c-4d56-bad0-81f13f88e9b9',
+    'http://meta-tania.serverbb.site/public/question/98190f94-2c5d-41f0-bebc-6f0a4e586b9d',
+    'http://meta-tania.serverbb.site/public/question/7464fa09-7a7c-4028-ab9e-1a9019e7addd',
   ];
 
-  const hcData = [
-    {
-      title: 'Tamaños de empresa',
-      data: [
-        { name: 'Grandes', value: 635 },
-        { name: 'Medianas', value: 3659 },
-        { name: 'Pequeñas', value: 6437 },
-      ],
-    },
-    {
-      title: 'Rubros Mas Poblados',
-      data: [
-        { name: 'Mineria', value: 3629 },
-        { name: 'Manufacturera', value: 10623 },
-        { name: 'Construccion', value: 16348 },
-        { name: 'Comercio', value: 37338 },
-        { name: 'Servicios', value: 39068 },
-      ],
-    },
+  const chartUrls = [
+    'http://meta-tania.serverbb.site/public/question/c59cbaaf-65b2-433a-a56f-727f628eac59',
+    'http://meta-tania.serverbb.site/public/question/a3e0fa41-ce23-419d-9179-7245d3c8d567',
   ];
+
+  const mapUrl = 'http://meta-tania.serverbb.site/public/question/9f6330ce-d954-4afd-8f4f-1865c3293697';
 
   return (
-    <div className={styles.homeContent}>
-      <h2 className={styles.h2}>
-        "Explora el impacto y distribución de las empresas bolivianas, con énfasis en el papel de las empresas familiares"
-      </h2>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <h1 className={styles.h1}>ANÁLISIS GENERAL DE EMPRESAS EN BOLIVIA</h1>
+      </header>
 
-      <div className={styles.layout}>
+      <main className={styles.mainContent}>
+        {/* TARJETAS A LA IZQUIERDA */}
         <aside className={styles.sidebar}>
-          {cardProps.map((item, index) => (
-            <HomeCard key={index} numero={item.numero} texto={item.texto} />
+          {cardUrls.map((url, index) => (
+            <HomeCard key={index} metabaseUrl={url} />
           ))}
         </aside>
 
-        <div className={styles.visuals}>
-          <div className={styles.mapContainer}>
-            <BoliviaMap />
-          </div>
+        {/* ÁREA PRINCIPAL */}
+        <section className={styles.mainArea}>
+  {/* MAPA */}
+  <div className={styles.mapContainer}>
+    <iframe
+      src={mapUrl}
+      width="100%"
+      height="100%"
+      frameBorder="0"
+      title="Mapa Bolivia"
+      allowTransparency="true"
+      style={{ borderRadius: '12px' }}
+    />
+  </div>
 
-          <div className={styles.chartsContainer}>
-            {hcData.map((item, index) => (
-              <div className={styles.chartWrapper} key={index}>
-                <HorizontalBarChart chartData={item} />
-              </div>
-            ))}
-          </div>
-        </div>
+  {/* GRÁFICOS DE BARRAS */}
+  <div className={styles.chartsContainer}>
+    {chartUrls.map((url, index) => (
+      <div key={index} className={styles.chartWrapper}>
+        <iframe
+          src={url}
+          width="100%"
+          height="280"
+          frameBorder="0"
+          title={`Gráfico ${index + 1}`}
+          allowTransparency="true"
+          style={{ borderRadius: '12px' }}
+        />
       </div>
+    ))}
+  </div>
+</section>
 
-      <footer className={styles.footer}>
-        <h2 className={styles.h2}>
-          "Las empresas familiares no solo son mayoría, también representan el pasado, presente y futuro del tejido empresarial boliviano."
-        </h2>
-      </footer>
+      </main>
+
     </div>
   );
 };

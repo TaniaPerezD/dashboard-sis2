@@ -81,29 +81,6 @@ const TemporalAnalysisDashboard = () => {
       </header>
 
       <div className="main-content-area">
-        <section className="kpi-section">
-          <h2 className="section-title">Indicadores Clave de Performance (KPIs)</h2>
-          <div className="kpi-list">
-            {kpis.map((kpi, index) => (
-              <div
-                key={kpi.id}
-                className={`kpi-card ${expandedKPI === index ? 'expanded' : ''}`}
-                onClick={() => toggleKPI(index)}
-              >
-                <h3 className="kpi-title">
-                  {kpi.title}
-                  <span className="kpi-icon">
-                    <i className={`fas fa-${kpi.icon}`}></i>
-                  </span>
-                </h3>
-                <div className={`kpi-description ${expandedKPI === index ? 'expanded' : ''}`}>
-                  <p><strong>Descripción:</strong> {kpi.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
         <div className="iframe-container">
           {!iframeLoaded && !iframeError && (
             <div className="iframe-loading">
